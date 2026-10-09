@@ -1,12 +1,26 @@
+import { getSessionCookie } from "better-auth/cookies";
 import { NextResponse, type NextRequest } from "next/server";
+
+const PROTECTED = ["/today", "/food", "/train", "/body", "/coach", "/settings", "/welcome"];
 
 /**
  * Sets a strict, per-request Content Security Policy.
  * Scripts need the nonce; nothing inline or third-party runs without it.
  * Styles allow 'unsafe-inline' because animation writes style attributes, which
- * a nonce cannot cover. Auth redirects are added in lib/auth (Phase 2).
+ * a nonce cannot cover.
+ *
+ * It also bounces visitors with no session cookie away from app pages. That is
+ * a convenience only: the cookie is not validated here. Every page, action
+ * and route handler validates the session itself (lib/auth/session.ts).
  */
 export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  if (PROTECTED.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
+    if (!getSessionCookie(request, { cookiePrefix: "almanac" })) {
+      return NextResponse.redirect(new URL("/sign-in", request.url));
+    }
+  }
+
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const isDev = process.env.NODE_ENV === "development";
 

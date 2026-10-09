@@ -203,8 +203,19 @@
     border-top: 1px solid var(--ink);
   }
 
+  .step-in {
+    animation: step-in 0.24s var(--ease-out-quart) both;
+  }
+
   .safe-b {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
   }
 }
 

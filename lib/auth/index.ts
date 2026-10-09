@@ -1,0 +1,105 @@
+import "server-only";
+import { drizzleAdapter } from "@better-auth/drizzle-adapter";
+import { betterAuth } from "better-auth";
+import { APIError } from "better-auth/api";
+import { nextCookies } from "better-auth/next-js";
+import { db } from "@/lib/db/client";
+import * as schema from "@/lib/db/schema";
+import { env, features } from "@/lib/env";
+import { AGE_OK_COOKIE, readCookie, verifyAgeToken } from "./age-gate";
+
+type HookContext = { headers?: Headers; request?: Request } | null | undefined;
+
+function ageClaimFrom(ctx: HookContext) {
+  const cookieHeader = ctx?.headers?.get("cookie") ?? ctx?.request?.headers.get("cookie");
+  return verifyAgeToken(readCookie(cookieHeader, AGE_OK_COOKIE));
+}
+
+export const auth = betterAuth({
+  appName: "Almanac",
+  baseURL: env.BETTER_AUTH_URL,
+  secret: env.BETTER_AUTH_SECRET,
+  trustedOrigins: [env.BETTER_AUTH_URL],
+
+  database: drizzleAdapter(db, { provider: "pg", schema }),
+
+  emailAndPassword: {
+    enabled: true,
+    minPasswordLength: 10,
+    maxPasswordLength: 128,
+    autoSignIn: true,
+    // No email service is configured, so addresses are not verified and there
+    // is no password reset yet. See README "Known gaps".
+    requireEmailVerification: false,
+  },
+
+  socialProviders: features.google
+    ? {
+        google: {
+          clientId: env.GOOGLE_CLIENT_ID!,
+          clientSecret: env.GOOGLE_CLIENT_SECRET!,
+        },
+      }
+    : {},
+
+  session: {
+    expiresIn: 60 * 60 * 24 * 30,
+    updateAge: 60 * 60 * 24,
+    cookieCache: { enabled: true, maxAge: 300 },
+  },
+
+  user: {
+    deleteUser: { enabled: true },
+  },
+
+  // Counters live in Postgres so limits hold across serverless instances.
+  rateLimit: {
+    enabled: env.NODE_ENV !== "test",
+    storage: "database",
+    window: 60,
+    max: 100,
+    customRules: {
+      "/sign-in/email": { window: 60, max: 5 },
+      "/sign-up/email": { window: 60 * 10, max: 5 },
+      "/delete-user": { window: 60 * 10, max: 3 },
+    },
+  },
+
+  advanced: {
+    cookiePrefix: "almanac",
+    useSecureCookies: env.NODE_ENV === "production",
+    defaultCookieAttributes: { sameSite: "lax", httpOnly: true },
+  },
+
+  onAPIError: { errorURL: "/sign-up" },
+
+  databaseHooks: {
+    user: {
+      create: {
+        // The age gate, enforced where accounts are actually created. This
+        // covers email sign-up and first-time Google sign-in alike.
+        before: async (data, ctx) => {
+          if (!ageClaimFrom(ctx as HookContext)) {
+            throw new APIError("FORBIDDEN", {
+              code: "AGE_REQUIRED",
+              message: "Please confirm your date of birth before creating an account.",
+            });
+          }
+          return { data };
+        },
+        after: async (user, ctx) => {
+          const claim = ageClaimFrom(ctx as HookContext);
+          if (!claim) return;
+          await db
+            .insert(schema.profile)
+            .values({ userId: user.id, birthYear: claim.birthYear, birthMonth: claim.birthMonth })
+            .onConflictDoNothing();
+        },
+      },
+    },
+  },
+
+  plugins: [nextCookies()],
+});
+
+export type Session = typeof auth.$Infer.Session;

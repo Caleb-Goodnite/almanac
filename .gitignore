@@ -45,3 +45,4 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 !.env.example
+tests/fixtures/*.local.json

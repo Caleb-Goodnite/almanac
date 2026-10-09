@@ -11,6 +11,8 @@ type WhyProps = {
   source?: string;
   /** Short citation shown next to the link, e.g. "Morton et al. 2018". */
   cite?: string;
+  /** Button text. Give each one on a page its own wording, e.g. "Why this much protein?". */
+  label?: string;
 };
 
 /**
@@ -18,7 +20,7 @@ type WhyProps = {
  * and a link to the evidence, in place rather than in a floating tooltip, so it
  * works the same with touch, keyboard and screen readers.
  */
-export function Why({ children, source, cite }: WhyProps) {
+export function Why({ children, source, cite, label = "Why this?" }: WhyProps) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const reduce = useReducedMotion();
@@ -30,12 +32,12 @@ export function Why({ children, source, cite }: WhyProps) {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
-        className="label -mx-2 inline-flex min-h-11 items-center gap-1.5 px-2 underline decoration-dotted underline-offset-4 hover:text-ink"
+        className="label -mx-2 inline-flex min-h-11 items-center gap-1.5 px-2 text-left hover:text-ink"
       >
-        <span aria-hidden className="font-display text-sm normal-case not-italic">
+        <span aria-hidden className="font-display text-sm normal-case">
           †
         </span>
-        Why this?
+        <span className="underline decoration-dotted underline-offset-4">{label}</span>
       </button>
       <AnimatePresence initial={false}>
         {open ? (
