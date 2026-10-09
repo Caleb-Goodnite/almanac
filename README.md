@@ -116,11 +116,10 @@ proxy.ts         per-request CSP nonce and the unauthenticated redirect
 - The launch-region check relies on the host's geo header and is not an access control.
 - Google sign-in is configured but was not exercised end to end in testing.
 - The coach has been run against the live OpenRouter API (both configured models, streaming chat and the structured review). Automated tests use a local stand-in, so a provider-side change would only show up in manual testing.
-- Barcode scanning needs the browser's `BarcodeDetector` (Chrome, Edge, Android). Safari and Firefox fall back to typing the number.
-- Micronutrients are stored where the source has them but are not shown yet.
+- Barcode scanning uses the browser's `BarcodeDetector` where it exists and ZXing elsewhere (Safari, Firefox). Both paths are tested with a generated barcode on a fake camera; neither has been tried on a physical iPhone.
+- Micronutrient totals are shown per day but only for foods whose source lists them, so they are a lower bound.
 - No Apple Health or Google Fit import.
-- No exercise library browsing page or exercise instructions view; exercises are found through search when logging.
-- Past entries for sleep, check-ins and weight can only be logged for today from the UI.
+- Under-18s cannot leave support mode in the app; the operator clears it with `pnpm support:clear`. There is no parent-facing flow.
 - Number and date formatting is fixed to `en-US`; units switch between metric and imperial.
 - Helplines are United States only.
 - Lighthouse mobile performance measured 88 to 98 (accessibility 100) on a local production build with normal run-to-run variance; it has not been measured on a deployed site.

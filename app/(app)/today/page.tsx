@@ -3,6 +3,7 @@ import { Barbell, BowlFood, Heartbeat, Scales } from "@phosphor-icons/react/dist
 import Link from "next/link";
 import { after } from "next/server";
 import { AiReview } from "@/components/dashboard/ai-review";
+import { GettingStarted, type Step } from "@/components/dashboard/getting-started";
 import { DaySummary } from "@/components/food/day-summary";
 import { Water } from "@/components/food/water";
 import { Section } from "@/components/ui/section";
@@ -41,6 +42,16 @@ export default async function TodayPage() {
   const done = todaysWorkouts.filter((w) => w.endedAt);
   const lastNight = sleep[0];
   const review = weeklyReview(snapshot);
+
+  const steps: Step[] = [
+    { done: snapshot.nutrition.loggedDays30 > 0, label: "Log your first meal", why: "Foods you log reappear at the top, one tap to log again.", href: "/food/add" },
+    { done: snapshot.sleep.points.length > 0, label: "Log last night’s sleep", why: "Sleep shapes appetite, mood and recovery more than most people expect.", href: "/body" },
+    { done: snapshot.training.sessions30 > 0 || snapshot.training.cardioMinutes7 > 0, label: "Record a workout or some activity", why: "Each set shows what you did last time, so you know what to beat.", href: "/train" },
+    { done: snapshot.checkin.days7 > 0, label: "Do the ten-second check-in", why: "Three taps on mood, energy and soreness.", href: "/body" },
+    ...(viewer.isTeen || profile.supportMode
+      ? []
+      : [{ done: snapshot.weight.points.length > 1, label: "Weigh in a second time", why: "Two weeks of weigh-ins lets Almanac work out what you really burn.", href: "/body#weight" }]),
+  ];
 
   const quick = [
     { href: "/food/add", label: "Log food", Icon: BowlFood },
@@ -130,6 +141,8 @@ export default async function TodayPage() {
           </div>
         ) : null}
       </Section>
+
+      <GettingStarted steps={steps} />
 
       <Section kicker="Last 7 days" title="Weekly review" aside={<Link href="/trends" className="label min-h-11 content-center underline decoration-dotted underline-offset-4 hover:text-ink">All trends</Link>}>
         <AiReview initial={review} weekKey={today} />
