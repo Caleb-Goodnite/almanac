@@ -262,3 +262,76 @@ export async function deleteSavedMeal(userId: string, savedMealId: string): Prom
 function deriveUuid(base: string, index: number): string {
   return base.slice(0, -4) + index.toString(16).padStart(4, "0");
 }
+
+/* Micronutrients */
+
+export type MicroTotals = { totals: Record<string, number>; entriesWithData: number; entries: number };
+
+/**
+ * Micronutrient totals for a day, from the foods' stored per-100 g values.
+ * Only some foods carry this data (mostly USDA entries), so the result also
+ * says how many of the day's entries contributed.
+ */
+export async function getMicroTotals(userId: string, date: DateString): Promise<MicroTotals> {
+  const rows = await db
+    .select({ quantityG: foodLogs.quantityG, micros: foods.micros, source: foods.source, ownerId: foods.ownerId })
+    .from(foodLogs)
+    .leftJoin(foods, eq(foods.id, foodLogs.foodId))
+    .where(and(eq(foodLogs.userId, userId), eq(foodLogs.date, date)));
+
+  const totals: Record<string, number> = {};
+  let entriesWithData = 0;
+  for (const row of rows) {
+    // A custom food is only ever this user's own (it was logged by them), but check anyway.
+    if (row.source === "custom" && row.ownerId !== userId) continue;
+    const micros = row.micros ?? {};
+    const keys = Object.keys(micros);
+    if (keys.length === 0 || row.quantityG <= 0) continue;
+    entriesWithData += 1;
+    for (const key of keys) {
+      totals[key] = (totals[key] ?? 0) + ((micros[key] ?? 0) * row.quantityG) / 100;
+    }
+  }
+  return { totals, entriesWithData, entries: rows.length };
+}
+
+/* Copying a meal from another day */
+
+/** How many entries each meal had on a given day, to decide whether "copy" is worth offering. */
+export async function mealCounts(userId: string, date: DateString): Promise<Record<Meal, number>> {
+  const rows = await db
+    .select({ meal: foodLogs.meal, n: sql<number>`count(*)::int` })
+    .from(foodLogs)
+    .where(and(eq(foodLogs.userId, userId), eq(foodLogs.date, date)))
+    .groupBy(foodLogs.meal);
+  const out: Record<Meal, number> = { breakfast: 0, lunch: 0, dinner: 0, snack: 0 };
+  for (const r of rows) out[r.meal] = r.n;
+  return out;
+}
+
+/**
+ * Copies every entry of one meal from one day to another, as fresh log rows.
+ * The stored nutrient snapshot is copied as it is, so the result matches what
+ * was eaten before even if a food has since changed. Idempotent per clientId.
+ */
+export async function copyMeal(userId: string, from: DateString, to: DateString, meal: Meal, clientId: string): Promise<number> {
+  const source = await db
+    .select()
+    .from(foodLogs)
+    .where(and(eq(foodLogs.userId, userId), eq(foodLogs.date, from), eq(foodLogs.meal, meal)))
+    .orderBy(asc(foodLogs.loggedAt));
+  if (source.length === 0) return 0;
+
+  const inserted = await db
+    .insert(foodLogs)
+    .values(
+      source.map(({ id: _id, loggedAt: _at, ...row }, i) => ({
+        ...row,
+        date: to,
+        clientId: deriveUuid(clientId, i),
+      })),
+    )
+    .onConflictDoNothing({ target: [foodLogs.userId, foodLogs.clientId] })
+    .returning({ id: foodLogs.id });
+  return inserted.length;
+}

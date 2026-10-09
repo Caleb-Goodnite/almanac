@@ -1,7 +1,7 @@
 import { getSessionCookie } from "better-auth/cookies";
 import { NextResponse, type NextRequest } from "next/server";
 
-const PROTECTED = ["/today", "/food", "/train", "/body", "/coach", "/settings", "/welcome"];
+const PROTECTED = ["/today", "/food", "/train", "/body", "/trends", "/coach", "/settings", "/support", "/welcome"];
 
 /**
  * Sets a strict, per-request Content Security Policy.

@@ -8,7 +8,7 @@ import { Field } from "@/components/ui/field";
 import type { UnitSystem } from "@/lib/format";
 import { kgToLb, lbToKg } from "@/lib/science/units";
 
-export function WeightForm({ date, units, todayKg }: { date: string; units: UnitSystem; todayKg: number | null }) {
+export function WeightForm({ date, units, todayKg, label = "Today’s weight" }: { date: string; units: UnitSystem; todayKg: number | null; label?: string }) {
   const router = useRouter();
   const show = (kg: number) => String(Math.round((units === "imperial" ? kgToLb(kg) : kg) * 10) / 10);
   const [value, setValue] = useState(todayKg != null ? show(todayKg) : "");
@@ -31,7 +31,7 @@ export function WeightForm({ date, units, todayKg }: { date: string; units: Unit
     >
       <Field
         className="flex-1"
-        label={todayKg != null ? "Today’s weight (logged)" : "Today’s weight"}
+        label={todayKg != null ? `${label} (logged)` : label}
         unit={units === "imperial" ? "lb" : "kg"}
         inputMode="decimal"
         value={value}

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { requireUserId } from "@/lib/auth/session";
 import {
   addWater,
+  copyMeal,
   deleteFoodLog,
   deleteSavedMeal,
   logFood,
@@ -143,4 +144,14 @@ export async function deleteSavedMealAction(savedMealId: unknown): Promise<Actio
   await deleteSavedMeal(userId, parsed.data);
   revalidatePath("/food/add");
   return { ok: true, data: undefined };
+}
+
+export async function copyMealAction(input: unknown): Promise<ActionResult<number>> {
+  const userId = await requireUserId();
+  const parsed = z.object({ from: dateSchema, to: dateSchema, meal: mealSchema, clientId: z.uuid() }).safeParse(input);
+  if (!parsed.success) return fail("Could not copy that meal.");
+  const n = await copyMeal(userId, parsed.data.from, parsed.data.to, parsed.data.meal, parsed.data.clientId);
+  if (n === 0) return fail("There was nothing in that meal to copy.");
+  refresh();
+  return { ok: true, data: n };
 }

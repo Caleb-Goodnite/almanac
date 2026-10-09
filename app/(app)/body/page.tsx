@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckIn } from "@/components/body/checkin";
+import { WeightHistory } from "@/components/body/weight-history";
+import { DateNav } from "@/components/food/date-nav";
 import { MeasurementForm, SITE_LABELS } from "@/components/body/measurement-form";
 import { SleepForm } from "@/components/body/sleep-form";
 import { WeightForm } from "@/components/body/weight-form";
@@ -10,25 +12,30 @@ import { Why } from "@/components/ui/why";
 import { requireViewer } from "@/lib/auth/session";
 import { latestMeasurements, listCheckins, listSleep, listWeights } from "@/lib/data/body";
 import { getTargets } from "@/lib/data/profile";
-import { fmt, fmtDuration, fmtWeight, weightUnit, weightValue } from "@/lib/format";
+import { fmt, fmtDate, fmtDuration, fmtWeight, weightUnit, weightValue } from "@/lib/format";
 import { rateOfChangeWarning } from "@/lib/science/targets";
 import { addDays, linearRegression, mean, movingAverage } from "@/lib/science/trend";
 import { cmToIn } from "@/lib/science/units";
 import { todayIn } from "@/lib/time";
+import { dateSchema } from "@/lib/validation/food";
 
 export const metadata: Metadata = { title: "Body" };
 
-export default async function BodyPage() {
+export default async function BodyPage({ searchParams }: PageProps<"/body">) {
   const viewer = await requireViewer();
   const { userId } = viewer;
   const units = viewer.profile.unitSystem;
   const today = todayIn(viewer.profile.timezone);
+  // Any past day can be filled in or corrected; future days cannot.
+  const requested = dateSchema.safeParse((await searchParams).date);
+  const date = requested.success && requested.data <= today ? requested.data : today;
+  const isToday = date === today;
   const from = addDays(today, -89);
 
   const [weights, sleep, checkins, measures, targets] = await Promise.all([
     listWeights(userId, from, today),
     listSleep(userId, addDays(today, -29), today),
-    listCheckins(userId, today, today),
+    listCheckins(userId, date, date),
     latestMeasurements(userId),
     getTargets(userId, today),
   ]);
@@ -42,12 +49,12 @@ export default async function BodyPage() {
   const recent = kgPoints.filter((p) => p.date >= addDays(today, -27));
   const fit = recent.length >= 4 ? linearRegression(recent) : null;
   const latest = weights[weights.length - 1];
-  const todayWeight = weights.find((w) => w.date === today);
+  const todayWeight = weights.find((w) => w.date === date);
   const slope = fit ? fit.slopePerDay * 7 : null;
   const warning = slope != null && latest ? rateOfChangeWarning(slope, latest.kg, viewer.isTeen) : null;
   const avg7 = smoothed[smoothed.length - 1]?.value;
 
-  const lastNight = sleep.find((s) => s.date === today);
+  const lastNight = sleep.find((s) => s.date === date) ?? (isToday ? undefined : (await listSleep(userId, date, date))[0]);
   const sleep7 = sleep.filter((s) => s.date >= addDays(today, -6));
   const sleepAvg = mean(sleep7.map((s) => s.durationMin));
   const sleepMin = targets?.sleepMinMinutes ?? 420;
@@ -56,13 +63,25 @@ export default async function BodyPage() {
 
   return (
     <div className="flex flex-col gap-12">
-      <Section as="h1" kicker="Ten seconds" title="How are you today?">
-        <CheckIn date={today} initial={checkin} />
+      <Section
+        as="h1"
+        kicker={isToday ? "Ten seconds" : fmtDate(date, { weekday: "long", month: "long", day: "numeric" })}
+        title={isToday ? "How are you today?" : "How were you that day?"}
+        aside={<DateNav date={date} today={today} basePath="/body" />}
+      >
+        {!isToday ? (
+          <p className="mb-5 border-l-2 border-accent py-1 pl-3 text-sm leading-relaxed text-ink-soft">
+            You are filling in {fmtDate(date, { weekday: "long", month: "long", day: "numeric" })}. Everything on this
+            page saves to that day.
+          </p>
+        ) : null}
+        {/* Keyed by date so each day's form starts from that day's values. */}
+        <CheckIn key={date} date={date} initial={checkin} />
       </Section>
 
       <Section kicker="Recovery" title="Sleep">
         <div className="grid gap-8 sm:grid-cols-2">
-          <SleepForm date={today} initial={lastNight ? { durationMin: lastNight.durationMin, quality: lastNight.quality } : null} />
+          <SleepForm key={date} date={date} label={isToday ? "Last night" : "That night"} initial={lastNight ? { durationMin: lastNight.durationMin, quality: lastNight.quality } : null} />
           <div>
             <p className="label">7-night average</p>
             <p className="nums mt-1 font-display text-4xl">{sleepAvg == null ? "–" : fmtDuration(sleepAvg)}</p>
@@ -105,7 +124,7 @@ export default async function BodyPage() {
             says more about how you are doing than a number on a scale.
           </p>
         ) : null}
-        <WeightForm date={today} units={units} todayKg={todayWeight?.kg ?? null} />
+        <WeightForm key={date} date={date} units={units} todayKg={todayWeight?.kg ?? null} label={isToday ? "Today’s weight" : "Weight that day"} />
 
         {points.length >= 2 ? (
           <>
@@ -155,6 +174,13 @@ export default async function BodyPage() {
           </p>
         )}
 
+        {weights.length > 0 ? (
+          <WeightHistory
+            units={units}
+            entries={weights.slice(-10).reverse().map((w) => ({ date: w.date, kg: w.kg }))}
+          />
+        ) : null}
+
         {warning?.tooFast && latest ? (
           <div role="note" className="mt-5 border-l-2 border-accent py-1 pl-3">
             <p className="font-medium">Your weight is dropping faster than is safe to keep up.</p>
@@ -171,7 +197,7 @@ export default async function BodyPage() {
       </Section>
 
       <Section kicker="Optional" title="Measurements">
-        <MeasurementForm date={today} units={units} />
+        <MeasurementForm date={date} units={units} />
         {measures.size > 0 ? (
           <ul className="nums mt-4">
             {[...measures.entries()].map(([site, m]) => {

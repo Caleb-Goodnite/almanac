@@ -2,11 +2,13 @@
 
 import { Plus, Trash, Trophy } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import { useState, useTransition } from "react";
 import { addSetAction, deleteSetAction, finishWorkoutAction, previousSessionAction } from "@/app/(app)/train/actions";
 import { Button } from "@/components/ui/button";
 import type { ExerciseSummary } from "@/lib/data/training";
 import { fmt, fmtDate, type UnitSystem } from "@/lib/format";
+import { suggestNext } from "@/lib/science/progression";
 import type { PrKind } from "@/lib/science/strength";
 import { kgToLb, lbToKg } from "@/lib/science/units";
 import { ExerciseSearch } from "./exercise-search";
@@ -131,7 +133,9 @@ export function WorkoutLogger({
         {blocks.map((block) => (
           <section key={block.exercise.id} aria-labelledby={`ex-${block.exercise.id}`} className="border-t border-rule pt-4">
             <h2 id={`ex-${block.exercise.id}`} className="font-display text-2xl leading-tight">
-              {block.exercise.name}
+              <Link href={`/train/exercises/${block.exercise.id}`} className="underline decoration-rule-strong underline-offset-4 hover:decoration-ink">
+                {block.exercise.name}
+              </Link>
             </h2>
             <p className="nums mt-1 text-sm text-ink-soft">
               {block.target ? (
@@ -285,6 +289,14 @@ function SetForm({
   const fromPrev = prevWorking[workingSoFar] ?? prevWorking[prevWorking.length - 1];
   const seed = lastLogged ?? fromPrev;
 
+  // In pounds, round a suggested load to the nearest 2.5 lb so it can actually be put on a bar.
+  const loadable = (kg: number) => (unit === "lb" ? Math.round(toDisplay(kg) / 2.5) * 2.5 : toDisplay(kg));
+  // Before the first set of the day, offer a target based on last time.
+  const suggestion =
+    block.sets.length === 0 && block.previous
+      ? suggestNext(block.previous.sets, block.target ? { min: block.target.targetRepsMin, max: block.target.targetRepsMax } : undefined)
+      : null;
+
   const [weight, setWeight] = useState(seed ? String(toDisplay(seed.weightKg)) : "");
   const [reps, setReps] = useState(seed ? String(seed.reps) : "");
   const [rpe, setRpe] = useState("");
@@ -307,6 +319,27 @@ function SetForm({
         onLog({ weight: w, reps: r, rpe: rpe === "" ? null : Number(rpe), isWarmup: warmup });
       }}
     >
+      {suggestion ? (
+        <div className="mb-3 flex items-center justify-between gap-3 bg-paper-raised px-3 py-2">
+          <p className="text-sm leading-snug">
+            <span className="label block">Aim for today</span>
+            <span className="nums font-medium">
+              {suggestion.weightKg > 0 ? `${loadable(suggestion.weightKg)} ${unit} × ${suggestion.reps}` : `${suggestion.reps} reps`}
+            </span>
+            <span className="block text-ink-soft">{suggestion.reason}</span>
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setWeight(String(loadable(suggestion.weightKg)));
+              setReps(String(suggestion.reps));
+            }}
+            className="min-h-11 shrink-0 rounded-[3px] border border-rule-strong px-3 text-sm font-medium hover:border-ink"
+          >
+            Use
+          </button>
+        </div>
+      ) : null}
       <div className="grid grid-cols-[1fr_1fr_1.1fr] items-end gap-3">
         <label>
           <span className="label">Weight ({unit})</span>

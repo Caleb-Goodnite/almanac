@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Scale } from "@/components/ui/scale";
 
-type Props = { date: string; initial: { durationMin: number; quality: number | null } | null };
+type Props = { date: string; label?: string; initial: { durationMin: number; quality: number | null } | null };
 
-export function SleepForm({ date, initial }: Props) {
+export function SleepForm({ date, initial, label = "Last night" }: Props) {
   const router = useRouter();
   const [hours, setHours] = useState(initial ? String(Math.floor(initial.durationMin / 60)) : "");
   const [minutes, setMinutes] = useState(initial ? String(initial.durationMin % 60) : "");
@@ -32,7 +32,7 @@ export function SleepForm({ date, initial }: Props) {
       }}
     >
       <div className="grid grid-cols-2 gap-4">
-        <Field label="Last night" unit="h" inputMode="numeric" value={hours} onChange={(e) => { setHours(e.target.value); setState({}); }} error={state.error} />
+        <Field label={label} unit="h" inputMode="numeric" value={hours} onChange={(e) => { setHours(e.target.value); setState({}); }} error={state.error} />
         <Field label="and" unit="min" inputMode="numeric" value={minutes} onChange={(e) => { setMinutes(e.target.value); setState({}); }} />
       </div>
       <Scale legend="How well did you sleep? (optional)" name="sleep-quality" value={quality} onChange={setQuality} low="Badly" high="Very well" />

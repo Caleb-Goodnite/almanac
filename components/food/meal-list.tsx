@@ -4,7 +4,8 @@ import { Plus, Trash } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useOptimistic, useState, useTransition } from "react";
-import { deleteFoodLogAction, saveMealAction, updateFoodLogQuantityAction } from "@/app/(app)/food/actions";
+import { useRouter } from "next/navigation";
+import { copyMealAction, deleteFoodLogAction, saveMealAction, updateFoodLogQuantityAction } from "@/app/(app)/food/actions";
 import { fmt } from "@/lib/format";
 
 export type MealEntry = {
@@ -21,9 +22,12 @@ type Props = {
   title: string;
   date: string;
   entries: MealEntry[];
+  /** The day before, when that day had something in this meal worth copying. */
+  copyFrom?: string | null;
 };
 
-export function MealList({ meal, title, date, entries }: Props) {
+export function MealList({ meal, title, date, entries, copyFrom }: Props) {
+  const router = useRouter();
   const [optimistic, remove] = useOptimistic(entries, (state, id: string) => state.filter((e) => e.id !== id));
   const [, startTransition] = useTransition();
   const [editing, setEditing] = useState<string | null>(null);
@@ -59,7 +63,24 @@ export function MealList({ meal, title, date, entries }: Props) {
       </header>
 
       {optimistic.length === 0 ? (
-        <p className="mt-1 text-sm text-ink-soft">Nothing logged.</p>
+        <p className="mt-1 text-sm text-ink-soft">
+          Nothing logged.
+          {copyFrom ? (
+            <button
+              type="button"
+              onClick={() =>
+                startTransition(async () => {
+                  const res = await copyMealAction({ from: copyFrom, to: date, meal, clientId: crypto.randomUUID() });
+                  setMessage(res.ok ? `Copied ${res.data} ${res.data === 1 ? "item" : "items"} from the day before.` : res.error);
+                  if (res.ok) router.refresh();
+                })
+              }
+              className="ml-2 min-h-11 font-medium text-ink underline underline-offset-4"
+            >
+              Same as the day before
+            </button>
+          ) : null}
+        </p>
       ) : (
         <ul className="mt-2">
           <AnimatePresence initial={false}>

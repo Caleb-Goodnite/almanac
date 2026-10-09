@@ -11,3 +11,4 @@ export * from "./strength";
 export * from "./volume";
 export * from "./met";
 export * from "./heart";
+export * from "./progression";

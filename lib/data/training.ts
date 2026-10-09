@@ -503,3 +503,37 @@ export async function listCardio(userId: string, from: DateString, to: DateStrin
 export async function deleteCardio(userId: string, id: string): Promise<void> {
   await db.delete(cardioSessions).where(and(eq(cardioSessions.id, id), eq(cardioSessions.userId, userId)));
 }
+
+export type ExerciseSession = {
+  workoutId: string;
+  date: DateString;
+  sets: { reps: number; weightKg: number; rpe: number | null; isWarmup: boolean }[];
+};
+
+/** This user's sessions of one exercise, newest first. */
+export async function getExerciseHistory(userId: string, exerciseId: string, limit = 40): Promise<ExerciseSession[]> {
+  const rows = await db
+    .select({
+      workoutId: workoutSets.workoutId,
+      date: workouts.date,
+      startedAt: workouts.startedAt,
+      setNumber: workoutSets.setNumber,
+      reps: workoutSets.reps,
+      weightKg: workoutSets.weightKg,
+      rpe: workoutSets.rpe,
+      isWarmup: workoutSets.isWarmup,
+    })
+    .from(workoutSets)
+    .innerJoin(workouts, and(eq(workouts.id, workoutSets.workoutId), eq(workouts.userId, userId)))
+    .where(and(eq(workoutSets.userId, userId), eq(workoutSets.exerciseId, exerciseId)))
+    .orderBy(desc(workouts.startedAt), asc(workoutSets.setNumber))
+    .limit(600);
+
+  const sessions = new Map<string, ExerciseSession>();
+  for (const r of rows) {
+    const s = sessions.get(r.workoutId) ?? { workoutId: r.workoutId, date: r.date, sets: [] };
+    s.sets.push({ reps: r.reps, weightKg: r.weightKg, rpe: r.rpe, isWarmup: r.isWarmup });
+    sessions.set(r.workoutId, s);
+  }
+  return [...sessions.values()].slice(0, limit);
+}

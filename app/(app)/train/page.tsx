@@ -70,6 +70,9 @@ export default async function TrainPage() {
           <Link href="/train/cardio" className={buttonClass("outline")}>
             Log cardio or sport
           </Link>
+          <Link href="/train/exercises" className={buttonClass("outline")}>
+            Browse exercises
+          </Link>
         </div>
       </Section>
 
