@@ -19,7 +19,8 @@
     "eval:coach": "vitest run --config vitest.eval.config.mts",
     "mobile:sync": "cap sync",
     "mobile:android": "cap sync android && cd android && ./gradlew assembleDebug",
-    "mobile:android:install": "cap sync android && cd android && ./gradlew installDebug"
+    "mobile:android:install": "cap sync android && cd android && ./gradlew installDebug",
+    "mobile:ios": "cap sync ios && cap open ios"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "^1.7.7",
@@ -49,6 +50,7 @@
     "@capacitor/android": "8.5.3",
     "@capacitor/cli": "8.5.3",
     "@capacitor/core": "8.5.3",
+    "@capacitor/ios": "8.5.3",
     "@playwright/test": "^1.64.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
