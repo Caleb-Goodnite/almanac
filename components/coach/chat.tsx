@@ -229,7 +229,7 @@ export function Chat({ conversationId, initialMessages, prompts, configured, all
       <div ref={endRef} className="h-4" />
 
       <form
-        className="sticky bottom-[calc(3.75rem+env(safe-area-inset-bottom))] z-20 mt-4 flex items-end gap-2 border-t border-ink bg-paper pt-3 pb-2 md:bottom-0"
+        className="sticky bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-20 mt-4 flex items-end gap-2 border-t border-ink bg-paper pt-3 pb-3 shadow-[0_1rem_0_0_var(--paper)] md:bottom-0"
         onSubmit={(e) => {
           e.preventDefault();
           send(input);
