@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { dateSchema } from "./food";
+import { blankable } from "./util";
 
-const optional = <T extends z.ZodType>(inner: T) =>
-  z.union([z.literal(""), z.null(), z.undefined(), inner]).transform((v) => (v === "" || v == null ? null : (v as z.output<T>)));
+const optional = blankable;
 
 const scale = z.coerce.number().int().min(1).max(5);
 const time = z.string().regex(/^\d{2}:\d{2}$/);
@@ -27,7 +27,7 @@ export const checkinSchema = z.object({
   energy: optional(scale),
   soreness: optional(scale),
   restingHr: optional(z.coerce.number().int().min(25).max(220)),
-  note: z.string().trim().max(500).transform((v) => v || null).nullable().default(null),
+  note: blankable(z.string().trim().max(500)),
 });
 
 export const measurementSchema = z.object({

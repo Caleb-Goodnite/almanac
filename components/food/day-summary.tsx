@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import { CountUp } from "@/components/ui/count-up";
 import { Meter } from "@/components/ui/meter";
 import { Ring } from "@/components/ui/ring";
@@ -22,6 +23,8 @@ export function DaySummary({ totals, targets, neutral, size = 190 }: Props) {
   return (
     <div className="grid items-center gap-6 sm:grid-cols-[auto_1fr] sm:gap-10">
       <div className="justify-self-center">
+        {/* The ring is the same object on Today and on Food, so it travels between them. */}
+        <ViewTransition name="calorie-ring" share="morph" default="none">
         <Ring
           progress={targets.calories > 0 ? totals.kcal / targets.calories : 0}
           size={size}
@@ -34,6 +37,7 @@ export function DaySummary({ totals, targets, neutral, size = 190 }: Props) {
             <p className="label mt-1">{caption}</p>
           </div>
         </Ring>
+        </ViewTransition>
       </div>
       <div className="flex flex-col gap-4">
         <Meter label="Protein" value={totals.proteinG} target={targets.proteinG} unit="g" pattern="solid" />

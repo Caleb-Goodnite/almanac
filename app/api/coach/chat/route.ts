@@ -4,7 +4,7 @@ import { CoachError, streamChat, type ChatMessage, type Usage } from "@/lib/ai/o
 import { systemPrompt } from "@/lib/ai/prompts";
 import { crisisReply, floorCorrection, supportReply } from "@/lib/ai/safety-replies";
 import { getViewer } from "@/lib/auth/session";
-import { addMessage, checkBudget, createConversation, getConversation, listMessages, recordUsage } from "@/lib/data/coach";
+import { addMessage, checkBudget, createConversation, getConversation, listMessages, messageAllowance, recordUsage } from "@/lib/data/coach";
 import { recomputeTargets, setSupportMode } from "@/lib/data/profile";
 import { rateLimit } from "@/lib/data/rate-limit";
 import { buildSnapshot } from "@/lib/data/snapshot";
@@ -21,7 +21,7 @@ const HISTORY_CHARS = 6000;
 const MAX_REPLY_TOKENS = 700;
 
 export type CoachEvent =
-  | { type: "meta"; conversationId: string }
+  | { type: "meta"; conversationId: string; remainingToday?: number }
   | { type: "delta"; text: string }
   | { type: "safety"; kind: "crisis" | "support" }
   | { type: "error"; kind: string; message: string; retryable: boolean }
@@ -118,6 +118,13 @@ export async function POST(request: NextRequest) {
   if (!features.coach) {
     return refuse(503, "not_configured", "The coach is not set up on this server yet.", { conversationId: convId });
   }
+  const allowance = await messageAllowance(userId);
+  if (allowance.remaining <= 0) {
+    return refuse(429, "daily_limit", `You have used all ${allowance.limit} coach messages for today. They reset at midnight UTC.`, {
+      conversationId: convId,
+      remainingToday: 0,
+    });
+  }
   const budget = await checkBudget(userId);
   if (!budget.allowed) {
     return refuse(429, "budget", "You have reached today's limit for coach messages. It resets at midnight UTC.", { conversationId: convId });
@@ -156,7 +163,7 @@ export async function POST(request: NextRequest) {
         }
       };
 
-      send({ type: "meta", conversationId: convId });
+      send({ type: "meta", conversationId: convId, remainingToday: allowance.remaining - 1 });
 
       const attempt = async (onlyModel?: string) => {
         for await (const event of streamChat({ messages, maxTokens: MAX_REPLY_TOKENS, model: onlyModel, signal: upstream.signal })) {

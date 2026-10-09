@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
     },
   },
   serverExternalPackages: ["@electric-sql/pglite"],
+  experimental: {
+    // When the network drops, navigations and Server Actions wait and retry
+    // instead of failing, so a meal logged in a dead spot is saved once the
+    // connection returns. Paired with client-generated ids, a retry can never
+    // double-log. See components/shell/offline-banner.tsx.
+    useOffline: true,
+  },
   async headers() {
     return [
       {

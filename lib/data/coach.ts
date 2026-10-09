@@ -1,5 +1,5 @@
 import "server-only";
-import { and, asc, desc, eq, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, isNull, notInArray, or, sql } from "drizzle-orm";
 import { db } from "@/lib/db/client";
 import { aiUsage, conversations, foodLogs, insights, messages } from "@/lib/db/schema";
 import { env } from "@/lib/env";
@@ -62,6 +62,32 @@ export async function addMessage(
     .where(and(eq(conversations.id, conversationId), eq(conversations.userId, userId)));
   if (!row) throw new Error("Could not save message");
   return row.id;
+}
+
+/* Daily message allowance */
+
+export type Allowance = { used: number; limit: number; remaining: number };
+
+/**
+ * Coach replies this user has had today (UTC), against the daily limit.
+ * Fixed safety replies are not counted: support is never rationed.
+ */
+export async function messageAllowance(userId: string): Promise<Allowance> {
+  const startOfDay = new Date(`${new Date().toISOString().slice(0, 10)}T00:00:00Z`);
+  const [row] = await db
+    .select({ n: sql<number>`count(*)::int` })
+    .from(messages)
+    .where(
+      and(
+        eq(messages.userId, userId),
+        eq(messages.role, "assistant"),
+        gte(messages.createdAt, startOfDay),
+        or(isNull(messages.safety), notInArray(messages.safety, ["crisis", "support"])),
+      ),
+    );
+  const used = row?.n ?? 0;
+  const limit = env.COACH_DAILY_MESSAGES;
+  return { used, limit, remaining: Math.max(0, limit - used) };
 }
 
 /* Budget */

@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { MUSCLE_GROUPS } from "@/lib/science/volume";
 import { dateSchema } from "./food";
+import { blankable } from "./util";
 
-const optionalInt = (min: number, max: number) =>
-  z.union([z.literal(""), z.null(), z.undefined(), z.coerce.number().int().min(min).max(max)]).transform((v) => (v === "" || v == null ? null : v));
+const optionalInt = (min: number, max: number) => blankable(z.coerce.number().int().min(min).max(max));
 
 export const startWorkoutSchema = z.object({
   clientId: z.uuid(),
@@ -16,9 +16,7 @@ export const addSetSchema = z.object({
   exerciseId: z.uuid(),
   reps: z.coerce.number().int().min(1, "Enter the reps").max(200),
   weightKg: z.coerce.number().min(0).max(1000),
-  rpe: z
-    .union([z.literal(""), z.null(), z.undefined(), z.coerce.number().min(1).max(10)])
-    .transform((v) => (v === "" || v == null ? null : v)),
+  rpe: blankable(z.coerce.number().min(1).max(10)),
   isWarmup: z.boolean().default(false),
 });
 
@@ -43,12 +41,10 @@ export const cardioSchema = z.object({
   date: dateSchema,
   activity: z.string().min(1).max(40),
   durationMin: z.coerce.number().min(1, "Enter how long it lasted").max(1440),
-  distanceKm: z
-    .union([z.literal(""), z.null(), z.undefined(), z.coerce.number().min(0).max(1000)])
-    .transform((v) => (v === "" || v == null ? null : v)),
+  distanceKm: blankable(z.coerce.number().min(0).max(1000)),
   avgHr: optionalInt(30, 240),
   maxHr: optionalInt(30, 240),
-  notes: z.string().trim().max(500).transform((v) => v || null).nullable().default(null),
+  notes: blankable(z.string().trim().max(500)),
 });
 
 export const customExerciseSchema = z.object({

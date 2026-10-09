@@ -6,6 +6,9 @@ import { z } from "zod";
  * migration and seed scripts run it outside Next; on a client it would throw,
  * since none of these variables exist in the browser.
  */
+// Treat `FOO=` in an env file as "not set" rather than as an empty value.
+const blankToUndefined = (value: unknown) => (typeof value === "string" && value.trim() === "" ? undefined : value);
+
 const schema = z
   .object({
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
@@ -27,11 +30,21 @@ const schema = z
     OPENROUTER_BASE_URL: z.url().default("https://openrouter.ai/api/v1"),
     COACH_DAILY_USD_CAP: z.coerce.number().positive().default(0.1),
     COACH_MESSAGES_PER_MINUTE: z.coerce.number().int().positive().default(6),
+    // How many coach replies each person gets per day (UTC). Safety replies do not count.
+    COACH_DAILY_MESSAGES: z.coerce.number().int().positive().default(10),
 
     USDA_API_KEY: z.string().min(1).default("DEMO_KEY"),
+
+    // End-to-end test mode: run a production build on a throwaway local
+    // database. Refused if DATABASE_URL is also set, so tests can never touch
+    // a real database.
+    ALMANAC_E2E: z.enum(["1"]).optional(),
   })
   .superRefine((env, ctx) => {
-    if (env.NODE_ENV === "production" && !env.DATABASE_URL) {
+    if (env.ALMANAC_E2E && env.DATABASE_URL) {
+      ctx.addIssue({ code: "custom", path: ["ALMANAC_E2E"], message: "cannot be combined with DATABASE_URL" });
+    }
+    if (env.NODE_ENV === "production" && !env.DATABASE_URL && !env.ALMANAC_E2E) {
       ctx.addIssue({
         code: "custom",
         path: ["DATABASE_URL"],
@@ -50,7 +63,8 @@ const schema = z
 export type Env = z.infer<typeof schema>;
 
 function load(): Env {
-  const parsed = schema.safeParse(process.env);
+  const cleaned = Object.fromEntries(Object.entries(process.env).map(([k, v]) => [k, blankToUndefined(v)]));
+  const parsed = schema.safeParse(cleaned);
   if (!parsed.success) {
     const lines = parsed.error.issues.map(
       (issue) => `  ${issue.path.join(".") || "(root)"}: ${issue.message}`,

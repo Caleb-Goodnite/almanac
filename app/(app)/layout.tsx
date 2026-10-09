@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Providers } from "@/components/providers";
 import { Nav } from "@/components/shell/nav";
+import { OfflineBanner } from "@/components/shell/offline-banner";
 import { Disclaimer } from "@/components/ui/disclaimer";
 import { requireViewer } from "@/lib/auth/session";
 
@@ -14,6 +15,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
     <div className="flex flex-1 flex-col md:flex-row">
       <Nav />
       <div className="flex min-w-0 flex-1 flex-col pb-24 md:pb-0">
+        <OfflineBanner />
         <main id="main" className="mx-auto w-full max-w-3xl flex-1 px-5 py-6 sm:px-8 md:py-10">
           {children}
         </main>

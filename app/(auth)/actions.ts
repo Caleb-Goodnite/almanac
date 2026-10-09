@@ -18,7 +18,7 @@ export type AgeFormState = { error?: string };
 const cookieBase = {
   httpOnly: true,
   sameSite: "lax" as const,
-  secure: process.env.NODE_ENV === "production",
+  secure: process.env.NODE_ENV === "production" && (process.env.BETTER_AUTH_URL ?? "").startsWith("https://"),
   path: "/",
 };
 

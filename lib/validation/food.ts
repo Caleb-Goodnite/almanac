@@ -1,11 +1,11 @@
 import { z } from "zod";
+import { blankable } from "./util";
 
 export const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date");
 export const mealSchema = z.enum(["breakfast", "lunch", "dinner", "snack"]);
 const grams = z.coerce.number().positive("Enter an amount").max(5000, "That amount looks too large");
 const per100 = (max: number) => z.coerce.number().min(0).max(max);
-const optional100 = (max: number) =>
-  z.union([z.literal(""), z.null(), z.undefined(), z.coerce.number().min(0).max(max)]).transform((v) => (v === "" || v == null ? null : v));
+const optional100 = (max: number) => blankable(z.coerce.number().min(0).max(max));
 
 export const logFoodSchema = z.object({
   clientId: z.uuid(),
@@ -28,9 +28,9 @@ export const quickAddSchema = z.object({
 
 export const customFoodSchema = z.object({
   name: z.string().trim().min(1, "Give it a name").max(120),
-  brand: z.string().trim().max(80).transform((v) => v || null).nullable().default(null),
+  brand: blankable(z.string().trim().max(80)),
   servingG: optional100(5000),
-  servingLabel: z.string().trim().max(60).transform((v) => v || null).nullable().default(null),
+  servingLabel: blankable(z.string().trim().max(60)),
   kcal: per100(950),
   proteinG: per100(100),
   carbsG: per100(100),

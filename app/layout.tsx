@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     "A calm, evidence-based record of what you eat, how you train, and how you recover.",
   applicationName: "Almanac",
   appleWebApp: { capable: true, title: "Almanac", statusBarStyle: "default" },
+  icons: { apple: "/icons/180" },
 };
 
 export const viewport: Viewport = {

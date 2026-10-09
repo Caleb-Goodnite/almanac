@@ -5,7 +5,7 @@ import { deleteConversationAction } from "./actions";
 import { Chat } from "@/components/coach/chat";
 import { Section } from "@/components/ui/section";
 import { requireViewer } from "@/lib/auth/session";
-import { getConversation, listConversations, listMessages } from "@/lib/data/coach";
+import { getConversation, listConversations, listMessages, messageAllowance } from "@/lib/data/coach";
 import { features } from "@/lib/env";
 import { fmtDate } from "@/lib/format";
 
@@ -16,9 +16,10 @@ export default async function CoachPage({ searchParams }: PageProps<"/coach">) {
   const requested = z.uuid().safeParse((await searchParams).c);
   // Ownership is checked in the data layer: another user's id resolves to nothing.
   const conversation = requested.success ? await getConversation(viewer.userId, requested.data) : null;
-  const [history, conversations] = await Promise.all([
+  const [history, conversations, allowance] = await Promise.all([
     conversation ? listMessages(viewer.userId, conversation.id) : Promise.resolve([]),
     listConversations(viewer.userId),
+    messageAllowance(viewer.userId),
   ]);
 
   const prompts = viewer.profile.supportMode
@@ -49,6 +50,7 @@ export default async function CoachPage({ searchParams }: PageProps<"/coach">) {
         initialMessages={history.map((m) => ({ id: m.id, role: m.role, content: m.content, safety: m.safety }))}
         prompts={prompts}
         configured={features.coach}
+        allowance={{ remaining: allowance.remaining, limit: allowance.limit }}
       />
 
       {others.length > 0 || conversation ? (

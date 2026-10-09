@@ -54,7 +54,8 @@ export const auth = betterAuth({
 
   // Counters live in Postgres so limits hold across serverless instances.
   rateLimit: {
-    enabled: env.NODE_ENV !== "test",
+    // Off only for automated tests, which sign up many accounts from one address.
+    enabled: env.NODE_ENV !== "test" && !env.ALMANAC_E2E,
     storage: "database",
     window: 60,
     max: 100,
@@ -67,7 +68,7 @@ export const auth = betterAuth({
 
   advanced: {
     cookiePrefix: "almanac",
-    useSecureCookies: env.NODE_ENV === "production",
+    useSecureCookies: env.NODE_ENV === "production" && env.BETTER_AUTH_URL.startsWith("https://"),
     defaultCookieAttributes: { sameSite: "lax", httpOnly: true },
   },
 

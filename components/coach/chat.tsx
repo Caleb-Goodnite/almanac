@@ -2,7 +2,6 @@
 
 import { ArrowUp, Stop } from "@phosphor-icons/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { CoachEvent } from "@/app/api/coach/chat/route";
 import { Button } from "@/components/ui/button";
@@ -18,24 +17,26 @@ type Props = {
   initialMessages: ChatMessage[];
   prompts: string[];
   configured: boolean;
+  allowance: { remaining: number; limit: number };
 };
 
 const HELP: Record<string, string> = {
   not_configured: "The coach has not been switched on for this server yet. Everything else in Almanac works without it.",
+  daily_limit: "You have used all of today's coach messages. They reset at midnight UTC. Your weekly review on the Today page still works.",
   budget: "You have used today's coach allowance. It resets at midnight UTC. Your weekly review on the Today page still works.",
   credits: "The coach is out of credit on our side. This is not something you did.",
   auth: "The coach is misconfigured on our side. This is not something you did.",
   moderation: "That message could not be processed. Try saying it another way.",
 };
 
-export function Chat({ conversationId, initialMessages, prompts, configured }: Props) {
-  const router = useRouter();
+export function Chat({ conversationId, initialMessages, prompts, configured, allowance }: Props) {
   const [messages, setMessages] = useState(initialMessages);
   const [convId, setConvId] = useState(conversationId);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const [problem, setProblem] = useState<Problem | null>(null);
   const [status, setStatus] = useState("");
+  const [remaining, setRemaining] = useState(allowance.remaining);
   const abortRef = useRef<AbortController | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -82,7 +83,8 @@ export function Chat({ conversationId, initialMessages, prompts, configured }: P
       });
 
       if (!res.ok || !res.body) {
-        const data = (await res.json().catch(() => null)) as { error?: { kind?: string; message?: string; conversationId?: string } } | null;
+        const data = (await res.json().catch(() => null)) as { error?: { kind?: string; message?: string; conversationId?: string; remainingToday?: number } } | null;
+        if (data?.error?.remainingToday !== undefined) setRemaining(data.error.remainingToday);
         const kind = data?.error?.kind ?? "unknown";
         if (data?.error?.conversationId) newConversation = data.error.conversationId;
         dropEmptyReply();
@@ -109,7 +111,10 @@ export function Chat({ conversationId, initialMessages, prompts, configured }: P
           buffer = buffer.slice(cut + 2);
           if (!line.startsWith("data:")) continue;
           const event = JSON.parse(line.slice(5)) as CoachEvent;
-          if (event.type === "meta") newConversation = event.conversationId;
+          if (event.type === "meta") {
+            newConversation = event.conversationId;
+            if (event.remainingToday !== undefined) setRemaining(event.remainingToday);
+          }
           else if (event.type === "delta") patchReply((m) => ({ ...m, content: m.content + event.text }));
           else if (event.type === "safety") patchReply((m) => ({ ...m, safety: event.kind }));
           else if (event.type === "error") {
@@ -136,9 +141,10 @@ export function Chat({ conversationId, initialMessages, prompts, configured }: P
       if (newConversation && newConversation !== convId) {
         setConvId(newConversation);
         // Put the conversation in the URL without re-rendering the page under the reader.
+        // No router.refresh() here: re-rendering the page would remount this chat
+        // and throw away what is on screen, including any error message.
         window.history.replaceState(null, "", `/coach?c=${newConversation}`);
       }
-      router.refresh();
     }
   }
 
@@ -267,7 +273,10 @@ export function Chat({ conversationId, initialMessages, prompts, configured }: P
           </button>
         )}
       </form>
-      <p className="text-xs leading-relaxed text-ink-soft">
+      <p className="nums text-xs leading-relaxed text-ink-soft">
+        <span data-testid="coach-remaining">
+          {remaining} of {allowance.limit} messages left today.
+        </span>{" "}
         The coach is an AI and can be wrong. It is not a doctor and does not give medical advice.
       </p>
       <p role="status" aria-live="polite" className="sr-only">
