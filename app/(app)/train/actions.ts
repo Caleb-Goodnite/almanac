@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireViewer } from "@/lib/auth/session";
+import { TOO_FAST, writingTooFast } from "@/lib/data/rate-limit";
 import { getLatestWeight } from "@/lib/data/profile";
 import {
   addSet,
@@ -41,6 +42,7 @@ function refresh() {
 
 export async function startWorkoutAction(input: unknown): Promise<ActionResult<string>> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = startWorkoutSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   // One open session at a time: resume it instead of starting a second.
@@ -55,6 +57,7 @@ export type SetResult = { id: string; setNumber: number; records: Pr[] };
 
 export async function addSetAction(input: unknown): Promise<ActionResult<SetResult>> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = addSetSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   const { rpe, ...rest } = parsed.data;
@@ -71,6 +74,7 @@ export async function addSetAction(input: unknown): Promise<ActionResult<SetResu
 
 export async function deleteSetAction(setId: unknown): Promise<ActionResult> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = z.uuid().safeParse(setId);
   if (!parsed.success) return fail("Unknown set.");
   await deleteSet(viewer.userId, parsed.data);
@@ -91,6 +95,7 @@ export async function finishWorkoutAction(workoutId: unknown): Promise<void> {
 
 export async function deleteWorkoutAction(workoutId: unknown): Promise<ActionResult> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = z.uuid().safeParse(workoutId);
   if (!parsed.success) return fail("Unknown workout.");
   await deleteWorkout(viewer.userId, parsed.data);
@@ -100,6 +105,7 @@ export async function deleteWorkoutAction(workoutId: unknown): Promise<ActionRes
 
 export async function createRoutineAction(input: unknown): Promise<ActionResult<string>> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = routineSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   const items = parsed.data.items.map((i) => ({ ...i, targetRepsMax: Math.max(i.targetRepsMin, i.targetRepsMax) }));
@@ -110,6 +116,7 @@ export async function createRoutineAction(input: unknown): Promise<ActionResult<
 
 export async function deleteRoutineAction(routineId: unknown): Promise<ActionResult> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = z.uuid().safeParse(routineId);
   if (!parsed.success) return fail("Unknown routine.");
   await deleteRoutine(viewer.userId, parsed.data);
@@ -119,6 +126,7 @@ export async function deleteRoutineAction(routineId: unknown): Promise<ActionRes
 
 export async function createExerciseAction(input: unknown): Promise<ActionResult<ExerciseSummary>> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = customExerciseSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   return { ok: true, data: await createCustomExercise(viewer.userId, parsed.data) };
@@ -126,6 +134,7 @@ export async function createExerciseAction(input: unknown): Promise<ActionResult
 
 export async function logCardioAction(input: unknown): Promise<ActionResult> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = cardioSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   const today = todayIn(viewer.profile.timezone);
@@ -144,6 +153,7 @@ export async function logCardioAction(input: unknown): Promise<ActionResult> {
 
 export async function deleteCardioAction(id: unknown): Promise<ActionResult> {
   const viewer = await requireViewer();
+  if (await writingTooFast(viewer.userId)) return fail(TOO_FAST);
   const parsed = z.uuid().safeParse(id);
   if (!parsed.success) return fail("Unknown session.");
   await deleteCardio(viewer.userId, parsed.data);

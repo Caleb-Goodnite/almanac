@@ -84,6 +84,7 @@ export const auth = betterAuth({
       "/sign-up/email": { window: 60 * 10, max: 5 },
       "/delete-user": { window: 60 * 10, max: 3 },
       "/request-password-reset": { window: 60 * 10, max: 3 },
+      "/change-password": { window: 60 * 10, max: 5 },
       "/reset-password": { window: 60 * 10, max: 5 },
     },
   },

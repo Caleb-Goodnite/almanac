@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { requireUserId } from "@/lib/auth/session";
+import { TOO_FAST, writingTooFast } from "@/lib/data/rate-limit";
 import {
   addWater,
   copyMeal,
@@ -42,6 +43,7 @@ function refresh() {
 
 export async function logFoodAction(input: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = logFoodSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   const log = await logFood(userId, parsed.data);
@@ -52,6 +54,7 @@ export async function logFoodAction(input: unknown): Promise<ActionResult> {
 
 export async function quickAddAction(input: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = quickAddSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   await quickAdd(userId, parsed.data);
@@ -61,6 +64,7 @@ export async function quickAddAction(input: unknown): Promise<ActionResult> {
 
 export async function deleteFoodLogAction(logId: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = z.uuid().safeParse(logId);
   if (!parsed.success) return fail("Unknown entry.");
   await deleteFoodLog(userId, parsed.data);
@@ -70,6 +74,7 @@ export async function deleteFoodLogAction(logId: unknown): Promise<ActionResult>
 
 export async function updateFoodLogQuantityAction(input: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = z
     .object({ logId: z.uuid(), quantityG: z.coerce.number().positive().max(5000) })
     .safeParse(input);
@@ -81,6 +86,7 @@ export async function updateFoodLogQuantityAction(input: unknown): Promise<Actio
 
 export async function addWaterAction(input: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = waterSchema.safeParse(input);
   if (!parsed.success) return fail("Enter an amount between 50 and 2,000 ml.");
   await addWater(userId, parsed.data.date, parsed.data.ml);
@@ -90,6 +96,7 @@ export async function addWaterAction(input: unknown): Promise<ActionResult> {
 
 export async function undoWaterAction(date: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = dateSchema.safeParse(date);
   if (!parsed.success) return fail("Invalid date.");
   await undoLastWater(userId, parsed.data);
@@ -99,6 +106,7 @@ export async function undoWaterAction(date: unknown): Promise<ActionResult> {
 
 export async function createCustomFoodAction(input: unknown): Promise<ActionResult<FoodSummary>> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = customFoodSchema.safeParse(input);
   if (!parsed.success) return fail(firstIssue(parsed.error));
   const food = await createCustomFood(userId, parsed.data);
@@ -107,6 +115,7 @@ export async function createCustomFoodAction(input: unknown): Promise<ActionResu
 
 export async function deleteCustomFoodAction(foodId: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = z.uuid().safeParse(foodId);
   if (!parsed.success) return fail("Unknown food.");
   await deleteCustomFood(userId, parsed.data);
@@ -116,6 +125,7 @@ export async function deleteCustomFoodAction(foodId: unknown): Promise<ActionRes
 
 export async function saveMealAction(input: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = z
     .object({ name: z.string().trim().min(1, "Give the meal a name").max(60), date: dateSchema, meal: mealSchema })
     .safeParse(input);
@@ -128,6 +138,7 @@ export async function saveMealAction(input: unknown): Promise<ActionResult> {
 
 export async function logSavedMealAction(input: unknown): Promise<ActionResult<number>> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = z
     .object({ savedMealId: z.uuid(), date: dateSchema, meal: mealSchema, clientId: z.uuid() })
     .safeParse(input);
@@ -139,6 +150,7 @@ export async function logSavedMealAction(input: unknown): Promise<ActionResult<n
 
 export async function deleteSavedMealAction(savedMealId: unknown): Promise<ActionResult> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = z.uuid().safeParse(savedMealId);
   if (!parsed.success) return fail("Unknown meal.");
   await deleteSavedMeal(userId, parsed.data);
@@ -148,6 +160,7 @@ export async function deleteSavedMealAction(savedMealId: unknown): Promise<Actio
 
 export async function copyMealAction(input: unknown): Promise<ActionResult<number>> {
   const userId = await requireUserId();
+  if (await writingTooFast(userId)) return fail(TOO_FAST);
   const parsed = z.object({ from: dateSchema, to: dateSchema, meal: mealSchema, clientId: z.uuid() }).safeParse(input);
   if (!parsed.success) return fail("Could not copy that meal.");
   const n = await copyMeal(userId, parsed.data.from, parsed.data.to, parsed.data.meal, parsed.data.clientId);

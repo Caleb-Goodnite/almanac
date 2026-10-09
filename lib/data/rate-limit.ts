@@ -32,3 +32,13 @@ export async function rateLimit(key: string, limit: number, windowSeconds: numbe
   const retryAfterSeconds = Math.ceil((windowStart.getTime() + windowSeconds * 1000 - now) / 1000);
   return { allowed: count <= limit, remaining: Math.max(0, limit - count), retryAfterSeconds };
 }
+
+export const TOO_FAST = "You are doing that very quickly. Wait a moment and try again.";
+
+/**
+ * A generous ceiling on how fast one account can write (log, edit, delete).
+ * Nobody tapping a phone gets near it; a script hammering the endpoints does.
+ */
+export async function writingTooFast(userId: string): Promise<boolean> {
+  return !(await rateLimit(`write:${userId}`, 240, 60)).allowed;
+}

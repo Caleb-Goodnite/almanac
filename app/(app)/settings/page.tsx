@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { leaveSupportModeAction } from "./actions";
+import { ChangePassword } from "@/components/settings/change-password";
 import { DangerZone } from "@/components/settings/danger-zone";
 import { ProfileForm } from "@/components/settings/profile-form";
 import { SignOutButton } from "@/components/shell/sign-out";
@@ -60,6 +61,10 @@ export default async function SettingsPage() {
 
       <Section title="Appearance">
         <ThemeToggle />
+      </Section>
+
+      <Section title="Account">
+        <ChangePassword />
       </Section>
 
       <Section title="Your data">

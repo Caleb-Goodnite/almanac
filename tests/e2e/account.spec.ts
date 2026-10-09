@@ -125,3 +125,34 @@ test("a teen cannot switch support mode off; an adult can", async ({ browser }) 
     await context.close();
   }
 });
+
+test("a signed-in user can change their password", async ({ page }) => {
+  const account = await signUpAdult(page);
+  await page.goto("/settings");
+  await page.getByRole("button", { name: "Change password" }).click();
+  await page.getByLabel("Current password").fill("definitely-not-it");
+  await page.getByLabel("New password").fill(`changed-${account.password}`);
+  await page.getByRole("button", { name: "Save new password" }).click();
+  await expect(page.getByRole("alert").filter({ hasText: "!" })).toContainText(/current password is not right/);
+
+  await page.getByLabel("Current password").fill(account.password);
+  await page.getByRole("button", { name: "Save new password" }).click();
+  await expect(page.getByText(/Password changed/)).toBeVisible();
+
+  await page.getByRole("button", { name: "Sign out" }).click();
+  await page.waitForURL((url) => url.pathname === "/");
+  await page.goto("/sign-in");
+  await page.getByLabel("Email").fill(account.email);
+  await page.getByLabel("Password").fill(`changed-${account.password}`);
+  await page.getByRole("button", { name: "Sign in" }).click();
+  await expect(page.getByRole("heading", { level: 1, name: /Today/ })).toBeVisible();
+});
+
+test("the health check and crawler rules respond", async ({ request }) => {
+  const health = await request.get("/api/health");
+  expect(health.status()).toBe(200);
+  expect(await health.json()).toEqual({ ok: true });
+  const robots = await (await request.get("/robots.txt")).text();
+  expect(robots).toMatch(/Disallow: \/api\//);
+  expect(robots).toMatch(/Disallow: \/today/);
+});
