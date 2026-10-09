@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Providers } from "@/components/providers";
 import { Nav } from "@/components/shell/nav";
 import { Disclaimer } from "@/components/ui/disclaimer";
 import { requireViewer } from "@/lib/auth/session";
@@ -9,6 +10,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   await requireViewer();
 
   return (
+    <Providers>
     <div className="flex flex-1 flex-col md:flex-row">
       <Nav />
       <div className="flex min-w-0 flex-1 flex-col pb-24 md:pb-0">
@@ -28,5 +30,6 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
         </footer>
       </div>
     </div>
+    </Providers>
   );
 }
