@@ -223,6 +223,11 @@
     animation: bar-grow 0.6s var(--ease-out-quart) both;
   }
 
+  .bar-grow-x {
+    transform-origin: left;
+    animation: bar-grow-x 0.6s var(--ease-out-quart) both;
+  }
+
   .safe-b {
     padding-bottom: env(safe-area-inset-bottom);
   }
@@ -247,6 +252,12 @@
 @keyframes bar-grow {
   from {
     transform: scaleY(0);
+  }
+}
+
+@keyframes bar-grow-x {
+  from {
+    transform: scaleX(0);
   }
 }
 
