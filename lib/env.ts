@@ -1,9 +1,10 @@
-import "server-only";
 import { z } from "zod";
 
 /**
  * Server environment, validated once at startup (imported by instrumentation.ts).
- * Nothing here is ever exposed to the client: this module is `server-only`.
+ * Only server code may import this. It is not marked `server-only` because the
+ * migration and seed scripts run it outside Next; on a client it would throw,
+ * since none of these variables exist in the browser.
  */
 const schema = z
   .object({
