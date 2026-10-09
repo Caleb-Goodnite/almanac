@@ -55,7 +55,7 @@ function Palette({ theme }: { theme: "light" | "dark" }) {
 export default function StyleGuide() {
   return (
     <main id="main" className="mx-auto w-full max-w-5xl px-5 py-10 sm:px-8 sm:py-16">
-      <header className="mb-14 flex items-start justify-between gap-6">
+      <header className="mb-14 flex flex-col-reverse items-start gap-4 sm:flex-row sm:justify-between sm:gap-6">
         <div>
           <p className="label">Almanac · Style guide</p>
           <h1 className="display mt-3 text-6xl sm:text-8xl">
