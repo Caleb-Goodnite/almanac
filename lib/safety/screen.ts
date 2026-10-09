@@ -25,12 +25,13 @@ type Rule = { signal: string; level: Exclude<ScreenLevel, "none">; pattern: RegE
 
 const RULES: readonly Rule[] = [
   // Thoughts of self-harm or suicide: always handled with crisis resources.
-  { signal: "self_harm", level: "crisis", pattern: /\b(kill(ing)? myself|suicid(e|al)|end (it all|my life)|want(ed)? to die|don'?t want to (live|be alive|be here anymore)|hurt(ing)? myself|self[- ]?harm|cut(ting)? myself)\b/i },
+  { signal: "self_harm", level: "crisis", pattern: /\b(kill(ing)? myself|suicid(e|al)|end(ing)? (it all|my (own )?life)|tak(e|ing) my (own )?life|want(ed)? to die|don'?t want to (live|be alive|be here anymore)|hurt(ing)? myself|self[- ]?harm|cut(ting)? myself)\b/i },
 
   // Purging and compensatory behaviour.
   { signal: "purging", level: "strong", pattern: /\b(purg(e|es|ed|ing)|make myself (throw up|sick|vomit)|made myself (throw up|sick|vomit)|throw(ing)? up (after|my|what)|vomit(ing)? after|self[- ]?induced vomit)/i },
   { signal: "laxatives", level: "strong", pattern: /\b(laxatives?|diuretics?|water pills?|diet pills?|ipecac)\b/i },
   { signal: "starving", level: "strong", pattern: /\b(starv(e|ing) myself|stop(ped)? eating|not eat(ing)? (at all|anything)|eat(ing)? nothing|go(ing)? without (food|eating)|refus(e|ing) to eat|haven'?t eaten (in|for) (\d+|two|three|four|several|a few) days)\b/i },
+  { signal: "hiding", level: "strong", pattern: /\b(hide|hiding|conceal|keep (it|this) (a )?secret)\b.{0,40}\b(not eating|(i'?m|i am|that i) (don'?t|not|am not) eat(ing)?|my eating|throwing up|purging|how little i eat)\b/i },
   { signal: "pro_ana", level: "strong", pattern: /\b(pro[- ]?ana|pro[- ]?mia|thinspo|bonespo|meanspo|thigh gap|anorexi[ac]|bulimi[ac])\b/i },
   { signal: "punish_exercise", level: "strong", pattern: /\b(burn off (everything|every calorie|what i (ate|eat))|exercise (until|till) i (pass out|collapse|faint)|punish myself|have to (work|burn) (it|that) off|can'?t stop exercising)\b/i },
   { signal: "long_fast", level: "strong", pattern: /\b(water fast|dry fast|(\d{2,3})[- ]?hour fast|fast(ing)? for (\d+|two|three|four|five|six|seven|several) days)\b/i },
@@ -44,7 +45,7 @@ const RULES: readonly Rule[] = [
 /** Daily calorie figures the user is asking about, e.g. "500 calories a day". */
 function mentionedIntakes(text: string): number[] {
   const out: number[] = [];
-  const re = /\b(\d{2,4})\s*(k?cal(ories)?|calories)\b(?!\s*(deficit|burn|burned|less|fewer|under|below|more|surplus|over))/gi;
+  const re = /\b(\d{2,4})[- ]?(k?cals?|calories?)\b(?!\s*(deficit|burn|burned|less|fewer|under|below|more|surplus|over|lunch|breakfast|dinner|snack|meal\b|bar|shake))/gi;
   for (const m of text.matchAll(re)) out.push(Number(m[1]));
   return out;
 }
@@ -63,7 +64,7 @@ export function screenMessage(text: string): ScreenResult {
   }
 
   // Asking to eat a clearly unsafe amount in a day, as a plan rather than a food's label.
-  const asksToEat = /\b(eat|eating|ate|intake|diet|a day|per day|daily|only|just|limit|stick to|survive on)\b/i.test(text);
+  const asksToEat = /\b(eat|eating|ate|intake|diet|a day|per day|daily|only|just|limit|stick to|survive on|meal plan|plan)\b/i.test(text);
   for (const kcal of mentionedIntakes(text)) {
     if (asksToEat && kcal > 0 && kcal < 800) raise("strong", "extreme_intake");
     else if (asksToEat && kcal < EXTREME_INTAKE_KCAL) raise("soft", "very_low_intake");
@@ -79,8 +80,11 @@ export function screenMessage(text: string): ScreenResult {
 export function violatesFloor(reply: string, floorKcal: number): boolean {
   // "1,000" and "1000" should read the same.
   const text = reply.replace(/(\d),(\d{3})\b/g, "$1$2");
+  // A daily intake being recommended: a verb of eating or targeting, then a
+  // calorie figure. Not a difference ("340 kcal a day more"), and not the size
+  // of one meal or food ("a 400 calorie snack").
   const re =
-    /\b(?:eat|eating|aim for|target of?|intake of|stick to|consume|drop to|cut to|go down to|limit (?:yourself )?to)\b[^.\n]{0,40}?\b(?<kcal>\d{3,4})\s*(?:k?cal|calories)\b/gi;
+    /\b(?:eat|eating|aim for|target of?|intake of|stick to|consume|drop to|cut to|go down to|limit (?:yourself )?to)\b[^.\n]{0,40}?\b(?<kcal>\d{3,4})[- ]?(?:k?cals?|calories?)\b(?!\s*(?:a day |per day |each day |daily )?(?:more|less|fewer|above|below|over|under|deficit|surplus|short|extra|higher|lower|snack|meal|breakfast|lunch|dinner|bar|shake|serving|portion))/gi;
   for (const m of text.matchAll(re)) {
     const kcal = Number(m.groups?.kcal);
     if (kcal >= 300 && kcal < floorKcal) return true;

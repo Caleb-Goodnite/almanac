@@ -28,6 +28,9 @@ const schema = z
     OPENROUTER_FALLBACK_MODEL: z.string().default("openai/gpt-6-luna"),
     // Points the coach at a stub server in end-to-end tests.
     OPENROUTER_BASE_URL: z.url().default("https://openrouter.ai/api/v1"),
+    // "low" lets the model think briefly before answering. Slower to start and
+    // roughly double the cost, but better at arithmetic. See evals/report.md.
+    COACH_REASONING: z.enum(["off", "low"]).default("off"),
     COACH_DAILY_USD_CAP: z.coerce.number().positive().default(0.1),
     COACH_MESSAGES_PER_MINUTE: z.coerce.number().int().positive().default(6),
     // How many coach replies each person gets per day (UTC). Safety replies do not count.

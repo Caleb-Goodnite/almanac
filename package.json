@@ -15,7 +15,8 @@
     "db:migrate": "tsx --env-file-if-exists=.env.local lib/db/migrate.ts",
     "db:seed": "tsx --env-file-if-exists=.env.local lib/db/seed.ts",
     "db:demo": "tsx --env-file-if-exists=.env.local lib/db/seed-demo.ts",
-    "support:clear": "tsx --env-file-if-exists=.env.local lib/db/support-clear.ts"
+    "support:clear": "tsx --env-file-if-exists=.env.local lib/db/support-clear.ts",
+    "eval:coach": "vitest run --config vitest.eval.config.mts"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "^1.7.7",

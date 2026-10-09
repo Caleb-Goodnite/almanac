@@ -25,7 +25,7 @@ test("the coach streams a reply that uses the user's numbers", async ({ page, re
   expect(mine.system).not.toContain(account.email);
   expect(mine.system).not.toContain(account.name);
   expect(mine.system).not.toMatch(/@|birth/i);
-  expect(mine.system).toContain('"age_band":"18+"');
+  expect(mine.system).toContain('"age_band":"adult"');
   expect(mine.system).toContain('"protein_g":160');
   expect(mine.auth).toBe("Bearer stub-key");
 });

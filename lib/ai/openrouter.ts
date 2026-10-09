@@ -89,6 +89,8 @@ function usageFrom(raw: unknown): Usage | null {
 type RequestOptions = {
   messages: ChatMessage[];
   maxTokens: number;
+  /** Let the model reason before answering. Off for the coach; used by the evaluation reviewer. */
+  reasoning?: "low" | "medium";
   /** Try this model only. Without it, the default model with the fallback behind it. */
   model?: string;
   signal?: AbortSignal;
@@ -108,7 +110,7 @@ function body(options: RequestOptions, extra: Record<string, unknown>) {
     // was spent before any visible text. The coach's job is to summarise
     // numbers it is handed, so reasoning is turned off: replies start sooner,
     // cost less, and always fit.
-    reasoning: { enabled: false },
+    reasoning: options.reasoning ? { effort: options.reasoning } : { enabled: false },
     ...extra,
     // Privacy: by default only route to providers that do not store prompts or
     // train on them, on zero-data-retention endpoints. Both configured models

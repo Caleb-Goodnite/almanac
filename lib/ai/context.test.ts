@@ -81,6 +81,43 @@ describe("coach context", () => {
     }
   });
 
+  it("withholds averages when too few days are logged, and says why", () => {
+    const s = snapshot();
+    s.nutrition = { ...s.nutrition, loggedDays7: 1, loggedDays30: 2 };
+    const ctx = buildCoachContext(s, { frequentFoods: [], floorKcal: 1500 });
+    expect(ctx).not.toContain('"proteinG":95');
+    expect(ctx).toContain("withheld: too few logged days");
+    expect(ctx).toContain('"status":"too_little_data"');
+  });
+
+  it("gives the model verdicts worked out in code", () => {
+    const ctx = buildCoachContext(snapshot(), { frequentFoods: [], floorKcal: 1500 });
+    expect(ctx).toContain('"status":"below_range_for_every_muscle"');
+    expect(ctx).toContain('"status":"well_below_target"');
+    expect(ctx).toContain("12 minutes short");
+  });
+
+  it("removes every calorie, macro and weight figure from a flagged conversation", () => {
+    const ctx = buildCoachContext(snapshot(), { frequentFoods: [], floorKcal: 1500, careful: true });
+    for (const leaked of ['"calories"', '"protein_g"', '"proteinG"', "latest_kg", "kcal_per_day", "2050", "2033", "80.5"]) {
+      expect(ctx, leaked).not.toContain(leaked);
+    }
+    expect(ctx).toContain("sleep_hours");
+  });
+
+  it("never gives a teen's expenditure or calorie gap", () => {
+    const s = snapshot({ ageBand: "teen" });
+    s.nutrition = { ...s.nutrition, avg7: { ...s.nutrition.avg7, kcal: 1400 } };
+    const ctx = buildCoachContext(s, { frequentFoods: [], floorKcal: 1800 });
+    expect(ctx).not.toContain("estimated_expenditure_kcal");
+    expect(ctx).not.toContain("kcal_per_day");
+    expect(ctx).not.toContain('"calories":');
+    expect(ctx).not.toContain('"kcal":');
+    expect(ctx).not.toContain("1400");
+    expect(ctx).not.toMatch(/13|17/);
+    expect(ctx).toContain('"status":"eating_less_than_needed"');
+  });
+
   it("adds teen rules and extra-care rules only when they apply", () => {
     const base = snapshot();
     const ctx = buildCoachContext(base, { frequentFoods: [], floorKcal: 1500 });

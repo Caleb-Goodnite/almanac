@@ -55,6 +55,14 @@ describe("output floor check", () => {
     expect(violatesFloor("Try eating around 1,000 kcal.", 1200)).toBe(true);
     expect(violatesFloor("Cut to 1000 kcal for a week.", 1200)).toBe(true);
   });
+  it("does not fire on differences or on the size of one meal", () => {
+    expect(violatesFloor("You're eating about 340 kcal a day more than your 2100 kcal target.", 1500)).toBe(false);
+    expect(violatesFloor("Try eating 300 calories less on rest days.", 1500)).toBe(false);
+    expect(violatesFloor("Eat a 400 calorie snack after training.", 1500)).toBe(false);
+    expect(violatesFloor("Aim for a 500 kcal breakfast with 35 g protein.", 1500)).toBe(false);
+    expect(violatesFloor("Aim for 1200 kcal a day.", 1500)).toBe(true);
+  });
+
   it("does not fire on ordinary numbers", () => {
     expect(violatesFloor("Your target is 2,050 kcal and you averaged 2,114.", 1200)).toBe(false);
     expect(violatesFloor("A 400 calorie snack with 30 g protein would close the gap.", 1200)).toBe(false);

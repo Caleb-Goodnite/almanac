@@ -131,7 +131,8 @@ export async function POST(request: NextRequest) {
   }
 
   const snapshot = await buildSnapshot(viewer);
-  const { context, floorKcal } = await coachContextFor(viewer, snapshot);
+  // A flagged message gets the reduced context: no calorie, macro or weight figures to quote.
+  const { context, floorKcal } = await coachContextFor(viewer, snapshot, { careful: screen.level !== "none" });
 
   // Recent turns only, newest last, within a character budget.
   const history = await listMessages(userId, convId);
@@ -166,7 +167,14 @@ export async function POST(request: NextRequest) {
       send({ type: "meta", conversationId: convId, remainingToday: allowance.remaining - 1 });
 
       const attempt = async (onlyModel?: string) => {
-        for await (const event of streamChat({ messages, maxTokens: MAX_REPLY_TOKENS, model: onlyModel, signal: upstream.signal })) {
+        for await (const event of streamChat({
+          messages,
+          // Thinking tokens share the budget, so it is larger when reasoning is on.
+          maxTokens: env.COACH_REASONING === "low" ? MAX_REPLY_TOKENS + 1500 : MAX_REPLY_TOKENS,
+          reasoning: env.COACH_REASONING === "low" ? "low" : undefined,
+          model: onlyModel,
+          signal: upstream.signal,
+        })) {
           if (event.type === "delta") {
             reply += event.text;
             send({ type: "delta", text: event.text });
