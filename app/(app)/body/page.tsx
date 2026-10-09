@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckIn } from "@/components/body/checkin";
+import { HealthImport } from "@/components/body/health-import";
 import { WeightHistory } from "@/components/body/weight-history";
 import { DateNav } from "@/components/food/date-nav";
 import { MeasurementForm, SITE_LABELS } from "@/components/body/measurement-form";
@@ -63,6 +64,7 @@ export default async function BodyPage({ searchParams }: PageProps<"/body">) {
 
   return (
     <div className="flex flex-col gap-12">
+      <HealthImport />
       <Section
         as="h1"
         kicker={isToday ? "Ten seconds" : fmtDate(date, { weekday: "long", month: "long", day: "numeric" })}

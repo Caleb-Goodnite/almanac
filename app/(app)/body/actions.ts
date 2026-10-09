@@ -5,6 +5,10 @@ import { z } from "zod";
 import { requireViewer } from "@/lib/auth/session";
 import { TOO_FAST, writingTooFast } from "@/lib/data/rate-limit";
 import { deleteWeight, logMeasurement, logSleep, logWeight, saveCheckin } from "@/lib/data/body";
+import { importHealth, type ImportCounts } from "@/lib/data/health-import";
+import { getLatestWeight } from "@/lib/data/profile";
+import { rateLimit } from "@/lib/data/rate-limit";
+import { normalizeHealth } from "@/lib/health-import/normalize";
 import { todayIn } from "@/lib/time";
 import { dateSchema } from "@/lib/validation/food";
 import { checkinSchema, measurementSchema, sleepSchema, weightSchema } from "@/lib/validation/body";
@@ -75,4 +79,48 @@ export async function logMeasurementAction(input: unknown): Promise<ActionResult
   await logMeasurement(viewer.userId, parsed.data.date, parsed.data.site, parsed.data.cm);
   refresh();
   return { ok: true };
+}
+
+const isoTime = z.string().max(40);
+const healthSchema = z.object({
+  weights: z.array(z.object({ at: isoTime, kg: z.number().positive() })).max(400),
+  sleep: z.array(z.object({ start: isoTime, end: isoTime })).max(3000),
+  restingHr: z.array(z.object({ at: isoTime, bpm: z.number().positive() })).max(400),
+  workouts: z
+    .array(
+      z.object({
+        id: z.uuid(),
+        type: z.string().max(60),
+        start: isoTime,
+        durationSec: z.number().positive(),
+        distanceM: z.number().nonnegative().nullable(),
+      }),
+    )
+    .max(400),
+});
+
+export type HealthImportResult = { ok: true; counts: ImportCounts } | { ok: false; error: string };
+
+/**
+ * Takes raw samples the phone app read from Apple Health or Health Connect.
+ * Everything is validated and reduced to daily rows on the server
+ * (lib/health-import), and only fills days that have nothing logged.
+ */
+export async function importHealthAction(input: unknown): Promise<HealthImportResult> {
+  const { viewer, today } = await viewerAndToday();
+  if (!(await rateLimit(`health-import:${viewer.userId}`, 20, 60 * 60)).allowed) return { ok: false, error: TOO_FAST };
+  const parsed = healthSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, error: "That health data could not be read." };
+
+  const data = normalizeHealth(parsed.data, viewer.profile.timezone, today);
+  const latest = await getLatestWeight(viewer.userId);
+  const counts = await importHealth(viewer.userId, data, {
+    weightKg: latest?.kg ?? null,
+    // In support mode weight tracking is turned down, so weigh-ins are not pulled in.
+    includeWeight: !viewer.profile.supportMode,
+  });
+  refresh();
+  revalidatePath("/train");
+  revalidatePath("/trends");
+  return { ok: true, counts };
 }

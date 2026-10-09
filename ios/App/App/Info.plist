@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Almanac uses the camera to scan food barcodes.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Almanac reads your weight, sleep, resting heart rate and workouts from Apple Health so you do not have to enter them twice. Nothing is written to Apple Health.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

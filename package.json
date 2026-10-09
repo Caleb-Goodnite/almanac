@@ -23,7 +23,13 @@
     "mobile:ios": "cap sync ios && cap open ios"
   },
   "dependencies": {
+    "@aparajita/capacitor-biometric-auth": "10.0.0",
     "@better-auth/drizzle-adapter": "^1.7.7",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/barcode-scanner": "3.1.3",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/local-notifications": "8.3.1",
+    "@capgo/capacitor-health": "8.11.8",
     "@electric-sql/pglite": "^0.5.8",
     "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-query": "^5.104.1",
