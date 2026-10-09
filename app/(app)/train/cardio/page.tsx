@@ -22,7 +22,7 @@ export default async function CardioPage() {
         </Link>
       }
     >
-      <CardioForm date={todayIn(viewer.profile.timezone)} weightKg={weight?.kg ?? null} units={viewer.profile.unitSystem} />
+      <CardioForm date={todayIn(viewer.profile.timezone)} weightKg={weight?.kg ?? null} units={viewer.profile.unitSystem} ageYears={viewer.ageYears} />
     </Section>
   );
 }

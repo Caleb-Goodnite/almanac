@@ -179,12 +179,12 @@
     line-height: 0.9;
     letter-spacing: -0.04em;
     font-variant-numeric: tabular-nums lining-nums;
-    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    font-variation-settings: "opsz" 144;
   }
 
   .display {
     font-family: var(--font-display);
-    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    font-variation-settings: "opsz" 144;
     letter-spacing: -0.03em;
     line-height: 1;
   }

@@ -7,7 +7,8 @@ import "./globals.css";
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
+  // Only the optical-size axis: the soft and wonk axes are unused and roughly double the file.
+  axes: ["opsz"],
   display: "swap",
 });
 

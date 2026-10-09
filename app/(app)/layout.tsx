@@ -16,7 +16,8 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
       <Nav />
       <div className="flex min-w-0 flex-1 flex-col pb-24 md:pb-0">
         <OfflineBanner />
-        <main id="main" className="mx-auto w-full max-w-3xl flex-1 px-5 py-6 sm:px-8 md:py-10">
+        {/* At least a screen tall, so the footer never jumps into view while a page streams in. */}
+        <main id="main" className="mx-auto min-h-dvh w-full max-w-3xl flex-1 px-5 py-6 sm:px-8 md:py-10">
           {children}
         </main>
         <footer className="mx-auto w-full max-w-3xl border-t border-rule px-5 py-5 sm:px-8">

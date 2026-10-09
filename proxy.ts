@@ -23,6 +23,7 @@ export function proxy(request: NextRequest) {
 
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const isDev = process.env.NODE_ENV === "development";
+  const isHttps = request.nextUrl.protocol === "https:" || request.headers.get("x-forwarded-proto") === "https";
 
   const csp = [
     "default-src 'self'",
@@ -38,7 +39,9 @@ export function proxy(request: NextRequest) {
     "base-uri 'self'",
     "form-action 'self' https://accounts.google.com",
     "frame-ancestors 'none'",
-    ...(isDev ? [] : ["upgrade-insecure-requests"]),
+    // Only on HTTPS: on plain-HTTP localhost it would rewrite same-origin
+    // redirects to https and break them.
+    ...(isHttps ? ["upgrade-insecure-requests"] : []),
   ].join("; ");
 
   const requestHeaders = new Headers(request.headers);

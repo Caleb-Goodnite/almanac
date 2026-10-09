@@ -7,12 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Why } from "@/components/ui/why";
 import { fmt, type UnitSystem } from "@/lib/format";
+import { estimatedMaxHr, zoneForHr, zonesFromMaxHr } from "@/lib/science/heart";
 import { ACTIVITIES, intensityFromMet, kcalFromMet } from "@/lib/science/met";
 import { milesToKm } from "@/lib/science/units";
 
 const GROUPS = [...new Set(ACTIVITIES.map((a) => a.group))];
 
-export function CardioForm({ date, weightKg, units }: { date: string; weightKg: number | null; units: UnitSystem }) {
+export function CardioForm({ date, weightKg, units, ageYears }: { date: string; weightKg: number | null; units: UnitSystem; ageYears: number }) {
   const router = useRouter();
   const [activity, setActivity] = useState("walk_brisk");
   const [minutes, setMinutes] = useState("");
@@ -27,6 +28,10 @@ export function CardioForm({ date, weightKg, units }: { date: string; weightKg: 
   const distanceKm = distance && dist > 0 ? (units === "imperial" ? milesToKm(dist) : dist) : null;
   const estimate = chosen && weightKg && mins > 0 ? kcalFromMet(chosen.met, weightKg, mins) : null;
   const distUnit = units === "imperial" ? "mi" : "km";
+  const maxHr = estimatedMaxHr(ageYears);
+  const hr = Number(avgHr);
+  const zone = avgHr && hr >= 30 ? zoneForHr(zonesFromMaxHr(maxHr), hr) : null;
+  const ZONE_TEXT = { below: "very light", light: "light", moderate: "moderate", vigorous: "vigorous", near_max: "near maximal" } as const;
   // Pace as minutes per distance unit, shown in the user's units.
   const pace = dist > 0 && mins > 0 ? mins / dist : null;
 
@@ -90,6 +95,18 @@ export function CardioForm({ date, weightKg, units }: { date: string; weightKg: 
           </dd>
         </div>
       </dl>
+      {zone ? (
+        <div>
+          <p className="nums text-sm leading-relaxed">
+            An average of {hr} bpm is <span className="font-medium">{ZONE_TEXT[zone]}</span> effort for you, about{" "}
+            {Math.round((hr / maxHr) * 100)}% of an estimated maximum of {maxHr} bpm.
+          </p>
+          <Why label="How is the heart-rate zone worked out?" source="heart-rate" cite="Tanaka et al. 2001; ACSM 2011">
+            Maximum heart rate is estimated as 208 minus 0.7 times your age, and effort bands are
+            percentages of that. The estimate can be off by 10 beats or more for any one person.
+          </Why>
+        </div>
+      ) : null}
       <Why label="How is energy estimated?" source="activity" cite="2024 Compendium of Physical Activities">
         This is an estimate: the activity’s average intensity ({chosen?.met} MET) times your
         weight and the time. It includes what you would have burned at rest and can be well off

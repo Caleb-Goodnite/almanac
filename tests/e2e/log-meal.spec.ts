@@ -82,3 +82,23 @@ test("one user cannot read another user's food", async ({ browser }) => {
   await a.close();
   await b.close();
 });
+
+test("something logged while offline is saved once the connection returns", async ({ page, context }) => {
+  await signUpAdult(page);
+  const water = page.getByRole("meter", { name: "Water" });
+
+  await context.setOffline(true);
+  await page.getByRole("button", { name: "+ 500 ml" }).click();
+  // Shown at once, and the app says it is holding the entry.
+  await expect(water).toHaveAttribute("aria-valuenow", "500");
+  await expect(page.getByText(/You are offline/)).toBeVisible();
+
+  await context.setOffline(false);
+  await expect(page.getByText(/You are offline/)).toHaveCount(0, { timeout: 30_000 });
+
+  // Proof it reached the server: a fresh load still has it.
+  await expect(async () => {
+    await page.reload();
+    await expect(page.getByRole("meter", { name: "Water" })).toHaveAttribute("aria-valuenow", "500", { timeout: 3000 });
+  }).toPass({ timeout: 30_000 });
+});
