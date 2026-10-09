@@ -89,19 +89,26 @@ function usageFrom(raw: unknown): Usage | null {
 type RequestOptions = {
   messages: ChatMessage[];
   maxTokens: number;
-  temperature?: number;
   /** Try this model only. Without it, the default model with the fallback behind it. */
   model?: string;
   signal?: AbortSignal;
 };
 
+// No sampling parameters (temperature, top_p) are sent. Current models do not
+// all accept them, and with `require_parameters` a single unsupported one
+// makes OpenRouter report that no provider can serve the request.
 function body(options: RequestOptions, extra: Record<string, unknown>) {
   return JSON.stringify({
     ...(options.model ? { model: options.model } : { models: [env.OPENROUTER_MODEL, env.OPENROUTER_FALLBACK_MODEL] }),
     messages: options.messages,
     max_tokens: options.maxTokens,
-    temperature: options.temperature ?? 0.4,
     usage: { include: true },
+    // Hidden "thinking" tokens count against max_tokens. With them on, live
+    // tests saw replies cut off after a sentence, or empty, because the budget
+    // was spent before any visible text. The coach's job is to summarise
+    // numbers it is handed, so reasoning is turned off: replies start sooner,
+    // cost less, and always fit.
+    reasoning: { enabled: false },
     ...extra,
   });
 }
@@ -153,6 +160,7 @@ export async function* streamChat(options: RequestOptions): AsyncGenerator<Strea
   let produced = false;
   let usage: Usage | null = null;
   let model: string | null = null;
+  let finishReason: string | null = null;
 
   try {
     for (;;) {
@@ -194,6 +202,8 @@ export async function* streamChat(options: RequestOptions): AsyncGenerator<Strea
         }
         if (parsed.model) model = parsed.model;
         if (parsed.usage) usage = usageFrom(parsed.usage);
+        const finish = parsed.choices?.[0]?.finish_reason;
+        if (finish) finishReason = finish;
         const text = parsed.choices?.[0]?.delta?.content;
         if (text) {
           produced = true;
@@ -206,7 +216,11 @@ export async function* streamChat(options: RequestOptions): AsyncGenerator<Strea
     reader.cancel().catch(() => undefined);
   }
 
-  if (!produced) throw new CoachError("empty", "The coach did not produce an answer.", true);
+  if (!produced) {
+    // Diagnostics only: model, finish reason and token counts. Never message content.
+    console.warn("coach: empty reply", { model, finishReason, usage });
+    throw new CoachError("empty", "The coach did not produce an answer.", true);
+  }
   yield { type: "done", usage, model };
 }
 

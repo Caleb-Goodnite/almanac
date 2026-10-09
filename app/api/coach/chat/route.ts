@@ -18,7 +18,7 @@ export const maxDuration = 60;
 
 const HISTORY_MESSAGES = 12;
 const HISTORY_CHARS = 6000;
-const MAX_REPLY_TOKENS = 700;
+const MAX_REPLY_TOKENS = 900;
 
 export type CoachEvent =
   | { type: "meta"; conversationId: string; remainingToday?: number }

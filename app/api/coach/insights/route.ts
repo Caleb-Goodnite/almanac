@@ -78,7 +78,6 @@ export async function GET() {
       completeJson({
         model,
         maxTokens: 600,
-        temperature: 0.3,
         schemaName: "weekly_review",
         schema: REVIEW_JSON_SCHEMA,
         messages: [
