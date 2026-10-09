@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Barbell, BowlFood, Heartbeat, Scales } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { after } from "next/server";
-import { WeeklyReview } from "@/components/dashboard/weekly-review";
+import { AiReview } from "@/components/dashboard/ai-review";
 import { DaySummary } from "@/components/food/day-summary";
 import { Water } from "@/components/food/water";
 import { Section } from "@/components/ui/section";
@@ -132,7 +132,7 @@ export default async function TodayPage() {
       </Section>
 
       <Section kicker="Last 7 days" title="Weekly review" aside={<Link href="/trends" className="label min-h-11 content-center underline decoration-dotted underline-offset-4 hover:text-ink">All trends</Link>}>
-        <WeeklyReview review={review} byline="From your numbers" />
+        <AiReview initial={review} weekKey={today} />
         {snapshot.adaptive?.ok ? (
           <p className="nums mt-5 border-t border-rule pt-4 text-sm leading-relaxed text-ink-soft">
             From your own food and weight data, you burn about {fmt(snapshot.adaptive.observedKcal)} kcal a day

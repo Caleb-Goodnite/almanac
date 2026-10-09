@@ -40,6 +40,13 @@ const loadViewer = cache(async (): Promise<Viewer | "no-session" | "no-profile">
   };
 });
 
+/** The signed-in, onboarded user, or null. For route handlers, which answer with a status code instead of a redirect. */
+export async function getViewer(): Promise<Viewer | null> {
+  const viewer = await loadViewer();
+  if (typeof viewer === "string" || !viewer.profile.onboardedAt) return null;
+  return viewer;
+}
+
 /**
  * The signed-in, onboarded user. Redirects to sign-in, to the age gate (an
  * account with no profile never passed it), or to onboarding as needed.
