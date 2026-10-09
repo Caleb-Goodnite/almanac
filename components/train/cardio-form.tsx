@@ -75,7 +75,15 @@ export function CardioForm({ date, weightKg, units, ageYears }: { date: string; 
       <div className="grid grid-cols-2 gap-4">
         <Field label="Duration" unit="min" inputMode="decimal" value={minutes} onChange={(e) => setMinutes(e.target.value)} required />
         <Field label="Distance (optional)" unit={distUnit} inputMode="decimal" value={distance} onChange={(e) => setDistance(e.target.value)} />
-        <Field label="Average heart rate (optional)" unit="bpm" inputMode="numeric" value={avgHr} onChange={(e) => setAvgHr(e.target.value)} />
+        <Field
+          className="col-span-2"
+          label="Average heart rate (optional)"
+          unit="bpm"
+          inputMode="numeric"
+          value={avgHr}
+          onChange={(e) => setAvgHr(e.target.value)}
+          hint="From your watch, fitness band or chest strap: look for the session&rsquo;s average."
+        />
       </div>
 
       <dl className="nums grid grid-cols-3 gap-3 border-y border-rule py-4" aria-live="polite">

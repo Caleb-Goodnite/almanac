@@ -17,7 +17,11 @@ export function mifflinStJeor({ sex, weightKg, heightCm, ageYears }: MifflinInpu
   return 10 * weightKg + 6.25 * heightCm - 5 * ageYears + s;
 }
 
-/** Katch-McArdle: REE = 370 + 21.6 x lean body mass (kg). Needs a body fat estimate. */
+/**
+ * REE = 370 + 21.6 x fat-free mass (kg). Published by Cunningham (1991) and
+ * widely known as the Katch-McArdle equation. Only as good as the body-fat
+ * figure it is given.
+ */
 export function katchMcArdle(weightKg: number, bodyFatPct: number): number {
   const leanKg = weightKg * (1 - bodyFatPct / 100);
   return 370 + 21.6 * leanKg;
@@ -53,19 +57,27 @@ export function estimateBmr(input: BmrInput): { kcal: number; equation: BmrEquat
 }
 
 /**
- * Activity multipliers. These five steps are a long-standing convention, not a
- * measured result: they sit inside the FAO/WHO/UNU physical activity level
- * ranges (1.40-1.69 light, 1.70-1.99 active, 2.00-2.40 vigorous) but any one
- * person's true value can differ a good deal. That is why the app replaces
- * this estimate with one derived from the user's own data after two weeks
- * (see adaptive.ts).
+ * Physical activity level (PAL): total daily energy expenditure divided by
+ * resting expenditure.
+ *
+ * The values sit inside the lifestyle bands of the FAO/WHO/UNU expert
+ * consultation (2004): sedentary or light 1.40-1.69, active or moderately
+ * active 1.70-1.99, vigorous 2.00-2.40. Doubly-labelled-water studies agree:
+ * the average adult PAL is about 1.7-1.8 (Westerterp 2013), and about 1.2 is
+ * the floor seen only in non-ambulant people (Black et al. 1996), which is why
+ * the often-quoted "sedentary = 1.2" is not used here.
+ *
+ * Any one person can still differ a good deal, and people tend to overstate
+ * how active they are (Lichtman et al. 1992). So this is a starting estimate
+ * that the app replaces with one derived from the user's own data after two
+ * weeks (see adaptive.ts).
  */
 export const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
-  sedentary: 1.2,
-  light: 1.375,
-  moderate: 1.55,
-  very: 1.725,
-  extra: 1.9,
+  sedentary: 1.4,
+  light: 1.55,
+  moderate: 1.75,
+  very: 1.9,
+  extra: 2.2,
 };
 
 export function estimateTdee(bmrKcal: number, level: ActivityLevel): number {

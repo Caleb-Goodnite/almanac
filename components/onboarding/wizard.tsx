@@ -286,6 +286,7 @@ export function Wizard({ firstName, isTeen }: { firstName: string; isTeen: boole
                 />
                 {errors.activity ? <ErrorText>{errors.activity}</ErrorText> : null}
                 <div className="mt-2">
+                  <p className="text-sm text-ink-soft">Between two? Pick the lower one. Most people overestimate how active they are.</p>
                   <Why label="How is this used?" source="energy">
                     This is only a starting estimate. After two weeks of logging, Almanac works
                     out what you actually burn from your own food and weight data.

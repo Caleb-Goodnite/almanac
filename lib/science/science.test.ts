@@ -94,8 +94,8 @@ describe("resting energy", () => {
     expect(estimateBmr({ ...base, ageYears: 30, bodyFatPct: 99 }).equation).toBe("mifflin-st-jeor");
   });
   it("applies the activity multiplier", () => {
-    expect(estimateTdee(1780, "moderate")).toBeCloseTo(2759, 0);
-    expect(estimateTdee(1780, "sedentary")).toBeCloseTo(2136, 0);
+    expect(estimateTdee(1780, "moderate")).toBeCloseTo(3115, 0);
+    expect(estimateTdee(1780, "sedentary")).toBeCloseTo(2492, 0);
   });
 });
 
@@ -141,13 +141,13 @@ describe("targets", () => {
   it("plans a default adult fat-loss target", () => {
     const t = computeTargets(adult);
     expect(t.bmrKcal).toBe(1780);
-    expect(t.tdeeKcal).toBe(2759);
+    expect(t.tdeeKcal).toBe(3115);
     // -0.5%/week of 80 kg = 0.4 kg = 440 kcal/day.
-    expect(t.calories).toBe(2320);
+    expect(t.calories).toBe(2680);
     expect(t.proteinG).toBe(160);
-    expect(t.fatG).toBe(64);
-    expect(t.carbsG).toBe(276);
-    expect(t.fiberG).toBe(fiberTargetG(2320));
+    expect(t.fatG).toBe(74);
+    expect(t.carbsG).toBe(344);
+    expect(t.fiberG).toBe(fiberTargetG(2680));
     expect(t.guardrails).toEqual([]);
     expect(t.sleepMinMinutes).toBe(420);
     expect(t.activityMinutesPerWeek).toBe(150);
@@ -163,7 +163,7 @@ describe("targets", () => {
 
   it("maintains at TDEE and ignores a rate for non-weight goals", () => {
     const t = computeTargets({ ...adult, goal: "maintain", weeklyRatePct: -1 });
-    expect(t.calories).toBe(2760);
+    expect(t.calories).toBe(3120);
     expect(t.weeklyRatePct).toBeCloseTo(0, 1);
   });
 
@@ -177,8 +177,8 @@ describe("targets", () => {
     const t = computeTargets({
       sex: "female",
       ageYears: 30,
-      weightKg: 50,
-      heightCm: 155,
+      weightKg: 45,
+      heightCm: 152,
       goal: "lose_fat",
       activityLevel: "sedentary",
       resistanceTraining: false,
@@ -199,7 +199,7 @@ describe("targets", () => {
   it("plans no deficit in support mode", () => {
     const t = computeTargets({ ...adult, supportMode: true });
     expect(t.guardrails.map((g) => g.code)).toEqual(["support_mode_no_deficit"]);
-    expect(t.calories).toBe(2760);
+    expect(t.calories).toBe(3120);
   });
 
   it("uses an adaptive TDEE when given one", () => {
@@ -233,8 +233,8 @@ describe("targets", () => {
       const t = computeTargets(teen);
       expect(t.guardrails.map((g) => g.code)).toContain("teen_gentle_rate");
       expect(t.weeklyRatePct).toBeGreaterThanOrEqual(-0.26);
-      // 1719 x 1.55 = 2665; 0.25% of 60 kg = 0.15 kg/week = 165 kcal/day.
-      expect(t.calories).toBe(2500);
+      // 1719 x 1.75 = 3009; 0.25% of 60 kg = 0.15 kg/week = 165 kcal/day.
+      expect(t.calories).toBe(2840);
     });
 
     it("plan no deficit for a lean teen", () => {
@@ -373,6 +373,8 @@ describe("strength", () => {
     expect(estimateOneRepMax(100, 5)).toBeCloseTo(114.583, 3);
     expect(estimateOneRepMax(100, 1)).toBe(100);
     expect(estimateOneRepMax(60, 20)).toBeNull();
+    expect(estimateOneRepMax(60, 11)).toBeNull();
+    expect(estimateOneRepMax(60, 10)).not.toBeNull();
     expect(estimateOneRepMax(0, 5)).toBeNull();
   });
   it("detects records against history and ignores warm-ups", () => {

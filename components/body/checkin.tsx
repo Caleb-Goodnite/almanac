@@ -4,6 +4,7 @@ import { Check } from "@phosphor-icons/react";
 import { useRef, useState, useTransition } from "react";
 import { saveCheckinAction } from "@/app/(app)/body/actions";
 import { Scale } from "@/components/ui/scale";
+import { Why } from "@/components/ui/why";
 
 type Values = { mood: number | null; energy: number | null; soreness: number | null; restingHr: string };
 
@@ -61,6 +62,20 @@ export function CheckIn({ date, initial }: { date: string; initial: { mood: numb
           </span>
         </span>
       </label>
+      <div className="-mt-3">
+        <p className="text-sm leading-relaxed text-ink-soft">
+          Most watches and fitness bands show this (Apple Watch, Garmin, Fitbit, Whoop, Oura and
+          similar), and so does a chest strap. No device? Sit quietly for five minutes, count
+          your pulse at the wrist for 30 seconds and double it. Measure at the same time each
+          day, such as just after waking, so readings can be compared.
+        </p>
+        <Why label="How much can I trust my watch?" source="heart-rate" cite="Shcherbina et al. 2017; Fuller et al. 2020">
+          Wrist devices measure heart rate reasonably well, especially at rest, though readings
+          are less accurate during walking and on darker skin. Their calorie-burn numbers are
+          much less reliable: in a Stanford test of seven devices none came within 20%. That is
+          why Almanac asks for your heart rate but does not use a device&rsquo;s calorie figure.
+        </Why>
+      </div>
       <p role="status" className="label flex min-h-5 items-center gap-1.5">
         {status === "saved" ? (
           <>

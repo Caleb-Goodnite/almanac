@@ -1,10 +1,12 @@
 /**
  * Estimated one-repetition maximum (e1RM) and personal-record detection.
- * Both formulas are regressions on sub-maximal sets and get less accurate as
- * reps rise; we only estimate from sets of 12 reps or fewer.
+ * Both formulas are linear-style regressions on sub-maximal sets and get less
+ * accurate as reps rise. Reynolds et al. (2006) found that no more than 10
+ * reps should be used with linear equations, and that 5-rep sets predict best,
+ * so sets above 10 reps are not used for an estimate.
  */
 
-export const E1RM_MAX_REPS = 12;
+export const E1RM_MAX_REPS = 10;
 
 /** Epley (1985): 1RM = w x (1 + reps / 30). */
 export function epley(weightKg: number, reps: number): number {
