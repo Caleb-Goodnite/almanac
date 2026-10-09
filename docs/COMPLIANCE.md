@@ -9,7 +9,7 @@
 - Sign-up starts with a full date of birth (month, day, year), not a checkbox. The question is asked neutrally: the form does not say which answers are accepted until after it is submitted.
 - **Under 13:** no account is created. The date of birth is discarded in the same request and never stored or logged. The only thing kept is a cookie (`almanac_age_block`, 24 hours, httpOnly) that makes the form refuse further attempts from that browser, so the date cannot simply be re-entered.
 - **13 and over:** a signed, one-hour cookie carries the month and year of birth to the account step. Only month and year are saved to the profile; the day is never stored.
-- **Enforced on the server:** account creation is refused inside the auth library's "before user is created" hook unless that signed cookie is valid. This covers email sign-up and first-time Google sign-in, and calling the sign-up API directly without passing the gate, or with a forged cookie, returns 403. The token logic is unit-tested; the API refusal was checked by hand and gets an end-to-end test in Phase 7.
+- **Enforced on the server:** account creation is refused inside the auth library's "before user is created" hook unless that signed cookie is valid. This covers email sign-up and first-time Google sign-in, and calling the sign-up API directly without passing the gate, or with a forged cookie, returns 403. The token logic is unit-tested and the API refusal is covered by an end-to-end test.
 - Age is recomputed from the stored month and year on every request, rounding toward younger, so a user moves out of the teen experience automatically in the month after they turn 18.
 
 ### What is stored about a person
@@ -45,6 +45,8 @@ There is no advertising, analytics or tracking SDK in the app.
 - Under-18s get different targets and stricter limits (see `RESEARCH.md`, section 9).
 - Signals of disordered eating switch the app from optimising to supporting, and show helplines.
 - A medical disclaimer is shown and must be acknowledged in onboarding, and appears in every page footer.
+- "Support mode" is switched on automatically by strong signals in a coach message. The user can switch it off again in Settings. Whether an under-18 should be able to do that alone needs clinical input.
+- The coach is limited to 10 replies per person per day. Crisis and support replies are not counted.
 
 ## Needs legal review before launch
 

@@ -1,12 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "almanac", "runtimeExecutable": "pnpm", "runtimeArgs": ["--dir", "/Users/calebg./Code/almanac", "dev"], "port": 3000 },
-    {
-      "name": "almanac-stub-coach",
-      "runtimeExecutable": "env",
-      "runtimeArgs": ["OPENROUTER_BASE_URL=http://127.0.0.1:4010/api/v1", "OPENROUTER_API_KEY=stub-key", "pnpm", "--dir", "/Users/calebg./Code/almanac", "dev"],
-      "port": 3000
-    }
+    { "name": "almanac", "runtimeExecutable": "pnpm", "runtimeArgs": ["dev"], "port": 3000 }
   ]
 }
