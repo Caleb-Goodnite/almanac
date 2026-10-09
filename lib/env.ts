@@ -1,0 +1,69 @@
+import "server-only";
+import { z } from "zod";
+
+/**
+ * Server environment, validated once at startup (imported by instrumentation.ts).
+ * Nothing here is ever exposed to the client: this module is `server-only`.
+ */
+const schema = z
+  .object({
+    NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+
+    // Postgres connection string (Supabase/Neon). When unset outside production
+    // the app runs on PGlite, an in-process Postgres stored under ./.data.
+    DATABASE_URL: z.url().optional(),
+
+    BETTER_AUTH_SECRET: z.string().min(32, "must be at least 32 characters"),
+    BETTER_AUTH_URL: z.url().default("http://localhost:3000"),
+
+    GOOGLE_CLIENT_ID: z.string().min(1).optional(),
+    GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
+
+    OPENROUTER_API_KEY: z.string().min(1).optional(),
+    OPENROUTER_MODEL: z.string().default("anthropic/claude-haiku-5.5"),
+    OPENROUTER_FALLBACK_MODEL: z.string().default("openai/gpt-6-luna"),
+    // Points the coach at a stub server in end-to-end tests.
+    OPENROUTER_BASE_URL: z.url().default("https://openrouter.ai/api/v1"),
+    COACH_DAILY_USD_CAP: z.coerce.number().positive().default(0.1),
+    COACH_MESSAGES_PER_MINUTE: z.coerce.number().int().positive().default(6),
+
+    USDA_API_KEY: z.string().min(1).default("DEMO_KEY"),
+  })
+  .superRefine((env, ctx) => {
+    if (env.NODE_ENV === "production" && !env.DATABASE_URL) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["DATABASE_URL"],
+        message: "is required in production",
+      });
+    }
+    if (Boolean(env.GOOGLE_CLIENT_ID) !== Boolean(env.GOOGLE_CLIENT_SECRET)) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["GOOGLE_CLIENT_SECRET"],
+        message: "GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET must be set together",
+      });
+    }
+  });
+
+export type Env = z.infer<typeof schema>;
+
+function load(): Env {
+  const parsed = schema.safeParse(process.env);
+  if (!parsed.success) {
+    const lines = parsed.error.issues.map(
+      (issue) => `  ${issue.path.join(".") || "(root)"}: ${issue.message}`,
+    );
+    throw new Error(
+      `Invalid environment. Copy .env.example to .env.local and fix:\n${lines.join("\n")}`,
+    );
+  }
+  return parsed.data;
+}
+
+export const env = load();
+
+export const features = {
+  google: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET),
+  coach: Boolean(env.OPENROUTER_API_KEY),
+} as const;

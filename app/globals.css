@@ -1,26 +1,220 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Almanac design tokens.
+ * Two themes, each tuned by hand. Contrast ratios (WCAG 2.2) are noted where a
+ * token is used for text: every text token is >= 4.5:1 on both paper tones,
+ * every graphic token is >= 3:1.
+ */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #f4f0e8;
+  --paper-raised: #ebe5d9;
+  --paper-sunk: #e4ddce;
+  --ink: #1a1814; /* 15.6:1 */
+  --ink-soft: #5c564c; /* 6.4:1 */
+  --ink-faint: #6b6458; /* 4.9:1, smallest labels only */
+  --rule: #d8d0c0; /* decorative hairlines */
+  --rule-strong: #8f8778; /* 3.1:1, control borders */
+
+  --accent: #d9481c; /* graphics, 3.8:1 */
+  --accent-strong: #b23610; /* text and filled controls, 5.4:1 */
+  --on-accent: #f4f0e8;
+
+  --good: #3f5e2e;
+  --warn: #85590a;
+
+  --focus: #1a1814;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --paper: #141210;
+    --paper-raised: #1d1a17;
+    --paper-sunk: #0e0d0b;
+    --ink: #ede6d8; /* 15.1:1 */
+    --ink-soft: #a9a191; /* 7.3:1 */
+    --ink-faint: #8e8779; /* 4.9:1 */
+    --rule: #2e2a25;
+    --rule-strong: #7d7668;
+
+    --accent: #f0623a; /* 5.8:1 */
+    --accent-strong: #f0623a;
+    --on-accent: #141210;
+
+    --good: #9dbb84;
+    --warn: #d9a84a;
+
+    --grain-opacity: 0.07;
+    --focus: #ede6d8;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #141210;
+  --paper-raised: #1d1a17;
+  --paper-sunk: #0e0d0b;
+  --ink: #ede6d8;
+  --ink-soft: #a9a191;
+  --ink-faint: #8e8779;
+  --rule: #2e2a25;
+  --rule-strong: #7d7668;
+
+  --accent: #f0623a;
+  --accent-strong: #f0623a;
+  --on-accent: #141210;
+
+  --good: #9dbb84;
+  --warn: #d9a84a;
+
+  --focus: #ede6d8;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunk: var(--paper-sunk);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --breakpoint-xs: 24rem;
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    min-height: 100dvh;
+  }
+
+  /*
+   * A faint paper grain: one small SVG noise tile, rasterised once and tiled
+   * as an ordinary scrolling background, so it costs nothing while scrolling.
+   */
+  body {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-strong);
+    color: var(--on-accent);
+  }
+
+  button,
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+}
+
+@layer utilities {
+  /* Every metric in the app uses this: lining, tabular figures. */
+  .nums {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  /* Mono label used for units and section markers. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* The large display numeral: the single most recognisable element of the UI. */
+  .figure {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 14vw, 6.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  /* The double rule at the top of a section, like a newspaper masthead. */
+  .masthead-rule {
+    border-top: 3px solid var(--ink);
+    position: relative;
+    padding-top: 0.875rem;
+  }
+
+  .masthead-rule::before {
+    content: "";
+    position: absolute;
+    inset: 3px 0 auto 0;
+    border-top: 1px solid var(--ink);
+  }
+
+  .safe-b {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
