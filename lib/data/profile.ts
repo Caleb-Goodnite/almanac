@@ -1,7 +1,7 @@
 import "server-only";
 import { and, desc, eq, lte } from "drizzle-orm";
 import { db } from "@/lib/db/client";
-import { profile, targets, tdeeEstimates, weights } from "@/lib/db/schema";
+import { guardianConsents, profile, targets, tdeeEstimates, weights } from "@/lib/db/schema";
 import { ageFromBirthMonth, ageMonthsFromBirthMonth } from "@/lib/science/age";
 import { computeTargets, type Targets } from "@/lib/science/targets";
 import type { ActivityLevel, DateString, Goal, Sex } from "@/lib/science/types";
@@ -26,6 +26,20 @@ export function ageFacts(p: Pick<Profile, "birthYear" | "birthMonth" | "timezone
   };
 }
 
+/** Whether a parent or guardian's approval for a fat-loss goal is currently in force. */
+export async function hasGuardianApproval(userId: string): Promise<boolean> {
+  const [row] = await db
+    .select({ id: guardianConsents.id })
+    .from(guardianConsents)
+    .where(and(eq(guardianConsents.userId, userId), eq(guardianConsents.status, "approved")))
+    .limit(1);
+  return Boolean(row);
+}
+
+/** The message shown when an under-18 asks for a fat-loss goal without approval. */
+export const GUARDIAN_NEEDED =
+  "A fat-loss goal needs a parent or guardian's approval. Choose another goal for now; you can ask them from Settings.";
+
 export async function getLatestWeight(userId: string): Promise<{ date: DateString; kg: number } | null> {
   const [row] = await db
     .select({ date: weights.date, kg: weights.kg })
@@ -45,6 +59,14 @@ export async function getTargets(userId: string, on: DateString): Promise<Target
     .orderBy(desc(targets.effectiveFrom), desc(targets.createdAt))
     .limit(1);
   return row ?? null;
+}
+
+/** Thrown when an under-18 tries to save a fat-loss goal that no guardian has approved. */
+export class GuardianNeededError extends Error {
+  constructor() {
+    super(GUARDIAN_NEEDED);
+    this.name = "GuardianNeededError";
+  }
 }
 
 export type OnboardingInput = {
@@ -97,6 +119,8 @@ export async function completeOnboarding(userId: string, input: OnboardingInput)
 
   const today = todayIn(input.timezone);
   const age = ageFacts({ ...existing, timezone: input.timezone });
+  const guardianApproved = age.isTeen ? await hasGuardianApproval(userId) : false;
+  if (age.isTeen && input.goal === "lose_fat" && !guardianApproved) throw new GuardianNeededError();
   const computed = computeTargets({
     sex: input.sex,
     ageYears: age.ageYears,
@@ -109,6 +133,7 @@ export async function completeOnboarding(userId: string, input: OnboardingInput)
     resistanceTraining: input.resistanceTraining,
     weeklyRatePct: input.weeklyRatePct,
     supportMode: existing.supportMode,
+    guardianApproved,
   });
 
   await db.transaction(async (tx) => {
@@ -176,6 +201,7 @@ export async function recomputeTargets(userId: string, useDefaultRate = false): 
     weeklyRatePct: useDefaultRate ? null : p.weeklyRatePct,
     tdeeOverrideKcal: adaptive?.tdeeKcal ?? null,
     supportMode: p.supportMode,
+    guardianApproved: age.isTeen ? await hasGuardianApproval(userId) : false,
   });
 
   await db
@@ -213,9 +239,29 @@ export type ProfileUpdate = {
 
 /** Saves profile edits from Settings and recomputes targets from them. */
 export async function updateProfile(userId: string, input: ProfileUpdate): Promise<Targets | null> {
+  if (input.goal === "lose_fat") {
+    const p = await getProfile(userId);
+    if (p && ageFacts(p).isTeen && !(await hasGuardianApproval(userId))) throw new GuardianNeededError();
+  }
   await db
     .update(profile)
     .set({ ...input, weeklyRatePct: input.weeklyRatePct ?? 0, updatedAt: new Date() })
     .where(eq(profile.userId, userId));
   return recomputeTargets(userId, input.weeklyRatePct === null);
+}
+
+/**
+ * Puts an under-18 whose stored goal is fat loss, but who has no guardian
+ * approval in force, back on a maintenance goal and recomputes their targets.
+ * Covers accounts created before approval was required and any approval that
+ * was withdrawn. Returns true if anything changed.
+ */
+export async function enforceGuardianLock(userId: string): Promise<boolean> {
+  if (await hasGuardianApproval(userId)) return false;
+  await db
+    .update(profile)
+    .set({ goal: "maintain", weeklyRatePct: 0, updatedAt: new Date() })
+    .where(and(eq(profile.userId, userId), eq(profile.goal, "lose_fat")));
+  await recomputeTargets(userId);
+  return true;
 }

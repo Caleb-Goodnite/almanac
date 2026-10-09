@@ -10,6 +10,8 @@ import { cmToFeetInches, feetInchesToCm } from "@/lib/science/units";
 
 type Props = {
   isTeen: boolean;
+  /** False for an under-18 with no guardian approval: the fat-loss goal is not offered. */
+  canLoseFat: boolean;
   initial: {
     sex: Sex;
     heightCm: number | null;
@@ -28,7 +30,7 @@ function paceFrom(rate: number): "gentle" | "standard" | "faster" {
   return "standard";
 }
 
-export function ProfileForm({ isTeen, initial }: Props) {
+export function ProfileForm({ isTeen, canLoseFat, initial }: Props) {
   const fi = initial.heightCm ? cmToFeetInches(initial.heightCm) : { feet: 0, inches: 0 };
   const [units, setUnits] = useState(initial.unitSystem);
   const [sex, setSex] = useState<Sex>(initial.sex);
@@ -102,10 +104,19 @@ export function ProfileForm({ isTeen, initial }: Props) {
         options={[
           { value: "improve_fitness", title: "Get fitter" },
           { value: "build_muscle", title: "Build muscle" },
-          { value: "lose_fat", title: "Lose fat" },
+          ...(canLoseFat ? [{ value: "lose_fat" as const, title: "Lose fat" }] : []),
           { value: "maintain", title: "Stay where I am" },
         ]}
       />
+      {!canLoseFat ? (
+        <p className="-mt-4 text-sm leading-relaxed text-ink-soft">
+          A fat-loss goal needs a parent or guardian&apos;s approval.{" "}
+          <a href="#guardian" className="underline underline-offset-4">
+            Ask them below
+          </a>
+          .
+        </p>
+      ) : null}
       {goal === "lose_fat" || goal === "build_muscle" ? (
         <ChoiceGroup legend="Pace" name="pace" value={pace} onChange={setPace} options={paces} />
       ) : null}

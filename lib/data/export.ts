@@ -36,6 +36,7 @@ export async function exportUserData(userId: string) {
     messages,
     insights,
     aiUsage,
+    guardianConsents,
   ] = await Promise.all([
     db.select({ name: t.user.name, email: t.user.email, createdAt: t.user.createdAt }).from(t.user).where(eq(t.user.id, userId)),
     db.select().from(t.profile).where(own(t.profile)),
@@ -61,6 +62,7 @@ export async function exportUserData(userId: string) {
     db.select().from(t.messages).where(own(t.messages)),
     db.select().from(t.insights).where(own(t.insights)),
     db.select().from(t.aiUsage).where(own(t.aiUsage)),
+    db.select().from(t.guardianConsents).where(own(t.guardianConsents)),
   ]);
 
   const strip = <R extends Record<string, unknown>>(rows: R[]) => rows.map(({ userId: _u, ownerId: _o, ...rest }) => rest);
@@ -70,6 +72,8 @@ export async function exportUserData(userId: string) {
     format: "almanac-export-v1",
     account,
     profile: profile ? strip([profile])[0] : null,
+    // Link tokens are credentials, so their hashes are left out.
+    guardianApprovals: strip(guardianConsents).map(({ tokenHash: _t, revokeTokenHash: _r, ...rest }) => rest),
     targets: strip(targets),
     tdeeEstimates: strip(tdeeEstimates),
     nutrition: {

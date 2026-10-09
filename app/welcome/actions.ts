@@ -1,7 +1,7 @@
 "use server";
 
 import { requireViewer } from "@/lib/auth/session";
-import { completeOnboarding } from "@/lib/data/profile";
+import { GuardianNeededError, completeOnboarding } from "@/lib/data/profile";
 import type { Targets } from "@/lib/science/targets";
 import { onboardingSchema } from "@/lib/validation/onboarding";
 
@@ -22,6 +22,11 @@ export async function finishOnboarding(input: unknown): Promise<OnboardingResult
   }
   const { acceptedDisclaimer: _accepted, ...data } = parsed.data;
   void _accepted;
-  const targets = await completeOnboarding(viewer.userId, data);
-  return { ok: true, targets };
+  try {
+    const targets = await completeOnboarding(viewer.userId, data);
+    return { ok: true, targets };
+  } catch (err) {
+    if (err instanceof GuardianNeededError) return { ok: false, errors: { goal: err.message } };
+    throw err;
+  }
 }

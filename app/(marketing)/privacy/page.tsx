@@ -37,6 +37,7 @@ export default function PrivacyPage() {
           <li><strong>Profile:</strong> height, sex if you choose to give it, your goal and activity level.</li>
           <li><strong>What you log:</strong> food and water, workouts, weight and measurements, sleep, mood, energy, soreness and resting heart rate. This is information about your health.</li>
           <li><strong>Coach conversations:</strong> the messages you send and the replies.</li>
+          <li><strong>Guardian approval (under-18s only):</strong> if you ask a parent or guardian to approve a fat-loss goal, we keep the email address you give for them, and, if they approve, their name, their relationship to you and the date.</li>
           <li><strong>Sign-in records:</strong> your IP address and browser type, kept with your session for security.</li>
         </ul>
         <p>We do not collect your precise location, contacts or photos. The barcode scanner uses your camera only inside your browser; images are not uploaded.</p>
@@ -85,6 +86,11 @@ export default function PrivacyPage() {
           Almanac shows you different guidance from adults and applies stricter safety limits. If something you tell the coach
           suggests you are struggling with food or your body, it will show you support resources and switch your targets to
           maintenance. We encourage you to involve a parent or guardian in how you use the app.
+        </p>
+        <p>
+          A fat-loss goal is locked until a parent or guardian approves it. You give us their email address; we send them one
+          email with a link, showing your first name and nothing else from your account. If they approve, we send them a
+          second email with a link they can use to withdraw the approval at any time. We cannot confirm who opens that email.
         </p>
       </Clause>
 

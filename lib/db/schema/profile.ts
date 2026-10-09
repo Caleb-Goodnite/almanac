@@ -111,3 +111,33 @@ export const tdeeEstimates = pgTable(
   },
   (t) => [index("tdee_user_date_idx").on(t.userId, t.computedOn.desc())],
 ).enableRLS();
+
+export const guardianConsentStatusEnum = pgEnum("guardian_consent_status", ["pending", "approved", "revoked"]);
+
+/**
+ * A parent or guardian's approval for an under-18 to set a fat-loss goal.
+ * The teen names an email address; that address receives a one-time link, and
+ * the approval is given from the link, not from the teen's session. Only
+ * hashes of the link tokens are stored.
+ */
+export const guardianConsents = pgTable(
+  "guardian_consents",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    guardianEmail: text("guardian_email").notNull(),
+    status: guardianConsentStatusEnum("status").notNull().default("pending"),
+    tokenHash: text("token_hash").notNull().unique(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    guardianName: text("guardian_name"),
+    relationship: text("relationship"),
+    approvedAt: timestamp("approved_at", { withTimezone: true }),
+    revokedAt: timestamp("revoked_at", { withTimezone: true }),
+    // Lets the guardian withdraw approval later from the confirmation email.
+    revokeTokenHash: text("revoke_token_hash").unique(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("guardian_consents_user_idx").on(t.userId, t.createdAt.desc())],
+).enableRLS();

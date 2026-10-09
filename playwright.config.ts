@@ -41,6 +41,8 @@ export default defineConfig({
         BETTER_AUTH_URL: BASE,
         GOOGLE_CLIENT_ID: "",
         GOOGLE_CLIENT_SECRET: "",
+        // Blank so mail goes to the local outbox file, never to a real provider.
+        RESEND_API_KEY: "",
         OPENROUTER_API_KEY: "stub-key",
         OPENROUTER_BASE_URL: `http://127.0.0.1:${STUB_PORT}/api/v1`,
         COACH_MESSAGES_PER_MINUTE: "30",

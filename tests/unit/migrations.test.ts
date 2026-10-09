@@ -17,7 +17,7 @@ describe("database migrations", () => {
     const result = await handle.db.execute(
       sql`select count(*)::int as count from information_schema.tables where table_schema = 'public'`,
     );
-    expect(rowsOf<{ count: number }>(result)[0]?.count).toBe(29);
+    expect(rowsOf<{ count: number }>(result)[0]?.count).toBe(30);
   });
 
   it("enable row level security on every table", async () => {

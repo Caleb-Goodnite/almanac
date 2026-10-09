@@ -66,12 +66,10 @@ test("a 15-year-old gets the teen experience", async ({ page }) => {
   await expect(page.getByLabel(/Body fat/)).toHaveCount(0);
   await page.getByRole("button", { name: "Continue" }).click();
 
-  await page.getByRole("radio", { name: /^Lose fat/ }).check({ force: true });
-  // Only the two gentle paces are offered; the adult "Faster" option is not.
-  await expect(page.getByRole("radio", { name: /^Gentle/ })).toBeVisible();
-  await expect(page.getByRole("radio", { name: /^Steady/ })).toBeVisible();
-  await expect(page.getByRole("radio", { name: /^Faster/ })).toHaveCount(0);
-  await expect(page.getByText(/tell a parent or your doctor/)).toBeVisible();
+  // Fat loss is not offered to under-18s here: it needs a guardian's approval.
+  await expect(page.getByRole("radio", { name: /^Lose fat/ })).toHaveCount(0);
+  await expect(page.getByText(/needs a parent or guardian/)).toBeVisible();
+  await page.getByRole("radio", { name: /^Get fitter/ }).check({ force: true });
   await page.getByRole("button", { name: "Continue" }).click();
 
   await page.getByRole("radio", { name: /^Active/ }).check({ force: true });
@@ -82,7 +80,6 @@ test("a 15-year-old gets the teen experience", async ({ page }) => {
 
   await expect(page.getByText("8-10 h")).toBeVisible();
   await expect(page.getByText("60 min/day")).toBeVisible();
-  await expect(page.getByText(/kept gentle.*because you are still growing/)).toBeVisible();
 
   // On Today, calories are shown against needs, not as a budget to stay under.
   await page.getByRole("link", { name: "Start logging" }).click();

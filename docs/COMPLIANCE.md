@@ -21,6 +21,7 @@
 | Sex (optional, "prefer not to say" allowed), height | Yes | Used only for the energy formula. |
 | Food, weight, measurements, workouts, sleep, mood | Yes | Health-related data the user enters. |
 | Coach conversations | Yes | Per user; deleted with the account. |
+| A parent or guardian's email, name and relationship | Only if an under-18 asks for fat-loss approval | See "Guardian approval" below. |
 | IP address and user agent | Yes, on session rows | Collected by the auth library for session security. |
 | Precise location, contacts, photos, advertising IDs | No | Camera access is used only for barcode scanning in the browser; frames are not uploaded. |
 
@@ -31,6 +32,7 @@
 | OpenRouter, and the model provider it routes to | A structured summary of the user's recent numbers (age band, goal, targets, averages, trends) and the chat messages | The AI coach. Name, email, exact birth month and account id are never sent. |
 | USDA FoodData Central, Open Food Facts | The search text or barcode | Food lookup. No user identifier is sent. |
 | Google | Standard OAuth sign-in, only if the user chooses it | Authentication. |
+| Resend | The recipient address and text of password-reset and guardian-approval emails | Sending email. |
 | Supabase (or other Postgres host) | Everything in the database | Hosting. |
 
 There is no advertising, analytics or tracking SDK in the app.
@@ -43,12 +45,28 @@ There is no advertising, analytics or tracking SDK in the app.
 ### Safety behaviour that has legal weight
 
 - Under-18s get different targets and stricter limits (see `RESEARCH.md`, section 9).
+- **An under-18 cannot set a fat-loss goal without a parent or guardian's approval.** The goal is not offered in onboarding or Settings, the server refuses it, and the target calculation plans no deficit for an under-18 without an approval on record (`guardianApproved` in `lib/science/targets.ts`). See "Guardian approval" below.
 - Signals of disordered eating switch the app from optimising to supporting, and show helplines.
 - A medical disclaimer is shown and must be acknowledged in onboarding, and appears in every page footer.
 - "Support mode" is switched on automatically by strong signals in a coach message. An adult can switch it off again in Settings. An under-18 cannot: the server refuses, and the operator clears it with `pnpm support:clear <email>` after a parent, guardian or clinician has been involved. There is no in-app way for a parent to do this yet, so a false positive on a teen's account needs the operator.
 - Sign-up is limited to the United States by default (`ALLOWED_COUNTRIES`), using the hosting platform's country header. This is best-effort, not an access control.
 - Coach requests are restricted to zero-data-retention providers that do not train on prompts (`provider.data_collection: "deny"`, `zdr: true`). For under-18s the coach is given no calorie figures, no weight figures and no exact age band.
 - The coach is limited to 10 replies per person per day. Crisis and support replies are not counted.
+
+### Guardian approval for a fat-loss goal (13 to 17)
+
+1. The teen enters a parent or guardian's email address in Settings. Their own address is refused, including plus-tag and Gmail-dot variants. Three requests a day at most.
+2. That address receives one email with a single-use link that works for 7 days. Only a hash of the link token is stored.
+3. The link opens a page that needs no account and shows only the teen's first name. The guardian must complete seven steps: read the risks (AAP position, growth, preoccupation with food), what the app is not, what limits it applies and what warning signs to watch for; tick three separate confirmations (that they are the parent or legal guardian and an adult, that they have read it, that they will supervise); give their full name and relationship; type "I understand the risks" (pasting is blocked); move a slider to the end; hold a button for five seconds; and confirm again in a final dialog.
+4. The server checks every step again, and refuses an approval that arrives less than 15 seconds after the page was opened (a signed timestamp) or more than an hour after.
+5. On approval the teen's goal becomes fat loss inside the teen limits, and the guardian gets a confirmation email with a link that withdraws the approval in one step. Withdrawing puts the teen back on maintenance targets immediately.
+6. The approval lapses on its own when the user turns 18, because adults do not need it.
+
+**What this is not.** It is not identity verification. The app cannot prove that the person who opened the email is a parent or guardian, or an adult, and a determined teen with a second email address can approve their own request. It raises the effort and the deliberateness of doing so, puts the risks in front of whoever approves, and leaves a record. It is not "verifiable parental consent" in the COPPA sense (which applies to under-13s, whom the app does not admit) and should not be described as such. Stronger methods (a card check, an ID check, a signed form) need a vendor and legal advice.
+
+**Stored:** the guardian's email address, and after approval their name, relationship and the time. Deleted with the teen's account and included in their data export. The guardian is a second data subject: the privacy page says what is kept, and counsel should confirm the basis for holding it.
+
+**Email dependency.** Without `RESEND_API_KEY` in production the request form says the feature is unavailable, so the goal simply stays locked.
 
 ## Needs legal review before launch
 
@@ -64,7 +82,7 @@ There is no advertising, analytics or tracking SDK in the app.
 
 ## Needs clinical review before launch
 
-1. **Allowing 13-17 year olds to set a fat-loss goal at all.** This is a product decision by the app's owner, confirmed after an outside review recommended launching with it off. The American Academy of Pediatrics advises focusing on healthy habits rather than weight and warns that dieting is a risk factor for eating disorders (see `RESEARCH.md` refs 30, 31). The limits in `lib/safety/policy.ts` (maximum 0.5% of bodyweight per week, maximum 15% deficit, calories never below resting needs or 1,600/1,800 kcal, no deficit below the 25th BMI-for-age percentile) are cautious guesses by engineers, not clinical guidance. A paediatric dietitian or adolescent-medicine doctor should set or remove them.
+1. **Allowing 13-17 year olds to set a fat-loss goal at all.** This is a product decision by the app's owner, confirmed after an outside review recommended launching with it off, and later put behind guardian approval by the owner. A clinician should also review the wording of the risks shown to the guardian (`components/guardian/approval.tsx`). The American Academy of Pediatrics advises focusing on healthy habits rather than weight and warns that dieting is a risk factor for eating disorders (see `RESEARCH.md` refs 30, 31). The limits in `lib/safety/policy.ts` (maximum 0.5% of bodyweight per week, maximum 15% deficit, calories never below resting needs or 1,600/1,800 kcal, no deficit below the 25th BMI-for-age percentile) are cautious guesses by engineers, not clinical guidance. A paediatric dietitian or adolescent-medicine doctor should set or remove them.
 2. **Adult calorie floors** (1,200 / 1,500 kcal) and the 25% maximum deficit.
 3. **Disordered-eating detection.** The signal list and the wording of the support messages should be reviewed by an eating-disorder clinician. Keyword detection will miss cases and will sometimes fire wrongly; it is a backstop, not screening.
 4. **Helpline list.** Currently US-only. It needs country-specific resources and a regular check that numbers are still in service.

@@ -219,7 +219,15 @@ describe("targets", () => {
       activityLevel: "moderate",
       resistanceTraining: true,
       weeklyRatePct: -0.5,
+      guardianApproved: true,
     };
+
+    it("plan no deficit at all without a guardian's approval", () => {
+      const t = computeTargets({ ...teen, guardianApproved: false, weightKg: 110, heightCm: 175 });
+      expect(t.guardrails.map((g) => g.code)).toEqual(["teen_guardian_needed"]);
+      expect(t.weeklyRatePct).toBe(0);
+      expect(t.calories).toBeGreaterThanOrEqual(t.tdeeKcal - 10);
+    });
 
     it("get teen sleep and activity targets and the Schofield equation", () => {
       const t = computeTargets(teen);

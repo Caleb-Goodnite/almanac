@@ -9,3 +9,7 @@ export const profileUpdateSchema = z.object({
   resistanceTraining: z.boolean(),
   pace: z.enum(["gentle", "standard", "faster"]),
 });
+
+export const guardianRequestSchema = z.object({
+  email: z.email("Enter a valid email address").max(254),
+});

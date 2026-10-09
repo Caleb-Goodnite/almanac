@@ -3,18 +3,22 @@ import Link from "next/link";
 import { leaveSupportModeAction } from "./actions";
 import { ChangePassword } from "@/components/settings/change-password";
 import { DangerZone } from "@/components/settings/danger-zone";
+import { GuardianLock } from "@/components/settings/guardian-lock";
 import { ProfileForm } from "@/components/settings/profile-form";
 import { SignOutButton } from "@/components/shell/sign-out";
 import { Button, buttonClass } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { requireViewer } from "@/lib/auth/session";
+import { getGuardianStatus } from "@/lib/data/guardian";
+import { features } from "@/lib/env";
 
 export const metadata: Metadata = { title: "Settings" };
 
 export default async function SettingsPage() {
   const viewer = await requireViewer();
   const p = viewer.profile;
+  const guardian = viewer.isTeen ? await getGuardianStatus(viewer.userId) : null;
 
   return (
     <div className="flex flex-col gap-12">
@@ -47,6 +51,7 @@ export default async function SettingsPage() {
         ) : null}
         <ProfileForm
           isTeen={viewer.isTeen}
+          canLoseFat={!viewer.isTeen || guardian?.state === "approved"}
           initial={{
             sex: p.sex,
             heightCm: p.heightCm,
@@ -58,6 +63,21 @@ export default async function SettingsPage() {
           }}
         />
       </Section>
+
+      {guardian ? (
+        <Section id="guardian" title="Fat-loss goal">
+          <GuardianLock
+            available={features.guardianApproval}
+            status={
+              guardian.state === "pending"
+                ? { state: "pending", sentTo: guardian.sentTo, expires: guardian.expiresAt.toLocaleDateString("en-US", { month: "long", day: "numeric" }) }
+                : guardian.state === "approved"
+                  ? { state: "approved", by: guardian.by, on: guardian.at.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) }
+                  : { state: guardian.state }
+            }
+          />
+        </Section>
+      ) : null}
 
       <Section title="Appearance">
         <ThemeToggle />

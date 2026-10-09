@@ -2,7 +2,7 @@ import "server-only";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { cache } from "react";
-import { ageFacts, getProfile, type Profile } from "@/lib/data/profile";
+import { ageFacts, enforceGuardianLock, getProfile, type Profile } from "@/lib/data/profile";
 import { auth } from "./index";
 
 /** The current session, read once per request. */
@@ -30,8 +30,12 @@ export type Viewer = {
 const loadViewer = cache(async (): Promise<Viewer | "no-session" | "no-profile"> => {
   const session = await getSession();
   if (!session) return "no-session";
-  const profile = await getProfile(session.user.id);
+  let profile = await getProfile(session.user.id);
   if (!profile) return "no-profile";
+  // An under-18's fat-loss goal only stands while a guardian's approval does.
+  if (profile.goal === "lose_fat" && ageFacts(profile).isTeen && (await enforceGuardianLock(session.user.id))) {
+    profile = (await getProfile(session.user.id)) ?? profile;
+  }
   return {
     userId: session.user.id,
     firstName: session.user.name.trim().split(/\s+/)[0] ?? "",

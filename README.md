@@ -49,6 +49,7 @@ Almanac is not medical advice and makes no compliance claims. Read [`docs/COMPLI
 **Safety**
 - A 13+ age gate that asks for a date of birth before any account exists.
 - Stricter limits for 13 to 17 year olds, hard calorie floors for everyone, and a support mode that replaces optimisation with helplines when a message signals distress or disordered eating.
+- An under-18 cannot set a fat-loss goal until a parent or guardian approves it from an emailed link, in seven deliberate steps. They can withdraw it at any time.
 
 **Account**
 - Email and password or Google sign-in, password reset, JSON export of everything held, and full account deletion.
@@ -99,7 +100,7 @@ pnpm db:demo you@example.com
 | `COACH_REASONING` | No | `off` (default) or `low`. See `evals/report.md` before changing. |
 | `OPENROUTER_DATA_COLLECTION` | No | Default `deny`: coach requests go only to zero-data-retention providers that do not train on prompts. |
 | `USDA_API_KEY` | No | Free from fdc.nal.usda.gov. The default `DEMO_KEY` is heavily rate limited. |
-| `RESEND_API_KEY`, `EMAIL_FROM` | For password reset | Without the key, production hides "Forgot your password?"; development writes the email to `.data/outbox.jsonl`. |
+| `RESEND_API_KEY`, `EMAIL_FROM` | For password reset and guardian approval | Without the key, production hides "Forgot your password?" and under-18s cannot ask for fat-loss approval; development writes the email to `.data/outbox.jsonl`. |
 | `ALLOWED_COUNTRIES` | No | Default `US`. Sign-up is refused elsewhere when the host reports the visitor's country. |
 | `OPERATOR_NAME`, `CONTACT_EMAIL` | Before launch | Shown on the privacy and terms pages. |
 
@@ -123,7 +124,7 @@ The environment is validated at startup (`lib/env.ts`); a missing or malformed v
 ## Testing
 
 - **Unit (`pnpm test`):** the science and safety modules against published worked values, the rule-based insights, the coach's context builder, and the migrations.
-- **End to end (`pnpm test:e2e`):** runs a production build on a throwaway database with a stand-in AI provider, so it never touches `DATABASE_URL` or a paid API. It covers sign-up and the age gate, logging a meal and a workout, the coach, password reset, offline logging, barcode scanning on a fake camera, and an axe accessibility scan (WCAG 2.2 AA) in both themes. The first run needs `pnpm exec playwright install chromium`.
+- **End to end (`pnpm test:e2e`):** runs a production build on a throwaway database with a stand-in AI provider, so it never touches `DATABASE_URL` or a paid API. It covers sign-up and the age gate, the guardian approval flow, logging a meal and a workout, the coach, password reset, offline logging, barcode scanning on a fake camera, and an axe accessibility scan (WCAG 2.2 AA) in both themes. The first run needs `pnpm exec playwright install chromium`.
 - **Coach evaluation (`pnpm eval:coach`):** 11 fixed cases on both configured models with coded assertions plus a reviewing model. It calls the real API and costs a few cents.
 
 ## Deploying
@@ -200,6 +201,7 @@ proxy.ts         per-request CSP nonce and the unauthenticated redirect
 - Barcode scanning uses the browser's `BarcodeDetector` where it exists and ZXing elsewhere (Safari, Firefox). Both paths are tested with a generated barcode on a fake camera; neither has been tried on a physical iPhone.
 - Micronutrient totals cover only foods whose source lists them, so they are a lower bound.
 - No Apple Health or Google Fit import.
+- Guardian approval is friction and informed consent, not identity verification: the app cannot prove who opened the email. See `docs/COMPLIANCE.md`.
 - Under-18s cannot leave support mode in the app; the operator clears it with `pnpm support:clear`. There is no parent-facing flow.
 - Number and date formatting is fixed to `en-US`; units switch between metric and imperial.
 - Helplines are United States only.

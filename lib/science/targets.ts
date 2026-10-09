@@ -32,6 +32,8 @@ export type TargetInput = {
   tdeeOverrideKcal?: number | null;
   /** True when disordered-eating support mode is on: never plan a deficit. */
   supportMode?: boolean;
+  /** Under-18s only: a parent or guardian has approved a fat-loss goal. Without it no deficit is planned. */
+  guardianApproved?: boolean;
 };
 
 export type GuardrailCode =
@@ -41,6 +43,7 @@ export type GuardrailCode =
   | "underweight_no_deficit"
   | "teen_low_bmi_no_deficit"
   | "teen_gentle_rate"
+  | "teen_guardian_needed"
   | "support_mode_no_deficit";
 
 export type Guardrail = { code: GuardrailCode; message: string };
@@ -137,6 +140,13 @@ export function computeTargets(input: TargetInput): Targets {
       guardrails.push({
         code: "support_mode_no_deficit",
         message: "Targets are set to maintain your weight for now.",
+      });
+    } else if (isTeen && !input.guardianApproved) {
+      rate = 0;
+      guardrails.push({
+        code: "teen_guardian_needed",
+        message:
+          "A fat-loss goal needs a parent or guardian's approval first. Until then your targets are set to fuel growth and training.",
       });
     } else if (isTeen) {
       const pct = bmiForAgePercentile(input.sex, input.ageMonths ?? input.ageYears * 12, bmiValue);

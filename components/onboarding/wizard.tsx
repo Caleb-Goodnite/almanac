@@ -237,7 +237,7 @@ export function Wizard({ firstName, isTeen }: { firstName: string; isTeen: boole
                   options={[
                     { value: "improve_fitness", title: "Get fitter", description: "More energy, better endurance. No change to how much you eat." },
                     { value: "build_muscle", title: "Build muscle", description: "A small calorie surplus and enough protein." },
-                    { value: "lose_fat", title: "Lose fat", description: isTeen ? "Gently, while eating enough to grow and train." : "A moderate deficit that protects muscle." },
+                    ...(isTeen ? [] : [{ value: "lose_fat" as const, title: "Lose fat", description: "A moderate deficit that protects muscle." }]),
                     { value: "maintain", title: "Stay where I am", description: "Keep weight steady and build good habits." },
                   ]}
                 />
@@ -254,11 +254,10 @@ export function Wizard({ firstName, isTeen }: { firstName: string; isTeen: boole
                   </div>
                 </div>
               ) : null}
-              {isTeen && d.goal === "lose_fat" ? (
+              {isTeen ? (
                 <p className="border-l-2 border-accent py-1 pl-3 text-sm leading-relaxed text-ink-soft">
-                  Your body is still growing, so we keep this slow and never set calories below
-                  what you need. It is a good idea to tell a parent or your doctor what you are
-                  aiming for.
+                  Want to lose fat? For under-18s that goal needs a parent or guardian&apos;s approval. Pick
+                  one of these for now; you can ask them from Settings once you are set up.
                 </p>
               ) : null}
             </div>

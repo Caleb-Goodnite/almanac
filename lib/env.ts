@@ -104,4 +104,6 @@ export const features = {
   // Password reset is offered when email can be sent, or outside production
   // where the message is written to a local outbox for testing.
   passwordReset: Boolean(env.RESEND_API_KEY) || env.NODE_ENV !== "production" || Boolean(env.ALMANAC_E2E),
+  // Guardian approval for an under-18's fat-loss goal travels by email too.
+  guardianApproval: Boolean(env.RESEND_API_KEY) || env.NODE_ENV !== "production" || Boolean(env.ALMANAC_E2E),
 } as const;

@@ -8,6 +8,13 @@
       "when": 1791558994742,
       "tag": "0000_deep_wendigo",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791583383395,
+      "tag": "0001_hesitant_thunderbird",
+      "breakpoints": true
     }
   ]
 }
