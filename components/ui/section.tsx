@@ -9,12 +9,13 @@ type SectionProps = {
   children: ReactNode;
   className?: string;
   as?: "h1" | "h2" | "h3";
+  id?: string;
 };
 
 /** A page section headed like a magazine department: double rule, kicker, serif title. */
-export function Section({ kicker, title, aside, children, className, as: Heading = "h2" }: SectionProps) {
+export function Section({ kicker, title, aside, children, className, id, as: Heading = "h2" }: SectionProps) {
   return (
-    <section className={cn("masthead-rule", className)}>
+    <section id={id} className={cn("masthead-rule", className)}>
       <header className="mb-6 flex items-end justify-between gap-4">
         <div>
           {kicker ? <p className="label mb-1">{kicker}</p> : null}

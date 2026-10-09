@@ -150,7 +150,7 @@ export async function completeOnboarding(userId: string, input: OnboardingInput)
  * newest adaptive TDEE estimate when one exists. Called after profile edits
  * and by the weekly adaptive update.
  */
-export async function recomputeTargets(userId: string): Promise<Targets | null> {
+export async function recomputeTargets(userId: string, useDefaultRate = false): Promise<Targets | null> {
   const p = await getProfile(userId);
   const w = await getLatestWeight(userId);
   if (!p || !w || p.heightCm == null) return null;
@@ -173,7 +173,7 @@ export async function recomputeTargets(userId: string): Promise<Targets | null> 
     goal: p.goal,
     activityLevel: p.activityLevel,
     resistanceTraining: p.resistanceTraining,
-    weeklyRatePct: p.weeklyRatePct,
+    weeklyRatePct: useDefaultRate ? null : p.weeklyRatePct,
     tdeeOverrideKcal: adaptive?.tdeeKcal ?? null,
     supportMode: p.supportMode,
   });
@@ -181,6 +181,8 @@ export async function recomputeTargets(userId: string): Promise<Targets | null> 
   await db
     .insert(targets)
     .values(targetValues(userId, todayIn(p.timezone), computed, adaptive ? "adaptive" : "formula"));
+  // Keep the stored rate in step with what the guardrails actually allowed.
+  await db.update(profile).set({ weeklyRatePct: computed.weeklyRatePct }).where(eq(profile.userId, userId));
   return computed;
 }
 
@@ -197,4 +199,23 @@ export async function ensureProfile(userId: string, claim: { birthYear: number; 
     .insert(profile)
     .values({ userId, birthYear: claim.birthYear, birthMonth: claim.birthMonth })
     .onConflictDoNothing();
+}
+
+export type ProfileUpdate = {
+  sex: Sex;
+  heightCm: number;
+  unitSystem: "metric" | "imperial";
+  goal: Goal;
+  activityLevel: ActivityLevel;
+  resistanceTraining: boolean;
+  weeklyRatePct: number | null;
+};
+
+/** Saves profile edits from Settings and recomputes targets from them. */
+export async function updateProfile(userId: string, input: ProfileUpdate): Promise<Targets | null> {
+  await db
+    .update(profile)
+    .set({ ...input, weeklyRatePct: input.weeklyRatePct ?? 0, updatedAt: new Date() })
+    .where(eq(profile.userId, userId));
+  return recomputeTargets(userId, input.weeklyRatePct === null);
 }

@@ -13,7 +13,8 @@
     "test:e2e": "playwright test",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx --env-file-if-exists=.env.local lib/db/migrate.ts",
-    "db:seed": "tsx --env-file-if-exists=.env.local lib/db/seed.ts"
+    "db:seed": "tsx --env-file-if-exists=.env.local lib/db/seed.ts",
+    "db:demo": "tsx --env-file-if-exists=.env.local lib/db/seed-demo.ts"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "^1.7.7",
