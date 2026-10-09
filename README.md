@@ -1,16 +1,70 @@
 # Almanac
 
-A health and fitness tracker: nutrition, training, body metrics, sleep and recovery, with an AI coach that reads your own numbers. Every default, formula and limit is traced to a source in [`docs/RESEARCH.md`](docs/RESEARCH.md).
+A health and fitness tracker for the web: nutrition, training, body metrics, sleep and recovery in one place, with an AI coach that reads your own numbers. Every default, formula and limit is traced to a source in [`docs/RESEARCH.md`](docs/RESEARCH.md).
 
-It is not medical advice and makes no compliance claims. Read [`docs/COMPLIANCE.md`](docs/COMPLIANCE.md) before letting real users in, especially anyone under 18.
+Almanac is not medical advice and makes no compliance claims. Read [`docs/COMPLIANCE.md`](docs/COMPLIANCE.md) before letting real users in, especially anyone under 18.
+
+## Contents
+
+- [What it does](#what-it-does)
+- [Quick start](#quick-start)
+- [Environment variables](#environment-variables)
+- [Scripts](#scripts)
+- [Testing](#testing)
+- [Deploying](#deploying)
+- [Architecture](#architecture)
+- [Tradeoffs worth knowing](#tradeoffs-worth-knowing)
+- [Known gaps](#known-gaps)
+- [Before launch](#before-launch)
+- [Data and licences](#data-and-licences)
+
+## What it does
+
+**Nutrition**
+- Food search across USDA FoodData Central and Open Food Facts, barcode scanning, custom foods and saved meals.
+- One-tap re-logging from recent and frequent foods, and "same as the day before" for a whole meal.
+- Calorie and macro targets, water, daily and weekly views, and per-day micronutrient totals.
+
+**Training**
+- Routines and a set logger that shows last session's numbers inline, with a rest timer.
+- An 876-exercise library with instructions and a progress chart per exercise.
+- Personal records, estimated one-rep max, weekly hard sets per muscle group against a target range, and an "aim for today" suggestion.
+- Cardio sessions with energy estimates and heart-rate zones.
+
+**Body and recovery**
+- Weight with a smoothed trend, measurements, sleep, and a ten-second daily check-in.
+- Entries can be added or corrected for any past day.
+
+**Targets that adapt**
+- Starting targets come from published equations (Mifflin-St Jeor, Cunningham, Schofield for 13 to 17).
+- After a few weeks of logging, energy needs are re-estimated from your own intake and weight trend.
+
+**Today and trends**
+- A dashboard for the day, trends over 7, 30 and 90 days or all time, and a plain-language weekly review.
+
+**Coach**
+- Streaming chat that sees a summary of your recent data, limited to 10 replies a day per person.
+- It cannot change a target; all numbers come from code.
+
+**Safety**
+- A 13+ age gate that asks for a date of birth before any account exists.
+- Stricter limits for 13 to 17 year olds, hard calorie floors for everyone, and a support mode that replaces optimisation with helplines when a message signals distress or disordered eating.
+
+**Account**
+- Email and password or Google sign-in, password reset, JSON export of everything held, and full account deletion.
+- Light and dark themes, metric and imperial units, installable as a home-screen app.
 
 ## Quick start
+
+Requires Node.js 20.9 or newer and [pnpm](https://pnpm.io).
 
 ```bash
 pnpm install
 cp .env.example .env.local      # then set BETTER_AUTH_SECRET (openssl rand -base64 32)
 pnpm dev
 ```
+
+Open http://localhost:3000.
 
 With no `DATABASE_URL`, development runs on PGlite, a real Postgres compiled to WebAssembly and stored in `./.data`. It migrates and seeds itself on first start, so there is nothing else to install.
 
@@ -20,6 +74,12 @@ To use a hosted Postgres (Supabase, Neon):
 # put the pooled connection string in .env.local as DATABASE_URL, then
 pnpm db:migrate
 pnpm db:seed          # loads the 876-exercise library
+```
+
+To see the app with data in it, sign up, then fill that account with five weeks of sample logs:
+
+```bash
+pnpm db:demo you@example.com
 ```
 
 ## Environment variables
@@ -36,14 +96,14 @@ pnpm db:seed          # loads the 876-exercise library
 | `COACH_DAILY_MESSAGES` | No | Coach replies per person per day. Default 10. |
 | `COACH_DAILY_USD_CAP` | No | Spending backstop per person per day. Default 0.10. |
 | `COACH_MESSAGES_PER_MINUTE` | No | Default 6. |
-| `USDA_API_KEY` | No | Free from fdc.nal.usda.gov. The default `DEMO_KEY` is heavily rate limited. |
-| `OPENROUTER_DATA_COLLECTION` | No | Default `deny`: coach requests go only to zero-data-retention providers that do not train on prompts. |
 | `COACH_REASONING` | No | `off` (default) or `low`. See `evals/report.md` before changing. |
+| `OPENROUTER_DATA_COLLECTION` | No | Default `deny`: coach requests go only to zero-data-retention providers that do not train on prompts. |
+| `USDA_API_KEY` | No | Free from fdc.nal.usda.gov. The default `DEMO_KEY` is heavily rate limited. |
 | `RESEND_API_KEY`, `EMAIL_FROM` | For password reset | Without the key, production hides "Forgot your password?"; development writes the email to `.data/outbox.jsonl`. |
 | `ALLOWED_COUNTRIES` | No | Default `US`. Sign-up is refused elsewhere when the host reports the visitor's country. |
 | `OPERATOR_NAME`, `CONTACT_EMAIL` | Before launch | Shown on the privacy and terms pages. |
 
-The environment is validated at startup (`lib/env.ts`); a missing or malformed value stops the server with a message naming it.
+The environment is validated at startup (`lib/env.ts`); a missing or malformed value stops the server with a message naming it. `.env.local` is gitignored and must never be committed.
 
 ## Scripts
 
@@ -52,31 +112,52 @@ The environment is validated at startup (`lib/env.ts`); a missing or malformed v
 | `pnpm dev` | Development server on port 3000. |
 | `pnpm build`, `pnpm start` | Production build and server. |
 | `pnpm typecheck`, `pnpm lint` | TypeScript (strict) and ESLint. |
-| `pnpm test` | Vitest: science, safety, insights, coach context, migrations. |
-| `pnpm test:e2e` | Playwright against a production build on a throwaway database and a stub AI provider. Never touches `DATABASE_URL` or a paid API. |
+| `pnpm test` | Unit tests (Vitest). |
+| `pnpm test:e2e` | End-to-end tests (Playwright). |
 | `pnpm db:generate` | Create a migration from schema changes. |
 | `pnpm db:migrate`, `pnpm db:seed` | Apply migrations; load the exercise library. |
 | `pnpm db:demo <email>` | Fill one existing account with five weeks of sample data. Development only. |
 | `pnpm eval:coach` | Live evaluation of the coach against the real models (a few cents). Writes `evals/report.md`. |
 | `pnpm support:clear <email>` | Operator tool: switch support mode off for an under-18 after a parent or clinician has been involved. |
 
+## Testing
+
+- **Unit (`pnpm test`):** the science and safety modules against published worked values, the rule-based insights, the coach's context builder, and the migrations.
+- **End to end (`pnpm test:e2e`):** runs a production build on a throwaway database with a stand-in AI provider, so it never touches `DATABASE_URL` or a paid API. It covers sign-up and the age gate, logging a meal and a workout, the coach, password reset, offline logging, barcode scanning on a fake camera, and an axe accessibility scan (WCAG 2.2 AA) in both themes. The first run needs `pnpm exec playwright install chromium`.
+- **Coach evaluation (`pnpm eval:coach`):** 11 fixed cases on both configured models with coded assertions plus a reviewing model. It calls the real API and costs a few cents.
+
+## Deploying
+
+The app is a standard Next.js server and runs anywhere Node does. On Vercel:
+
+1. Import the repository. The defaults (framework Next.js, `pnpm build`) need no changes.
+2. Add the environment variables from the table above under **Settings → Environment Variables**. Set `BETTER_AUTH_URL` to the production origin.
+3. Run `pnpm db:migrate` and `pnpm db:seed` once against the production database from your own machine.
+4. Add the production redirect URI, `<origin>/api/auth/callback/google`, to the Google OAuth client.
+5. For a custom domain, add it under **Settings → Domains**, create the CNAME record Vercel shows, and update `BETTER_AUTH_URL` and the Google redirect URI to match.
+
+Work through [Before launch](#before-launch) first. `GET /api/health` reports whether the server can reach the database, for uptime checks.
+
 ## Architecture
 
 ```
 app/
-  (marketing)/   landing, research, style guide
-  (auth)/        sign-up (age gate first), sign-in
+  (marketing)/   landing, research, privacy, terms, style guide
+  (auth)/        sign-up (age gate first), sign-in, password reset
   (app)/         today, food, train, body, trends, coach, settings, support
-  api/           auth, food search and barcode, exercise search, coach chat (SSE), coach insights (JSON), data export
+  api/           auth, food search and barcode, exercise search, coach chat (SSE), coach insights (JSON), data export, health
   welcome/       onboarding
+components/      ui primitives, charts, and one folder per feature
 lib/
   science/       pure calculations, no I/O, unit tested: energy, targets, trends, adaptive TDEE, strength, volume, MET, heart rate, BMI-for-age
-  safety/        hard limits (policy.ts), message screening, support resources
+  safety/        hard limits (policy.ts), message screening, support resources, region check
   data/          the only code that queries user tables; every function takes the user id first
   ai/            OpenRouter client, context builder, prompts, fixed safety replies
   auth/          Better Auth config, age gate, session helpers
   db/            Drizzle schema, migrations, seeds, connection
   insights/      rule-based weekly review and nutrition insights
+evals/           live coach evaluation and its latest report
+tests/           Playwright specs and the stand-in AI provider
 proxy.ts         per-request CSP nonce and the unauthenticated redirect
 ```
 
@@ -90,14 +171,14 @@ proxy.ts         per-request CSP nonce and the unauthenticated redirect
 
 **The coach.**
 - Called only from route handlers; the key is in a `server-only` module. A test asserts it never appears in any response to the browser.
-- The model sees a compact block of numbers (about 1,200 tokens): age band, goal, targets, averages, trends. No name, email, account id or birth date. For under-18s and anyone in support mode, weight figures are withheld.
+- The model sees a compact block of numbers (about 1,200 tokens): age band, goal, targets, averages, trends. No name, email, account id or birth date.
 - The only user-typed text included is a short list of food names, scrubbed of markup and fenced as data. Tests cover a hostile food name.
 - Messages are screened in code before any model is called. Self-harm and purging language get fixed, human-written replies with helplines; the model is not involved.
 - Replies are checked afterwards; one that suggests eating below the calorie floor gets a visible correction.
 - Limits: 10 replies a day per person, 6 a minute, and a dollar cap. Safety replies are never rationed.
 - Failures: timeout, stalled stream, mid-stream error and empty reply are each handled; one retry on the fallback model if nothing has been shown yet.
 - Verdicts ("below range", "12 minutes short") are computed in code and handed to the model, and figures are withheld when they should not be quoted: averages from too few days, all calorie and weight figures for under-18s, and every nutrition figure in a flagged conversation.
-- `pnpm eval:coach` runs 11 fixed cases (adult, teen, sparse data, stalled weight, prompt injection, unsafe requests, distress, medical, supplements) on both models with coded assertions plus a reviewing model. Latest result: see `evals/report.md`. Expect a few percent of replies to contain a slip; the hard limits do not depend on the model.
+- Latest evaluation result: see `evals/report.md`. Expect a few percent of replies to contain a slip; the hard limits do not depend on the model.
 
 **Age and safety.** See `lib/safety/policy.ts` and `docs/COMPLIANCE.md`. The 13+ gate is enforced inside the auth library's user-creation hook, not just in the UI.
 
@@ -115,18 +196,18 @@ proxy.ts         per-request CSP nonce and the unauthenticated redirect
 - The privacy and terms pages are plain-language drafts that have not been reviewed by a lawyer.
 - The launch-region check relies on the host's geo header and is not an access control.
 - Google sign-in is configured but was not exercised end to end in testing.
-- The coach has been run against the live OpenRouter API (both configured models, streaming chat and the structured review). Automated tests use a local stand-in, so a provider-side change would only show up in manual testing.
+- Automated tests use a stand-in AI provider, so a provider-side change would only show up in `pnpm eval:coach` or manual testing.
 - Barcode scanning uses the browser's `BarcodeDetector` where it exists and ZXing elsewhere (Safari, Firefox). Both paths are tested with a generated barcode on a fake camera; neither has been tried on a physical iPhone.
-- Micronutrient totals are shown per day but only for foods whose source lists them, so they are a lower bound.
+- Micronutrient totals cover only foods whose source lists them, so they are a lower bound.
 - No Apple Health or Google Fit import.
 - Under-18s cannot leave support mode in the app; the operator clears it with `pnpm support:clear`. There is no parent-facing flow.
 - Number and date formatting is fixed to `en-US`; units switch between metric and imperial.
 - Helplines are United States only.
-- Lighthouse mobile performance measured 88 to 98 (accessibility 100) on a local production build with normal run-to-run variance; it has not been measured on a deployed site.
+- Lighthouse mobile performance measured 89 to 98 (accessibility 100) on a local production build with normal run-to-run variance; it has not been measured on a deployed site.
 
 ## Before launch
 
-1. Create a **separate Supabase project for production**. The development one contains test accounts and sample data. Run `pnpm db:migrate` and `pnpm db:seed` against the new one.
+1. Create a **separate database for production**. A development one will contain test accounts and sample data. Run `pnpm db:migrate` and `pnpm db:seed` against the new one.
 2. **Rotate** the database password, Google client secret and OpenRouter key if any were ever shared in plain text, and generate a new `BETTER_AUTH_SECRET` for production.
 3. Scan the history for secrets: `gitleaks git .` (the history was checked by hand for the known values and common key patterns on 2026-10-09 and was clean).
 4. Set `RESEND_API_KEY`, `EMAIL_FROM` (a verified domain), `OPERATOR_NAME`, `CONTACT_EMAIL`, `BETTER_AUTH_URL`, and add the production redirect URI in Google Cloud.
@@ -134,6 +215,10 @@ proxy.ts         per-request CSP nonce and the unauthenticated redirect
 6. Run `pnpm eval:coach` and read the report.
 
 ## Data and licences
+
+No licence has been chosen for Almanac's own code yet, so by default all rights are reserved. Add a `LICENSE` file before making the repository public if others should be able to use it.
+
+Third-party data:
 
 - **USDA FoodData Central**: public domain (CC0).
 - **Open Food Facts**: Open Database License; credited wherever its products appear. See the note in `COMPLIANCE.md`.
