@@ -30,7 +30,7 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_", destructuredArrayIgnorePattern: "^_" }],
     },
   },
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "lib/db/migrations/**"]),
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "lib/db/migrations/**", "android/**", "ios/**", "mobile/**"]),
 ]);
 
 export default eslintConfig;

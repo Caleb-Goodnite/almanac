@@ -12,6 +12,7 @@ Almanac is not medical advice and makes no compliance claims. Read [`docs/COMPLI
 - [Scripts](#scripts)
 - [Testing](#testing)
 - [Deploying](#deploying)
+- [Mobile apps](#mobile-apps)
 - [Architecture](#architecture)
 - [Tradeoffs worth knowing](#tradeoffs-worth-knowing)
 - [Known gaps](#known-gaps)
@@ -138,6 +139,23 @@ The app is a standard Next.js server and runs anywhere Node does. On Vercel:
 5. For a custom domain, add it under **Settings → Domains**, create the CNAME record Vercel shows, and update `BETTER_AUTH_URL` and the Google redirect URI to match.
 
 Work through [Before launch](#before-launch) first. `GET /api/health` reports whether the server can reach the database, for uptime checks.
+
+## Mobile apps
+
+The Android app (and, later, the iOS app) is a [Capacitor](https://capacitorjs.com) shell: a native web view that opens the deployed site. Almanac renders on the server, so nothing is bundled into the app except the page shown when the site cannot be reached (`mobile/www`).
+
+Building needs a JDK (21) and the Android SDK, with `ANDROID_HOME` set.
+
+```bash
+pnpm mobile:android            # builds android/app/build/outputs/apk/debug/app-debug.apk
+pnpm mobile:android:install    # builds and installs on a phone connected with USB debugging on
+```
+
+- **Which site it opens:** `https://health.anchorforgedigital.com`, set in `capacitor.config.ts`. Set `CAP_SERVER_URL` before building to point a build somewhere else.
+- **Google sign-in is not offered inside the app.** Google refuses sign-in from web views, so the shell marks its user agent and the server hides the button. Email and password work as usual.
+- **Barcode scanning** uses the camera through the web view; the app asks for camera permission the first time.
+- **Icons and splash screens** are drawn by `pnpm exec tsx scripts/build-mobile-icons.tsx`.
+- **Store release:** the debug build is for testing on your own phone. A Play Store release needs a signing key and a release build, and app stores may reject apps that are only a wrapper around a website.
 
 ## Architecture
 

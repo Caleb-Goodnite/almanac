@@ -9,6 +9,7 @@ import { AGE_BLOCK_COOKIE, AGE_OK_COOKIE, verifyAgeToken } from "@/lib/auth/age-
 import { getSession } from "@/lib/auth/session";
 import { ensureProfile } from "@/lib/data/profile";
 import { features } from "@/lib/env";
+import { isNativeApp } from "@/lib/utils/native-app";
 import { regionAllowed } from "@/lib/safety/region";
 
 export const metadata: Metadata = { title: "Create an account" };
@@ -78,7 +79,7 @@ export default async function SignUpPage({ searchParams }: PageProps<"/sign-up">
 
   return (
     <div>
-      <AccountForm mode="sign-up" google={features.google} />
+      <AccountForm mode="sign-up" google={features.google && !(await isNativeApp())} />
       <form action={clearAge} className="mt-2">
         <button type="submit" className="label min-h-11 underline decoration-dotted underline-offset-4 hover:text-ink">
           Entered the wrong birth date?

@@ -16,7 +16,10 @@
     "db:seed": "tsx --env-file-if-exists=.env.local lib/db/seed.ts",
     "db:demo": "tsx --env-file-if-exists=.env.local lib/db/seed-demo.ts",
     "support:clear": "tsx --env-file-if-exists=.env.local lib/db/support-clear.ts",
-    "eval:coach": "vitest run --config vitest.eval.config.mts"
+    "eval:coach": "vitest run --config vitest.eval.config.mts",
+    "mobile:sync": "cap sync",
+    "mobile:android": "cap sync android && cd android && ./gradlew assembleDebug",
+    "mobile:android:install": "cap sync android && cd android && ./gradlew installDebug"
   },
   "dependencies": {
     "@better-auth/drizzle-adapter": "^1.7.7",
@@ -43,6 +46,9 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
+    "@capacitor/android": "8.5.3",
+    "@capacitor/cli": "8.5.3",
+    "@capacitor/core": "8.5.3",
     "@playwright/test": "^1.64.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
