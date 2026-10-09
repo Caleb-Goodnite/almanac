@@ -7,13 +7,22 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Why } from "@/components/ui/why";
 import { fmt, type UnitSystem } from "@/lib/format";
-import { estimatedMaxHr, zoneForHr, zonesFromMaxHr } from "@/lib/science/heart";
+import { estimatedMaxHr, zoneForHr, zonesFromMaxHr, zonesFromReserve } from "@/lib/science/heart";
 import { ACTIVITIES, intensityFromMet, kcalFromMet } from "@/lib/science/met";
 import { milesToKm } from "@/lib/science/units";
 
 const GROUPS = [...new Set(ACTIVITIES.map((a) => a.group))];
 
-export function CardioForm({ date, weightKg, units, ageYears }: { date: string; weightKg: number | null; units: UnitSystem; ageYears: number }) {
+type Props = {
+  date: string;
+  weightKg: number | null;
+  units: UnitSystem;
+  ageYears: number;
+  /** Recent average resting heart rate from check-ins, if any. */
+  restingHr: number | null;
+};
+
+export function CardioForm({ date, weightKg, units, ageYears, restingHr }: Props) {
   const router = useRouter();
   const [activity, setActivity] = useState("walk_brisk");
   const [minutes, setMinutes] = useState("");
@@ -30,7 +39,11 @@ export function CardioForm({ date, weightKg, units, ageYears }: { date: string; 
   const distUnit = units === "imperial" ? "mi" : "km";
   const maxHr = estimatedMaxHr(ageYears);
   const hr = Number(avgHr);
-  const zone = avgHr && hr >= 30 ? zoneForHr(zonesFromMaxHr(maxHr), hr) : null;
+  // With a resting heart rate on file, zones use heart-rate reserve, which
+  // accounts for the person's own baseline; otherwise percent of maximum.
+  const usesReserve = restingHr != null && restingHr < maxHr - 20;
+  const zones = usesReserve ? zonesFromReserve(maxHr, restingHr) : zonesFromMaxHr(maxHr);
+  const zone = avgHr && hr >= 30 ? zoneForHr(zones, hr) : null;
   const ZONE_TEXT = { below: "very light", light: "light", moderate: "moderate", vigorous: "vigorous", near_max: "near maximal" } as const;
   // Pace as minutes per distance unit, shown in the user's units.
   const pace = dist > 0 && mins > 0 ? mins / dist : null;
@@ -106,12 +119,16 @@ export function CardioForm({ date, weightKg, units, ageYears }: { date: string; 
       {zone ? (
         <div>
           <p className="nums text-sm leading-relaxed">
-            An average of {hr} bpm is <span className="font-medium">{ZONE_TEXT[zone]}</span> effort for you, about{" "}
-            {Math.round((hr / maxHr) * 100)}% of an estimated maximum of {maxHr} bpm.
+            An average of {hr} bpm is <span className="font-medium">{ZONE_TEXT[zone]}</span> effort for you
+            {usesReserve
+              ? `, about ${Math.max(0, Math.round(((hr - restingHr) / (maxHr - restingHr)) * 100))}% of the way from your resting ${restingHr} bpm to an estimated maximum of ${maxHr}.`
+              : `, about ${Math.round((hr / maxHr) * 100)}% of an estimated maximum of ${maxHr} bpm. Log a resting heart rate in your check-in for a more personal reading.`}
           </p>
           <Why label="How is the heart-rate zone worked out?" source="heart-rate" cite="Tanaka et al. 2001; ACSM 2011">
-            Maximum heart rate is estimated as 208 minus 0.7 times your age, and effort bands are
-            percentages of that. The estimate can be off by 10 beats or more for any one person.
+            Maximum heart rate is estimated as 208 minus 0.7 times your age. Effort bands are
+            ACSM&rsquo;s: a share of the gap between your resting and maximum rate when a resting
+            rate is on file, otherwise a share of the maximum. The estimated maximum can be off by
+            10 beats or more for any one person.
           </Why>
         </div>
       ) : null}

@@ -104,7 +104,7 @@ proxy.ts         per-request CSP nonce and the unauthenticated redirect
 
 - No email service: addresses are not verified and there is no password reset.
 - Google sign-in is configured but was not exercised end to end in testing.
-- The coach was tested against a local stand-in for OpenRouter, not the live API.
+- The coach has been run against the live OpenRouter API (both configured models, streaming chat and the structured review). Automated tests use a local stand-in, so a provider-side change would only show up in manual testing.
 - Barcode scanning needs the browser's `BarcodeDetector` (Chrome, Edge, Android). Safari and Firefox fall back to typing the number.
 - Micronutrients are stored where the source has them but are not shown yet.
 - No Apple Health or Google Fit import.
@@ -112,7 +112,7 @@ proxy.ts         per-request CSP nonce and the unauthenticated redirect
 - Past entries for sleep, check-ins and weight can only be logged for today from the UI.
 - Number and date formatting is fixed to `en-US`; units switch between metric and imperial.
 - Helplines are United States only.
-- Lighthouse mobile performance measured 88 to 98 on a local production build with normal run-to-run variance; it has not been measured on a deployed site.
+- Lighthouse mobile performance measured 88 to 98 (accessibility 100) on a local production build with normal run-to-run variance; it has not been measured on a deployed site.
 
 ## Data and licences
 
