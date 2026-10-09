@@ -376,6 +376,11 @@ function Summary({
         </span>
         <span className="label mt-2 block">kilocalories a day</span>
       </h1>
+      <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+        This is a starting estimate from a formula, and formulas can be off by a few hundred
+        calories for any one person. After two weeks of logging food and weight, Almanac
+        replaces it with a figure worked out from your own data.
+      </p>
 
       <div className="mt-8 flex flex-col gap-5">
         <Meter label="Protein" value={targets.proteinG} target={targets.proteinG} unit="g" pattern="solid" />

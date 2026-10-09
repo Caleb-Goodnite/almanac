@@ -5,7 +5,9 @@ import { APIError } from "better-auth/api";
 import { nextCookies } from "better-auth/next-js";
 import { db } from "@/lib/db/client";
 import * as schema from "@/lib/db/schema";
+import { sendEmail } from "@/lib/email/send";
 import { env, features } from "@/lib/env";
+import { regionAllowed } from "@/lib/safety/region";
 import { AGE_OK_COOKIE, readCookie, verifyAgeToken } from "./age-gate";
 
 type HookContext = { headers?: Headers; request?: Request } | null | undefined;
@@ -28,9 +30,27 @@ export const auth = betterAuth({
     minPasswordLength: 10,
     maxPasswordLength: 128,
     autoSignIn: true,
-    // No email service is configured, so addresses are not verified and there
-    // is no password reset yet. See README "Known gaps".
+    // Addresses are not verified at sign-up (see README "Known gaps").
     requireEmailVerification: false,
+    // Password reset. The link is valid for one hour and signs out every other
+    // session when used. The send is not awaited, so response time does not
+    // reveal whether an address has an account.
+    resetPasswordTokenExpiresIn: 60 * 60,
+    revokeSessionsOnPasswordReset: true,
+    sendResetPassword: async ({ user, url }) => {
+      void sendEmail({
+        to: user.email,
+        subject: "Reset your Almanac password",
+        text: [
+          "Someone asked to reset the password for your Almanac account.",
+          "",
+          `Choose a new password here (the link works for one hour):`,
+          url,
+          "",
+          "If this was not you, you can ignore this email. Your password has not changed.",
+        ].join("\n"),
+      });
+    },
   },
 
   socialProviders: features.google
@@ -63,6 +83,8 @@ export const auth = betterAuth({
       "/sign-in/email": { window: 60, max: 5 },
       "/sign-up/email": { window: 60 * 10, max: 5 },
       "/delete-user": { window: 60 * 10, max: 3 },
+      "/request-password-reset": { window: 60 * 10, max: 3 },
+      "/reset-password": { window: 60 * 10, max: 5 },
     },
   },
 
@@ -80,6 +102,14 @@ export const auth = betterAuth({
         // The age gate, enforced where accounts are actually created. This
         // covers email sign-up and first-time Google sign-in alike.
         before: async (data, ctx) => {
+          const hook = ctx as HookContext;
+          const requestHeaders = hook?.headers ?? hook?.request?.headers;
+          if (requestHeaders && !regionAllowed(requestHeaders, env.ALLOWED_COUNTRIES)) {
+            throw new APIError("FORBIDDEN", {
+              code: "REGION_UNAVAILABLE",
+              message: "Almanac is not available in your country yet.",
+            });
+          }
           if (!ageClaimFrom(ctx as HookContext)) {
             throw new APIError("FORBIDDEN", {
               code: "AGE_REQUIRED",

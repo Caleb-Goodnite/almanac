@@ -77,7 +77,10 @@ export const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
   light: 1.55,
   moderate: 1.75,
   very: 1.9,
-  extra: 2.2,
+  // The bottom of the vigorous band, not the middle: this level is
+  // self-selected, and an overestimate here means a smaller real deficit (or a
+  // larger surplus) than the person expects.
+  extra: 2.0,
 };
 
 export function estimateTdee(bmrKcal: number, level: ActivityLevel): number {

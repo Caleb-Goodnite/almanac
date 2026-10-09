@@ -342,6 +342,31 @@ describe("adaptive TDEE", () => {
     expect(r.tdeeKcal).toBeLessThan(2730);
   });
 
+  it("corrects an overestimated formula from noisy, incomplete, real-looking data", () => {
+    // The person really burns 2,400 kcal. The formula guessed 2,900. They eat
+    // about 2,000 with day-to-day swings, skip logging some days, weigh in
+    // most mornings, and the scale bounces by up to 0.7 kg.
+    let seed = 7;
+    const rand = () => ((seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296);
+    const trueTdee = 2400;
+    const intake: Point[] = [];
+    const weights: Point[] = [];
+    let kg = 85;
+    for (let i = 0; i < 28; i++) {
+      const eaten = 2000 + (rand() - 0.5) * 700 + (i % 7 === 6 ? 350 : 0);
+      kg += (eaten - trueTdee) / 7700;
+      const date = addDays(start, i);
+      if (rand() > 0.15) intake.push({ date, value: Math.round(eaten) });
+      if (rand() > 0.2) weights.push({ date, value: Math.round((kg + (rand() - 0.5) * 1.4) * 10) / 10 });
+    }
+    const r = estimateAdaptiveTdee({ intake, weights, today, formulaTdeeKcal: 2900 });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    // Much closer to the truth than the formula was, despite the noise.
+    expect(Math.abs(r.tdeeKcal - trueTdee)).toBeLessThan(250);
+    expect(Math.abs(r.tdeeKcal - trueTdee)).toBeLessThan(Math.abs(2900 - trueTdee) / 2);
+  });
+
   it("refuses to conclude anything from sparse data", () => {
     const r = estimateAdaptiveTdee({
       intake: series(start, [2400, 2300, 2500]),

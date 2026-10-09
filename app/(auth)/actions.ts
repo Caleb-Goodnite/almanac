@@ -1,6 +1,6 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import {
   AGE_BLOCK_COOKIE,
@@ -11,6 +11,7 @@ import {
   issueAgeToken,
   todayUtc,
 } from "@/lib/auth/age-gate";
+import { regionAllowed } from "@/lib/safety/region";
 import { dobSchema } from "@/lib/validation/onboarding";
 
 export type AgeFormState = { error?: string };
@@ -26,6 +27,7 @@ export async function verifyAge(_prev: AgeFormState, formData: FormData): Promis
   const jar = await cookies();
   // Once blocked, the answer does not change for a day whatever is submitted.
   if (jar.get(AGE_BLOCK_COOKIE)) redirect("/sign-up");
+  if (!regionAllowed(await headers())) redirect("/sign-up");
 
   const parsed = dobSchema.safeParse({
     year: formData.get("year"),

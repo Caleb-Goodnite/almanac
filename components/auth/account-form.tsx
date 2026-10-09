@@ -11,6 +11,8 @@ type Mode = "sign-up" | "sign-in";
 
 function messageFor(code: string | undefined, fallback: string | undefined, mode: Mode): string {
   switch (code) {
+    case "REGION_UNAVAILABLE":
+      return "Almanac is not available in your country yet.";
     case "AGE_REQUIRED":
       return "Please confirm your date of birth first.";
     case "USER_ALREADY_EXISTS":
@@ -27,7 +29,7 @@ function messageFor(code: string | undefined, fallback: string | undefined, mode
   }
 }
 
-export function AccountForm({ mode, google }: { mode: Mode; google: boolean }) {
+export function AccountForm({ mode, google, passwordReset = false }: { mode: Mode; google: boolean; passwordReset?: boolean }) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
@@ -92,6 +94,14 @@ export function AccountForm({ mode, google }: { mode: Mode; google: boolean }) {
           minLength={mode === "sign-up" ? 10 : undefined}
           hint={mode === "sign-up" ? "At least 10 characters." : undefined}
         />
+
+        {mode === "sign-in" && passwordReset ? (
+          <p className="-mt-2 text-sm">
+            <Link href="/forgot-password" className="text-ink-soft underline underline-offset-4 hover:text-ink">
+              Forgot your password?
+            </Link>
+          </p>
+        ) : null}
 
         {error ? (
           <p role="alert" className="text-sm font-medium text-accent-strong">

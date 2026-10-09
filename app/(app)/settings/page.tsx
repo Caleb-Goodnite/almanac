@@ -24,17 +24,24 @@ export default async function SettingsPage() {
               Your targets are set to maintain your weight for now, and weight tracking is
               turned down. <Link href="/support" className="underline underline-offset-4">Support resources</Link>
             </p>
-            <form
-              action={async () => {
-                "use server";
-                await leaveSupportModeAction();
-              }}
-              className="mt-2"
-            >
-              <Button type="submit" variant="quiet">
-                Go back to my usual targets
-              </Button>
-            </form>
+            {viewer.isTeen ? (
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                This stays on for now. A parent, guardian or your doctor is the right person to
+                talk to about changing it, and everything else in Almanac keeps working.
+              </p>
+            ) : (
+              <form
+                action={async () => {
+                  "use server";
+                  await leaveSupportModeAction();
+                }}
+                className="mt-2"
+              >
+                <Button type="submit" variant="quiet">
+                  Go back to my usual targets
+                </Button>
+              </form>
+            )}
           </div>
         ) : null}
         <ProfileForm

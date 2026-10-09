@@ -31,7 +31,7 @@ export default defineConfig({
       reuseExistingServer: false,
     },
     {
-      command: `pnpm build && rm -rf .data/e2e && pnpm start -p ${PORT}`,
+      command: `pnpm build && rm -rf .data/e2e .data/outbox.jsonl && pnpm start -p ${PORT}`,
       url: BASE,
       timeout: 240_000,
       reuseExistingServer: false,

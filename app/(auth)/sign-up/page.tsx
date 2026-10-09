@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { clearAge } from "@/app/(auth)/actions";
@@ -9,6 +9,7 @@ import { AGE_BLOCK_COOKIE, AGE_OK_COOKIE, verifyAgeToken } from "@/lib/auth/age-
 import { getSession } from "@/lib/auth/session";
 import { ensureProfile } from "@/lib/data/profile";
 import { features } from "@/lib/env";
+import { regionAllowed } from "@/lib/safety/region";
 
 export const metadata: Metadata = { title: "Create an account" };
 
@@ -25,6 +26,19 @@ export default async function SignUpPage({ searchParams }: PageProps<"/sign-up">
   if (session && claim) {
     await ensureProfile(session.user.id, claim);
     redirect("/welcome");
+  }
+
+  if (!regionAllowed(await headers())) {
+    return (
+      <div>
+        <h1 className="display text-3xl">Almanac is not available in your country yet</h1>
+        <p className="mt-3 leading-relaxed text-ink-soft">
+          For now Almanac is only offered in the United States. Its guidance, age rules and
+          support resources are written for there, and we would rather not offer it elsewhere
+          than get those wrong.
+        </p>
+      </div>
+    );
   }
 
   if (blocked) {

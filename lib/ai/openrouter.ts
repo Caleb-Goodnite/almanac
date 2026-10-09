@@ -110,6 +110,9 @@ function body(options: RequestOptions, extra: Record<string, unknown>) {
     // cost less, and always fit.
     reasoning: { enabled: false },
     ...extra,
+    // Privacy: by default only route to providers that do not retain prompts
+    // or train on them. Merged last so no caller can drop it by accident.
+    provider: { ...(extra.provider as Record<string, unknown> | undefined), data_collection: env.OPENROUTER_DATA_COLLECTION },
   });
 }
 

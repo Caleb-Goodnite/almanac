@@ -33,7 +33,20 @@ const schema = z
     // How many coach replies each person gets per day (UTC). Safety replies do not count.
     COACH_DAILY_MESSAGES: z.coerce.number().int().positive().default(10),
 
+    // "deny" keeps coach requests away from providers that store or train on prompts.
+    OPENROUTER_DATA_COLLECTION: z.enum(["deny", "allow"]).default("deny"),
+
     USDA_API_KEY: z.string().min(1).default("DEMO_KEY"),
+
+    // Email (password reset). Without RESEND_API_KEY, production hides the reset
+    // link; development writes emails to .data/outbox.jsonl instead of sending.
+    RESEND_API_KEY: z.string().min(1).optional(),
+    EMAIL_FROM: z.string().min(3).default("Almanac <onboarding@resend.dev>"),
+
+    // Comma-separated ISO country codes where sign-up is open. The country comes
+    // from the hosting platform's geo header; with no header (local, some hosts)
+    // sign-up is not restricted.
+    ALLOWED_COUNTRIES: z.string().default("US"),
 
     // End-to-end test mode: run a production build on a throwaway local
     // database. Refused if DATABASE_URL is also set, so tests can never touch
@@ -81,4 +94,7 @@ export const env = load();
 export const features = {
   google: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET),
   coach: Boolean(env.OPENROUTER_API_KEY),
+  // Password reset is offered when email can be sent, or outside production
+  // where the message is written to a local outbox for testing.
+  passwordReset: Boolean(env.RESEND_API_KEY) || env.NODE_ENV !== "production" || Boolean(env.ALMANAC_E2E),
 } as const;

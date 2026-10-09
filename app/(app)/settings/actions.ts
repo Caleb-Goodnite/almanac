@@ -29,9 +29,17 @@ export async function updateProfileAction(input: unknown): Promise<SettingsResul
   };
 }
 
-/** Lets someone leave support mode themselves. Entering it is automatic (see lib/safety). */
+/**
+ * Lets an adult leave support mode themselves. Entering it is automatic (see
+ * lib/safety). Under-18s cannot switch it off: the check is here on the
+ * server, not only in the page, and it is cleared for them by the operator
+ * (`pnpm support:clear <email>`) after a parent or clinician has been involved.
+ */
 export async function leaveSupportModeAction(): Promise<SettingsResult> {
   const viewer = await requireViewer();
+  if (viewer.isTeen) {
+    return { ok: false, error: "This can't be switched off from here. Please talk to a parent, guardian or doctor." };
+  }
   await setSupportMode(viewer.userId, false);
   await recomputeTargets(viewer.userId);
   revalidatePath("/", "layout");
