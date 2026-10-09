@@ -15,6 +15,25 @@ test.describe("age gate", () => {
     await expect(page.getByLabel("Year")).toHaveCount(0);
   });
 
+  test("a mistyped date is read back and can be corrected before it counts", async ({ page }) => {
+    await page.goto("/sign-up");
+    await page.getByRole("button", { name: "Continue" }).click();
+    await expect(page.getByRole("alert").filter({ hasText: "!" })).toContainText(/month, day and four-digit year/);
+
+    await page.getByLabel("Month").selectOption("6");
+    await page.getByLabel("Day").fill("15");
+    await page.getByLabel("Year").fill(String(thisYear - 5));
+    await page.getByRole("button", { name: "Continue" }).click();
+    await expect(page.getByText(`You entered June 15, ${thisYear - 5}. Is that right?`)).toBeVisible();
+
+    // Changing it sends nothing, so nothing is blocked.
+    await page.getByRole("button", { name: "Change it" }).click();
+    await page.getByLabel("Year").fill("1995");
+    await page.getByRole("button", { name: "Continue" }).click();
+    await page.getByRole("button", { name: "Yes, that is right" }).click();
+    await expect(page.getByRole("heading", { name: "Create your account" })).toBeVisible();
+  });
+
   test("the sign-up API refuses anyone who has not passed the gate", async ({ request }) => {
     const account = newAccount();
     const noCookie = await request.post("/api/auth/sign-up/email", { data: account, headers: { origin: "http://localhost:3100" } });

@@ -16,6 +16,9 @@ export async function enterBirthDate(page: Page, year: number, month = "6", day 
   await page.getByLabel("Day").fill(day);
   await page.getByLabel("Year").fill(String(year));
   await page.getByRole("button", { name: "Continue" }).click();
+  // Every date is read back and confirmed before it is sent.
+  await expect(page.getByText(/Is that right\?/)).toBeVisible();
+  await page.getByRole("button", { name: "Yes, that is right" }).click();
 }
 
 export async function createAccount(page: Page, account = newAccount()) {

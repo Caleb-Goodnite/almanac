@@ -54,6 +54,9 @@ export default async function SignUpPage({ searchParams }: PageProps<"/sign-up">
           If you want to learn about eating well and staying active, a parent, a school nurse
           or your doctor is a good person to ask.
         </p>
+        <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+          If the date you entered was a mistake, sign-up opens again here in 24 hours.
+        </p>
       </div>
     );
   }
