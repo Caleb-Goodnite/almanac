@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ButtonLink } from "@/components/ui/button";
 import { Disclaimer } from "@/components/ui/disclaimer";
@@ -29,6 +30,14 @@ export default async function Home() {
       </div>
       <footer className="mt-20 max-w-2xl border-t border-rule pt-4">
         <Disclaimer className="text-xs leading-relaxed text-ink-soft" />
+        <p className="mt-2 flex gap-4 text-xs text-ink-soft">
+          <Link href="/privacy" className="underline underline-offset-4 hover:text-ink">
+            Privacy
+          </Link>
+          <Link href="/terms" className="underline underline-offset-4 hover:text-ink">
+            Terms
+          </Link>
+        </p>
       </footer>
     </main>
   );

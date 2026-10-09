@@ -43,6 +43,10 @@ const schema = z
     RESEND_API_KEY: z.string().min(1).optional(),
     EMAIL_FROM: z.string().min(3).default("Almanac <onboarding@resend.dev>"),
 
+    // Shown on the privacy and terms pages. Set both before launch.
+    OPERATOR_NAME: z.string().min(1).optional(),
+    CONTACT_EMAIL: z.email().optional(),
+
     // Comma-separated ISO country codes where sign-up is open. The country comes
     // from the hosting platform's geo header; with no header (local, some hosts)
     // sign-up is not restricted.

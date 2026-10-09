@@ -15,7 +15,7 @@ for (const scheme of ["light", "dark"] as const) {
     test.use({ colorScheme: scheme });
 
     test("public pages have no WCAG 2.2 AA violations", async ({ page }) => {
-      for (const path of ["/", "/sign-up", "/sign-in", "/research", "/styleguide"]) {
+      for (const path of ["/", "/sign-up", "/sign-in", "/forgot-password", "/research", "/privacy", "/terms", "/styleguide"]) {
         await page.goto(path);
         await check(page, path);
       }

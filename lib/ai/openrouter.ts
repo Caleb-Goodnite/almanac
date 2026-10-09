@@ -110,9 +110,16 @@ function body(options: RequestOptions, extra: Record<string, unknown>) {
     // cost less, and always fit.
     reasoning: { enabled: false },
     ...extra,
-    // Privacy: by default only route to providers that do not retain prompts
-    // or train on them. Merged last so no caller can drop it by accident.
-    provider: { ...(extra.provider as Record<string, unknown> | undefined), data_collection: env.OPENROUTER_DATA_COLLECTION },
+    // Privacy: by default only route to providers that do not store prompts or
+    // train on them, on zero-data-retention endpoints. Both configured models
+    // were confirmed to route under these settings. Merged last so no caller
+    // can drop it by accident.
+    provider: {
+      ...(extra.provider as Record<string, unknown> | undefined),
+      data_collection: env.OPENROUTER_DATA_COLLECTION,
+      // Zero-data-retention endpoints only, unless data collection was explicitly allowed.
+      ...(env.OPENROUTER_DATA_COLLECTION === "deny" ? { zdr: true } : {}),
+    },
   });
 }
 

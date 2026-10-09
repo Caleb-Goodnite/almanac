@@ -121,6 +121,20 @@ export function AccountForm({ mode, google, passwordReset = false }: { mode: Mod
         </Button>
       ) : null}
 
+      {mode === "sign-up" ? (
+        <p className="mt-4 text-xs leading-relaxed text-ink-soft">
+          By creating an account you agree to the{" "}
+          <Link href="/terms" className="underline underline-offset-4">
+            Terms
+          </Link>{" "}
+          and{" "}
+          <Link href="/privacy" className="underline underline-offset-4">
+            Privacy
+          </Link>{" "}
+          pages. Almanac is currently available in the United States only.
+        </p>
+      ) : null}
+
       <p className="mt-6 text-sm text-ink-soft">
         {mode === "sign-up" ? (
           <>

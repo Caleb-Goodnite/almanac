@@ -22,12 +22,18 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
         </main>
         <footer className="mx-auto w-full max-w-3xl border-t border-rule px-5 py-5 sm:px-8">
           <Disclaimer className="text-xs leading-relaxed text-ink-soft" />
-          <p className="mt-2 flex gap-4 text-xs text-ink-soft">
+          <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-soft">
             <Link href="/research" className="underline underline-offset-4 hover:text-ink">
               The research behind the numbers
             </Link>
             <Link href="/settings" className="underline underline-offset-4 hover:text-ink">
               Settings and your data
+            </Link>
+            <Link href="/privacy" className="underline underline-offset-4 hover:text-ink">
+              Privacy
+            </Link>
+            <Link href="/terms" className="underline underline-offset-4 hover:text-ink">
+              Terms
             </Link>
           </p>
         </footer>
