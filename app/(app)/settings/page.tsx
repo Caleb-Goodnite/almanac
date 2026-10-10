@@ -4,6 +4,7 @@ import { leaveSupportModeAction } from "./actions";
 import { ChangePassword } from "@/components/settings/change-password";
 import { DangerZone } from "@/components/settings/danger-zone";
 import { GuardianLock } from "@/components/settings/guardian-lock";
+import { PhoneSettings } from "@/components/settings/phone-settings";
 import { ProfileForm } from "@/components/settings/profile-form";
 import { SignOutButton } from "@/components/shell/sign-out";
 import { Button, buttonClass } from "@/components/ui/button";
@@ -78,6 +79,8 @@ export default async function SettingsPage() {
           />
         </Section>
       ) : null}
+
+      <PhoneSettings weighInReminder={!viewer.isTeen && !p.supportMode} />
 
       <Section title="Appearance">
         <ThemeToggle />

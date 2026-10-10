@@ -3,8 +3,8 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 
 /**
- * Draws the Android launcher icons and splash screens straight into the
- * native project. Same mark as the web icon (app/icons): an ink "A" on paper
+ * Draws the Android and iOS icons and splash screens straight into the
+ * native projects. Same mark as the web icon (app/icons): an ink "A" on paper
  * with the vermilion full stop.
  *
  *   pnpm exec tsx scripts/build-mobile-icons.tsx
@@ -12,6 +12,7 @@ import { ImageResponse } from "next/og";
 const PAPER = "#f4f0e8";
 const INK = "#1a1814";
 const RES = "android/app/src/main/res";
+const IOS = "ios/App/App/Assets.xcassets";
 
 /** `markPx` is the height of the letter; the image can be any shape. */
 function mark(width: number, height: number, markPx: number, background: string | null, round = false) {
@@ -28,8 +29,8 @@ function mark(width: number, height: number, markPx: number, background: string 
   );
 }
 
-async function save(file: string, image: ImageResponse) {
-  const target = path.join(RES, file);
+async function save(file: string, image: ImageResponse, root = RES) {
+  const target = path.join(root, file);
   await mkdir(path.dirname(target), { recursive: true });
   await writeFile(target, Buffer.from(await image.arrayBuffer()));
 }
@@ -53,6 +54,12 @@ async function main() {
     await save(`drawable-land-${name}/splash.png`, mark(long, short, short * 0.3, PAPER));
   }
   await save("drawable/splash.png", mark(480, 320, 96, PAPER));
+  // iOS: one 1024 px icon (no transparency allowed) and a square splash the launch screen centres and crops.
+  await save("AppIcon.appiconset/AppIcon-512@2x.png", mark(1024, 1024, 1024 * 0.8, PAPER), IOS);
+  for (const name of ["splash-2732x2732.png", "splash-2732x2732-1.png", "splash-2732x2732-2.png"]) {
+    await save(`Splash.imageset/${name}`, mark(2732, 2732, 2732 * 0.12, PAPER), IOS);
+  }
+
   await writeFile(
     path.join(RES, "values/ic_launcher_background.xml"),
     `<?xml version="1.0" encoding="utf-8"?>\n<resources>\n    <color name="ic_launcher_background">${PAPER}</color>\n</resources>\n`,

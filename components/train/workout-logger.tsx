@@ -13,6 +13,7 @@ import type { PrKind } from "@/lib/science/strength";
 import { kgToLb, lbToKg } from "@/lib/science/units";
 import { ExerciseSearch } from "./exercise-search";
 import { RestTimer } from "./rest-timer";
+import { tapFeedback } from "@/lib/native/platform";
 
 export type LoggedSet = {
   id: string;
@@ -86,6 +87,7 @@ export function WorkoutLogger({
       setRest({ endsAt: nowMs() + total * 1000, total });
     }
 
+    void tapFeedback();
     const res = await addSetAction({
       workoutId,
       exerciseId: block.exercise.id,

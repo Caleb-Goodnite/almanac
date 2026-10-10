@@ -4,6 +4,7 @@ import { Drop } from "@phosphor-icons/react";
 import { useOptimistic, useTransition } from "react";
 import { addWaterAction, undoWaterAction } from "@/app/(app)/food/actions";
 import { fmtWater, type UnitSystem } from "@/lib/format";
+import { tapFeedback } from "@/lib/native/platform";
 
 type Props = { date: string; ml: number; targetMl: number; units: UnitSystem };
 
@@ -45,6 +46,7 @@ export function Water({ date, ml, targetMl, units }: Props) {
             onClick={() =>
               startTransition(async () => {
                 add(s.ml);
+                void tapFeedback();
                 await addWaterAction({ date, ml: s.ml });
               })
             }

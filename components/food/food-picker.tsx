@@ -18,6 +18,7 @@ import type { SavedMeal } from "@/lib/data/food-logs";
 import type { FoodSummary, QuickFood } from "@/lib/data/foods";
 import { fmt } from "@/lib/format";
 import { cn } from "@/lib/utils/cn";
+import { tapFeedback } from "@/lib/native/platform";
 
 const Scanner = dynamic(() => import("./scanner").then((m) => m.Scanner), {
   ssr: false,
@@ -90,6 +91,7 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
     setLogged((prev) => ({ ...prev, [food.id]: (prev[food.id] ?? 0) + 1 }));
     setStatus(`Logged ${food.name}, ${fmt(grams)} grams, to ${MEAL_LABEL[meal].toLowerCase()}.`);
     startTransition(async () => {
+      void tapFeedback();
       const res = await logFoodAction({ clientId: crypto.randomUUID(), date, meal, foodId: food.id, quantityG: grams });
       if (!res.ok) {
         setLogged((prev) => ({ ...prev, [food.id]: Math.max(0, (prev[food.id] ?? 1) - 1) }));

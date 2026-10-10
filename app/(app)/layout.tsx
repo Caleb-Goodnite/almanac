@@ -1,17 +1,24 @@
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { Providers } from "@/components/providers";
+import { AppLock } from "@/components/shell/app-lock";
 import { Nav } from "@/components/shell/nav";
 import { OfflineBanner } from "@/components/shell/offline-banner";
 import { Disclaimer } from "@/components/ui/disclaimer";
 import { requireViewer } from "@/lib/auth/session";
+import { LOCK_COOKIE } from "@/lib/native/lock";
+import { isNativeApp } from "@/lib/utils/native-app";
 
 export default async function AppLayout({ children }: LayoutProps<"/">) {
   // Every page under this layout also checks the session itself before
   // reading data; this call only handles the redirects in one place.
   await requireViewer();
+  // Only the phone app can lock; a browser that somehow carries the cookie is never covered.
+  const locked = (await cookies()).get(LOCK_COOKIE)?.value === "1" && (await isNativeApp());
 
   return (
     <Providers>
+    <AppLock initiallyLocked={locked} />
     <div className="flex flex-1 flex-col md:flex-row">
       <Nav />
       <div className="flex min-w-0 flex-1 flex-col pb-24 md:pb-0">

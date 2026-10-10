@@ -5,6 +5,7 @@ import { useRef, useState, useTransition } from "react";
 import { saveCheckinAction } from "@/app/(app)/body/actions";
 import { Scale } from "@/components/ui/scale";
 import { Why } from "@/components/ui/why";
+import { tapFeedback } from "@/lib/native/platform";
 
 type Values = { mood: number | null; energy: number | null; soreness: number | null; restingHr: string };
 
@@ -27,6 +28,7 @@ export function CheckIn({ date, initial }: { date: string; initial: { mood: numb
     latest.current = next;
     setValues(next);
     startTransition(async () => {
+      void tapFeedback();
       const res = await saveCheckinAction({
         date,
         mood: next.mood ?? "",

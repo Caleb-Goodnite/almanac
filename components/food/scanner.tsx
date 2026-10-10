@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { isNativeApp, tapFeedback } from "@/lib/native/platform";
 
 type Detected = { rawValue: string };
 type Detector = { detect: (source: HTMLVideoElement) => Promise<Detected[]> };
@@ -23,6 +25,65 @@ const isProductCode = (value: string) => /^\d{8,14}$/.test(value);
  *    what makes scanning work in Safari on iPhone and in Firefox.
  */
 export function Scanner({ onDetected }: { onDetected: (code: string) => void }) {
+  // This component is loaded client-side only, so the platform is known on the first render.
+  return isNativeApp() ? <NativeScanner onDetected={onDetected} /> : <WebScanner onDetected={onDetected} />;
+}
+
+/**
+ * Inside the phone app the system's own scanner is used: it opens full
+ * screen, focuses faster than a web page can, and has a torch button.
+ */
+function NativeScanner({ onDetected }: { onDetected: (code: string) => void }) {
+  const [state, setState] = useState<"open" | "closed" | "error">("open");
+  const started = useRef(false);
+
+  const scan = useCallback(async () => {
+    setState("open");
+    try {
+      const { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } = await import("@capacitor/barcode-scanner");
+      const result = await CapacitorBarcodeScanner.scanBarcode({
+        hint: CapacitorBarcodeScannerTypeHint.ALL,
+        scanInstructions: "Point the camera at the barcode",
+        scanButton: false,
+      });
+      const code = result.ScanResult.trim();
+      if (isProductCode(code)) {
+        void tapFeedback();
+        onDetected(code);
+      } else {
+        // Closed without a product code (cancelled, or a QR code).
+        setState("closed");
+      }
+    } catch {
+      setState("error");
+    }
+  }, [onDetected]);
+
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    void scan();
+  }, [scan]);
+
+  return (
+    <div className="border border-rule-strong p-5">
+      <p role="status" className="leading-relaxed text-ink-soft">
+        {state === "open"
+          ? "Opening the scanner…"
+          : state === "closed"
+            ? "No barcode was read."
+            : "The scanner could not open. Check that Almanac may use the camera in your phone's settings, or type the number below."}
+      </p>
+      {state !== "open" ? (
+        <Button variant="outline" className="mt-3" onClick={() => void scan()}>
+          Scan again
+        </Button>
+      ) : null}
+    </div>
+  );
+}
+
+function WebScanner({ onDetected }: { onDetected: (code: string) => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   // This component is loaded client-side only, so the browser check can run during the first render.
   const [state, setState] = useState<"starting" | "scanning" | "unsupported" | "denied" | "error">(() =>
