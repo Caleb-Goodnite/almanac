@@ -22,6 +22,9 @@ const schema = z
 
     GOOGLE_CLIENT_ID: z.string().min(1).optional(),
     GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
+    // The "iOS" OAuth client from the same Google Cloud project. Needed only for
+    // Google sign-in inside the iPhone app; it is public, not a secret.
+    GOOGLE_IOS_CLIENT_ID: z.string().min(1).optional(),
 
     OPENROUTER_API_KEY: z.string().min(1).optional(),
     OPENROUTER_MODEL: z.string().default("anthropic/claude-haiku-5.5"),

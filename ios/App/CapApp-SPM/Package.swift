@@ -17,7 +17,8 @@ let package = Package(
         .package(name: "CapacitorBarcodeScanner", path: "../../../node_modules/.pnpm/@capacitor+barcode-scanner@3.1.3_@capacitor+core@8.5.3/node_modules/@capacitor/barcode-scanner"),
         .package(name: "CapacitorHaptics", path: "../../../node_modules/.pnpm/@capacitor+haptics@8.0.2_@capacitor+core@8.5.3/node_modules/@capacitor/haptics"),
         .package(name: "CapacitorLocalNotifications", path: "../../../node_modules/.pnpm/@capacitor+local-notifications@8.3.1_@capacitor+core@8.5.3/node_modules/@capacitor/local-notifications"),
-        .package(name: "CapgoCapacitorHealth", path: "../../../node_modules/.pnpm/@capgo+capacitor-health@8.11.8_@capacitor+core@8.5.3/node_modules/@capgo/capacitor-health")
+        .package(name: "CapgoCapacitorHealth", path: "../../../node_modules/.pnpm/@capgo+capacitor-health@8.11.8_@capacitor+core@8.5.3/node_modules/@capgo/capacitor-health"),
+        .package(name: "CapgoCapacitorSocialLogin", path: "../../../node_modules/.pnpm/@capgo+capacitor-social-login@8.5.15_@capacitor+core@8.5.3/node_modules/@capgo/capacitor-social-login")
     ],
     targets: [
         .target(
@@ -30,7 +31,8 @@ let package = Package(
                 .product(name: "CapacitorBarcodeScanner", package: "CapacitorBarcodeScanner"),
                 .product(name: "CapacitorHaptics", package: "CapacitorHaptics"),
                 .product(name: "CapacitorLocalNotifications", package: "CapacitorLocalNotifications"),
-                .product(name: "CapgoCapacitorHealth", package: "CapgoCapacitorHealth")
+                .product(name: "CapgoCapacitorHealth", package: "CapgoCapacitorHealth"),
+                .product(name: "CapgoCapacitorSocialLogin", package: "CapgoCapacitorSocialLogin")
             ]
         )
     ]

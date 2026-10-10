@@ -26,6 +26,10 @@ const config: CapacitorConfig = {
     errorPath: "index.html",
   },
   android: { allowMixedContent: false },
+  plugins: {
+    // Only Google's SDK is bundled; the plugin's other providers are left out of the apps.
+    SocialLogin: { providers: { google: true, apple: false, facebook: false, twitter: false } },
+  },
 };
 
 export default config;

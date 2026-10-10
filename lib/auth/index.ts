@@ -56,7 +56,10 @@ export const auth = betterAuth({
   socialProviders: features.google
     ? {
         google: {
-          clientId: env.GOOGLE_CLIENT_ID!,
+          // The phone apps sign in with Google's native sheet and send an ID
+          // token. On iPhone that token is issued to the iOS client, so both
+          // ids are accepted as its audience.
+          clientId: env.GOOGLE_IOS_CLIENT_ID ? [env.GOOGLE_CLIENT_ID!, env.GOOGLE_IOS_CLIENT_ID] : env.GOOGLE_CLIENT_ID!,
           clientSecret: env.GOOGLE_CLIENT_SECRET!,
         },
       }

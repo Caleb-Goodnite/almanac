@@ -29,6 +29,9 @@ importers:
       '@capgo/capacitor-health':
         specifier: 8.11.8
         version: 8.11.8(@capacitor/core@8.5.3)
+      '@capgo/capacitor-social-login':
+        specifier: 8.5.15
+        version: 8.5.15(@capacitor/core@8.5.3)
       '@electric-sql/pglite':
         specifier: ^0.5.8
         version: 0.5.8
@@ -343,6 +346,11 @@ packages:
 
   '@capgo/capacitor-health@8.11.8':
     resolution: {integrity: sha512-UvOO+D5h+WRgt/zmCvjw+IvBXtJp4IhawFcUZhClyyXdDRXh4rVY8tIc7zwsn7No8CoRduzNKqFxJJQLNAYbiw==}
+    peerDependencies:
+      '@capacitor/core': '>=8.0.0'
+
+  '@capgo/capacitor-social-login@8.5.15':
+    resolution: {integrity: sha512-TZrMQlpCvBpJFh0R/MTdOe1NVfzwyLxcVEbSqltChwetqDA7OhFLRsZrJh0gqmxiQ1EZ/dYye7XGn2AI5aDNDg==}
     peerDependencies:
       '@capacitor/core': '>=8.0.0'
 
@@ -4261,6 +4269,11 @@ snapshots:
   '@capgo/capacitor-health@8.11.8(@capacitor/core@8.5.3)':
     dependencies:
       '@capacitor/core': 8.5.3
+
+  '@capgo/capacitor-social-login@8.5.15(@capacitor/core@8.5.3)':
+    dependencies:
+      '@capacitor/core': 8.5.3
+      tslib: 2.8.1
 
   '@drizzle-team/brocli@0.10.2': {}
 

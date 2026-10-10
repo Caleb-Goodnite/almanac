@@ -92,6 +92,7 @@ pnpm db:demo you@example.com
 | `BETTER_AUTH_URL` | In production | The site's public origin, e.g. `https://almanac.example`. |
 | `DATABASE_URL` | In production | Postgres connection string. Supabase: the transaction pooler string. |
 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | No | Enables "Continue with Google". Redirect URI: `<origin>/api/auth/callback/google`. |
+| `GOOGLE_IOS_CLIENT_ID` | No | Enables Google sign-in inside the iPhone app. The "iOS" OAuth client id from the same Google Cloud project; public, not a secret. |
 | `OPENROUTER_API_KEY` | No | Enables the coach. Without it the app works and the weekly review uses the built-in rules. |
 | `OPENROUTER_MODEL` | No | Default `anthropic/claude-haiku-5.5`. |
 | `OPENROUTER_FALLBACK_MODEL` | No | Default `openai/gpt-6-luna`. Used if the first model fails before any text is shown. |
@@ -152,7 +153,7 @@ pnpm mobile:android:install    # builds and installs on a phone connected with U
 ```
 
 - **Which site it opens:** `https://health.anchorforgedigital.com`, set in `capacitor.config.ts`. Set `CAP_SERVER_URL` before building to point a build somewhere else.
-- **Google sign-in is not offered inside the app.** Google refuses sign-in from web views, so the shell marks its user agent and the server hides the button. Email and password work as usual.
+- **Google sign-in uses the native account sheet.** Google refuses its web sign-in inside web views, so the apps ask the phone for a Google ID token and the server verifies it. Android needs an "Android" OAuth client (package name and the signing certificate's SHA-1) in Google Cloud; iPhone needs an "iOS" OAuth client, its id in `GOOGLE_IOS_CLIENT_ID`, and its reversed id as a URL scheme in `ios/App/App/Info.plist`. Without those the button is hidden on that platform.
 - **Barcode scanning** uses the camera through the web view; the app asks for camera permission the first time.
 - **Icons and splash screens** are drawn by `pnpm exec tsx scripts/build-mobile-icons.tsx`.
 - **Store release:** the debug build is for testing on your own phone. A Play Store release needs a signing key and a release build, and app stores may reject apps that are only a wrapper around a website.

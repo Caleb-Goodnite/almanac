@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useState, useSyncExternalStore, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { authClient } from "@/lib/auth/client";
+import { nativeGoogleAvailable, nativeGoogleIdToken } from "@/lib/native/google";
+import type { GoogleSignIn } from "@/lib/utils/native-app";
 
 type Mode = "sign-up" | "sign-in";
 
@@ -29,10 +31,13 @@ function messageFor(code: string | undefined, fallback: string | undefined, mode
   }
 }
 
-export function AccountForm({ mode, google, passwordReset = false }: { mode: Mode; google: boolean; passwordReset?: boolean }) {
+export function AccountForm({ mode, google, passwordReset = false }: { mode: Mode; google: GoogleSignIn; passwordReset?: boolean }) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
+  // Known only in the app itself, so it is read after hydration rather than guessed on the server.
+  const nativeReady = useSyncExternalStore(() => () => undefined, nativeGoogleAvailable, () => false);
+  const showGoogle = google.mode === "web" || (google.mode === "native" && nativeReady);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -69,11 +74,29 @@ export function AccountForm({ mode, google, passwordReset = false }: { mode: Mod
   async function withGoogle() {
     setPending(true);
     setError(null);
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: mode === "sign-up" ? "/welcome" : "/today",
-      errorCallbackURL: "/sign-up",
-    });
+    const destination = mode === "sign-up" ? "/welcome" : "/today";
+    if (google.mode !== "native") {
+      await authClient.signIn.social({ provider: "google", callbackURL: destination, errorCallbackURL: "/sign-up" });
+      return;
+    }
+    // Inside the phone app: Google's own account sheet returns an ID token,
+    // which the server verifies. No browser redirect is involved.
+    const token = await nativeGoogleIdToken(google);
+    if (!token.ok) {
+      setPending(false);
+      if (token.reason !== "cancelled") setError("Google sign-in did not finish. Try again, or use your email and password.");
+      return;
+    }
+    const { error: failure } = await authClient.signIn.social({ provider: "google", idToken: { token: token.idToken }, callbackURL: destination });
+    if (failure) {
+      setPending(false);
+      // A new Google account still has to pass the age gate first.
+      if (failure.code === "AGE_REQUIRED") router.push("/sign-up?error=AGE_REQUIRED");
+      else setError(messageFor(failure.code, undefined, mode));
+      return;
+    }
+    router.push(destination);
+    router.refresh();
   }
 
   return (
@@ -115,7 +138,7 @@ export function AccountForm({ mode, google, passwordReset = false }: { mode: Mod
         </Button>
       </form>
 
-      {google ? (
+      {showGoogle ? (
         <Button variant="outline" size="lg" className="mt-3 w-full" onClick={withGoogle} disabled={pending}>
           Continue with Google
         </Button>
