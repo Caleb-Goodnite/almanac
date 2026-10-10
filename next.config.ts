@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
     // connection returns. Paired with client-generated ids, a retry can never
     // double-log. See components/shell/offline-banner.tsx.
     useOffline: true,
+    // The persistent build cache served a stale stylesheet after globals.css
+    // changed (locally and on Vercel), so production builds start clean.
+    turbopackFileSystemCacheForBuild: false,
   },
   async headers() {
     return [
