@@ -18,5 +18,8 @@ export async function register() {
       const { seedExercises } = await import("@/lib/db/seed-exercises");
       await seedExercises(db);
     }
+    // Always refreshed: it is one small upsert, and it keeps the list current after an update.
+    const { seedCommonFoods } = await import("@/lib/db/seed-foods");
+    await seedCommonFoods(db);
   }
 }

@@ -22,7 +22,8 @@ Almanac is not medical advice and makes no compliance claims. Read [`docs/COMPLI
 ## What it does
 
 **Nutrition**
-- Food search across USDA FoodData Central and Open Food Facts, barcode scanning, custom foods and saved meals.
+- A built-in list of 178 everyday foods (a banana, a slice of bread, a cup of rice) that opens at a typical serving, plus search across USDA FoodData Central and Open Food Facts, barcode scanning, custom foods and saved meals.
+- Amounts can be entered in the food's own household measures, in grams, ounces or pounds, or in cups and spoons where the source gives the food's weight per cup. Everything is stored in grams.
 - One-tap re-logging from recent and frequent foods, and "same as the day before" for a whole meal.
 - Calorie and macro targets, water, daily and weekly views, and per-day micronutrient totals.
 
@@ -75,7 +76,7 @@ To use a hosted Postgres (Supabase, Neon):
 ```bash
 # put the pooled connection string in .env.local as DATABASE_URL, then
 pnpm db:migrate
-pnpm db:seed          # loads the 876-exercise library
+pnpm db:seed          # loads the exercise library and the everyday foods
 ```
 
 To see the app with data in it, sign up, then fill that account with five weeks of sample logs:
@@ -118,7 +119,7 @@ The environment is validated at startup (`lib/env.ts`); a missing or malformed v
 | `pnpm test` | Unit tests (Vitest). |
 | `pnpm test:e2e` | End-to-end tests (Playwright). |
 | `pnpm db:generate` | Create a migration from schema changes. |
-| `pnpm db:migrate`, `pnpm db:seed` | Apply migrations; load the exercise library. |
+| `pnpm db:migrate`, `pnpm db:seed` | Apply migrations; load the exercise library and the everyday foods. |
 | `pnpm db:demo <email>` | Fill one existing account with five weeks of sample data. Development only. |
 | `pnpm eval:coach` | Live evaluation of the coach against the real models (a few cents). Writes `evals/report.md`. |
 | `pnpm support:clear <email>` | Operator tool: switch support mode off for an under-18 after a parent or clinician has been involved. |
@@ -243,6 +244,7 @@ Third-party data:
 
 - **USDA FoodData Central**: public domain (CC0).
 - **Open Food Facts**: Open Database License; credited wherever its products appear. See the note in `COMPLIANCE.md`.
+- **Everyday foods**: nutrients and household measures from USDA FoodData Central (SR Legacy, public domain); the friendly names and default servings are chosen in `scripts/build-common-foods.mjs`, which rebuilds `lib/db/seed-data/common-foods.json`.
 - **Exercises**: [yuhonas/free-exercise-db](https://github.com/yuhonas/free-exercise-db), public domain (Unlicense). Images are not used. Rebuild the seed with `node scripts/build-exercise-seed.mjs <exercises.json>`.
 - **MET values**: 2024 Adult Compendium of Physical Activities.
 - **BMI-for-age**: CDC 2000 growth charts.

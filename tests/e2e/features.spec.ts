@@ -130,3 +130,56 @@ test("a food logged today shows in the day view totals", async ({ page }) => {
   await expect(page.getByText("370 kcal").first()).toBeVisible();
   await expect(page.getByRole("meter", { name: "Protein" })).toHaveAttribute("aria-valuenow", "13");
 });
+
+test("an everyday food opens at its typical serving and can be measured other ways", async ({ page }) => {
+  await signUpAdult(page);
+  await page.goto("/food/add");
+
+  // With nothing typed, the built-in list is offered by category.
+  await expect(page.getByText(/Everyday foods with typical servings/)).toBeVisible();
+  await expect(page.getByRole("button", { name: /^Banana/ })).toBeVisible();
+  await expect(page.getByText(/105 kcal per medium \(118 g\)/)).toBeVisible();
+  await page.getByRole("button", { name: "Dairy" }).click();
+  await expect(page.getByRole("button", { name: /^Milk, whole/ })).toBeVisible();
+  await page.getByRole("button", { name: "Fruit" }).click();
+
+  await page.getByRole("button", { name: /^Banana/ }).click();
+  const dialog = page.getByRole("dialog");
+  const amount = dialog.getByLabel("Amount");
+  const unit = dialog.getByLabel("Measured in");
+
+  // One medium banana, 118 g, 105 kcal.
+  await expect(amount).toHaveValue("1");
+  await expect(unit.locator("option:checked")).toHaveText(/^medium/);
+  await expect(dialog.getByText("That is 118 g.")).toBeVisible();
+  await expect(dialog.getByText("105", { exact: true })).toBeVisible();
+
+  // Changing only the unit keeps the same amount of food.
+  await unit.selectOption({ label: "oz" });
+  await expect(amount).toHaveValue("4.16");
+  await unit.selectOption({ label: "grams" });
+  await expect(amount).toHaveValue("118");
+
+  // Weight, the food's own measures and kitchen volumes are all offered.
+  for (const label of ["grams", "oz", "lb", "tbsp", "ml"]) await expect(unit.locator("option", { hasText: new RegExp(`^${label}$`) })).toHaveCount(1);
+  await expect(unit.locator("option", { hasText: /^cup, sliced/ })).toHaveCount(1);
+
+  // Two medium bananas with the plus button, then log.
+  await unit.selectOption({ index: 0 });
+  await expect(amount).toHaveValue("1");
+  await dialog.getByRole("button", { name: /^More/ }).click();
+  await dialog.getByRole("button", { name: /^More/ }).click();
+  await expect(amount).toHaveValue("2");
+  await expect(dialog.getByText("That is 236 g.")).toBeVisible();
+  await dialog.getByRole("button", { name: "Log it" }).click();
+  await page.getByRole("button", { name: "Done" }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Food today" })).toBeVisible();
+  await expect(page.getByText("Banana", { exact: true })).toBeVisible();
+  await expect(page.getByText("210 kcal").first()).toBeVisible();
+
+  // Searching finds the everyday entry first.
+  await page.goto("/food/add");
+  await page.getByRole("tab", { name: "Search" }).click();
+  await page.getByPlaceholder(/Search foods/).fill("banana");
+  await expect(page.getByRole("button", { name: /^Banana/ }).first()).toBeVisible();
+});

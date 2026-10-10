@@ -33,10 +33,13 @@ export async function GET(request: NextRequest) {
     degraded = true;
   }
 
+  // Everyday foods come first; the USDA entry each one was built from is not shown a second time.
+  const common = local.filter((f) => f.source === "common");
+  const builtFrom = new Set(common.map((f) => f.sourceId.split("-")[0]));
   const seen = new Set<string>();
   const results: FoodSummary[] = [];
-  for (const food of [...local.filter((f) => f.source === "custom"), ...remote, ...local]) {
-    if (seen.has(food.id)) continue;
+  for (const food of [...local.filter((f) => f.source === "custom"), ...common, ...remote, ...local]) {
+    if (seen.has(food.id) || (food.source === "usda" && builtFrom.has(food.sourceId))) continue;
     seen.add(food.id);
     results.push(food);
   }

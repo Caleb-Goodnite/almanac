@@ -4,7 +4,7 @@ import { Barcode, Check, MagnifyingGlass, Plus } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { useEffect, useId, useRef, useState, useSyncExternalStore, useTransition } from "react";
+import { useEffect, useState, useSyncExternalStore, useTransition } from "react";
 import {
   createCustomFoodAction,
   deleteSavedMealAction,
@@ -18,7 +18,9 @@ import type { SavedMeal } from "@/lib/data/food-logs";
 import type { FoodSummary, QuickFood } from "@/lib/data/foods";
 import { fmt } from "@/lib/format";
 import { cn } from "@/lib/utils/cn";
+import { typicalServing } from "@/lib/food/units";
 import { tapFeedback } from "@/lib/native/platform";
+import { QuantityDialog } from "./quantity-dialog";
 
 const Scanner = dynamic(() => import("./scanner").then((m) => m.Scanner), {
   ssr: false,
@@ -54,6 +56,14 @@ function kcalFor(food: Pick<FoodSummary, "kcal">, grams: number) {
   return (food.kcal * grams) / 100;
 }
 
+/** "105 kcal per medium" when a typical serving is known, otherwise per 100 g. */
+function rowDetail(food: FoodSummary): string {
+  const serving = typicalServing(food);
+  if (!serving) return `${fmt(food.kcal)} kcal per 100 g`;
+  const label = serving.label.replace(/\s*\(.*\)$/, "");
+  return `${fmt(kcalFor(food, serving.grams))} kcal per ${label} (${fmt(serving.grams)} g)`;
+}
+
 export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedMeals }: Props) {
   const router = useRouter();
   // The server cannot know the visitor's clock, so with no meal in the URL the
@@ -65,7 +75,7 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
   const [tab, setTab] = useState<Tab>(hasHistory ? "recent" : "search");
   const [query, setQuery] = useState("");
   const [debounced, setDebounced] = useState("");
-  const [selected, setSelected] = useState<{ food: FoodSummary; grams: number } | null>(null);
+  const [selected, setSelected] = useState<{ food: FoodSummary; lastGrams: number | null } | null>(null);
   const [logged, setLogged] = useState<Record<string, number>>({});
   const [status, setStatus] = useState("");
   const [, startTransition] = useTransition();
@@ -157,7 +167,7 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
             foods={tab === "recent" ? recent : frequent}
             logged={logged}
             onLog={(f) => logNow(f, f.lastQuantityG)}
-            onOpen={(f) => setSelected({ food: f, grams: f.lastQuantityG })}
+            onOpen={(f) => setSelected({ food: f, lastGrams: f.lastQuantityG })}
             empty={
               tab === "recent"
                 ? "Foods you log will show up here, newest first, ready to log again in one tap."
@@ -186,9 +196,7 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
 
             <div aria-live="polite" aria-busy={search.isFetching}>
               {debounced.length < 2 ? (
-                <p className="py-6 text-sm leading-relaxed text-ink-soft">
-                  Type at least two letters. Results come from the USDA food database and your own foods.
-                </p>
+                <CommonFoods logged={logged} onOpen={(f) => setSelected({ food: f, lastGrams: null })} />
               ) : search.isPending ? (
                 <ul aria-label="Loading results" className="mt-1">
                   {Array.from({ length: 6 }, (_, i) => (
@@ -231,9 +239,9 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
                       <FoodRow
                         key={f.id}
                         food={f}
-                        detail={`${fmt(f.kcal)} kcal per 100 g`}
+                        detail={rowDetail(f)}
                         count={logged[f.id] ?? 0}
-                        onOpen={() => setSelected({ food: f, grams: f.servingG ?? 100 })}
+                        onOpen={() => setSelected({ food: f, lastGrams: null })}
                       />
                     ))}
                   </ul>
@@ -244,7 +252,7 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
         ) : null}
 
         {tab === "scan" ? (
-          <ScanPanel onFound={(food) => setSelected({ food, grams: food.servingG ?? 100 })} />
+          <ScanPanel onFound={(food) => setSelected({ food, lastGrams: null })} />
         ) : null}
 
         {tab === "mine" ? (
@@ -253,7 +261,7 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
             meal={meal}
             custom={custom}
             savedMeals={savedMeals}
-            onPick={(food) => setSelected({ food, grams: food.servingG ?? 100 })}
+            onPick={(food) => setSelected({ food, lastGrams: null })}
             onStatus={setStatus}
           />
         ) : null}
@@ -274,7 +282,7 @@ export function FoodPicker({ date, initialMeal, recent, frequent, custom, savedM
       {selected ? (
         <QuantityDialog
           food={selected.food}
-          initialGrams={selected.grams}
+          lastGrams={selected.lastGrams}
           mealLabel={MEAL_LABEL[meal]}
           onClose={() => setSelected(null)}
           onConfirm={(grams) => {
@@ -371,132 +379,63 @@ function QuickList({
   );
 }
 
-function QuantityDialog({
-  food,
-  initialGrams,
-  mealLabel,
-  onClose,
-  onConfirm,
-}: {
-  food: FoodSummary;
-  initialGrams: number;
-  mealLabel: string;
-  onClose: () => void;
-  onConfirm: (grams: number) => void;
-}) {
-  const ref = useRef<HTMLDialogElement>(null);
-  const titleId = useId();
-  const hasServing = food.servingG != null && food.servingG > 0;
-  const [unit, setUnit] = useState<"serving" | "g">(hasServing && Math.abs(initialGrams / (food.servingG ?? 1) - Math.round(initialGrams / (food.servingG ?? 1))) < 0.01 ? "serving" : "g");
-  const [amount, setAmount] = useState(() =>
-    unit === "serving" ? String(Math.round((initialGrams / (food.servingG ?? 100)) * 100) / 100) : String(Math.round(initialGrams)),
-  );
+const CATEGORY_ORDER = ["Fruit", "Vegetables", "Grains", "Protein", "Dairy", "Beans and nuts", "Oils and condiments", "Snacks and sweets", "Meals", "Drinks"];
 
-  // Opened once on mount. There is no close() in a cleanup: closing fires the
-  // dialog's close event, which would dismiss it during React's development
-  // double-run of effects. Unmounting removes it from the top layer anyway.
-  useEffect(() => {
-    const dialog = ref.current;
-    if (dialog && !dialog.open) dialog.showModal();
-  }, []);
+/**
+ * The built-in list of everyday foods, shown before anything is typed so a
+ * banana or a slice of bread is two taps away.
+ */
+function CommonFoods({ logged, onOpen }: { logged: Record<string, number>; onOpen: (food: FoodSummary) => void }) {
+  const [category, setCategory] = useState<string | null>(null);
+  const common = useQuery({
+    queryKey: ["common-foods"],
+    staleTime: Infinity,
+    queryFn: async () => {
+      const res = await fetch("/api/foods/common");
+      if (!res.ok) throw new Error("Could not load the food list.");
+      return ((await res.json()) as { foods: FoodSummary[] }).foods;
+    },
+  });
 
-  const n = Number(amount);
-  const grams = unit === "serving" ? n * (food.servingG ?? 0) : n;
-  const valid = Number.isFinite(grams) && grams > 0 && grams <= 5000;
-  const k = valid ? grams / 100 : 0;
+  if (common.isPending) return <p className="py-6 text-sm text-ink-soft">Loading everyday foods…</p>;
+  if (common.isError || common.data.length === 0) {
+    return (
+      <p className="py-6 text-sm leading-relaxed text-ink-soft">
+        Type at least two letters. Results come from the USDA food database and your own foods.
+      </p>
+    );
+  }
 
+  const present = new Set(common.data.map((f) => f.category ?? "Other"));
+  const categories = [...CATEGORY_ORDER.filter((c) => present.has(c)), ...[...present].filter((c) => !CATEGORY_ORDER.includes(c))];
+  const active = category ?? categories[0]!;
   return (
-    <dialog
-      ref={ref}
-      aria-labelledby={titleId}
-      onClose={onClose}
-      onClick={(e) => {
-        if (e.target === ref.current) onClose();
-      }}
-      className="m-0 mt-auto w-full max-w-none border-t border-ink bg-paper p-0 text-ink backdrop:bg-black/50 sm:m-auto sm:max-w-md sm:border"
-    >
-      <form
-        className="safe-b p-5"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (valid) onConfirm(Math.round(grams * 10) / 10);
-        }}
-      >
-        <p className="label">Add to {mealLabel.toLowerCase()}</p>
-        <h2 id={titleId} className="mt-1 font-display text-2xl leading-tight">
-          {food.name}
-        </h2>
-        {food.brand ? <p className="text-sm text-ink-soft">{food.brand}</p> : null}
-
-        <div className="mt-5 flex items-end gap-3">
-          <label className="flex-1">
-            <span className="label">Amount</span>
-            <input
-              autoFocus
-              inputMode="decimal"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              onFocus={(e) => e.target.select()}
-              className="nums mt-1 block min-h-12 w-full border-b border-rule-strong bg-transparent font-display text-4xl outline-none focus:border-ink"
-            />
-          </label>
-          {hasServing ? (
-            <fieldset className="flex gap-1.5 pb-1">
-              <legend className="sr-only">Unit</legend>
-              {(["serving", "g"] as const).map((u) => (
-                <label
-                  key={u}
-                  className={cn(
-                    "min-h-11 cursor-pointer content-center rounded-[3px] border px-3 text-sm has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-ink",
-                    unit === u ? "border-ink bg-paper-raised font-semibold" : "border-rule-strong",
-                  )}
-                >
-                  <input
-                    type="radio"
-                    name="unit"
-                    className="sr-only"
-                    checked={unit === u}
-                    onChange={() => {
-                      setUnit(u);
-                      setAmount(u === "serving" ? "1" : String(Math.round(food.servingG ?? 100)));
-                    }}
-                  />
-                  {u === "serving" ? (food.servingLabel ?? "serving") : "grams"}
-                </label>
-              ))}
-            </fieldset>
-          ) : (
-            <span className="label pb-3">grams</span>
-          )}
-        </div>
-        {hasServing ? (
-          <p className="nums mt-1 text-sm text-ink-soft">One serving is {fmt(food.servingG ?? 0)} g.</p>
-        ) : null}
-
-        <dl className="nums mt-5 grid grid-cols-4 gap-2 border-y border-rule py-3 text-center" aria-live="polite">
-          {[
-            ["kcal", food.kcal * k, 0],
-            ["protein", food.proteinG * k, 1],
-            ["carbs", food.carbsG * k, 1],
-            ["fat", food.fatG * k, 1],
-          ].map(([label, value, d]) => (
-            <div key={label as string}>
-              <dd className="font-display text-2xl">{fmt(value as number, d as number)}</dd>
-              <dt className="label">{label as string}</dt>
-            </div>
+    <div className="mt-3">
+      <p className="text-sm leading-relaxed text-ink-soft">Everyday foods with typical servings. Type above to search the full USDA database.</p>
+      <div role="group" aria-label="Food category" className="mt-3 flex flex-wrap gap-1.5">
+        {categories.map((c) => (
+          <button
+            key={c}
+            type="button"
+            aria-pressed={c === active}
+            onClick={() => setCategory(c)}
+            className={cn(
+              "min-h-11 rounded-[3px] border px-3 text-sm",
+              c === active ? "border-ink bg-paper-raised font-semibold" : "border-rule-strong",
+            )}
+          >
+            {c}
+          </button>
+        ))}
+      </div>
+      <ul className="mt-2">
+        {common.data
+          .filter((f) => (f.category ?? "Other") === active)
+          .map((f) => (
+            <FoodRow key={f.id} food={f} detail={rowDetail(f)} count={logged[f.id] ?? 0} onOpen={() => onOpen(f)} />
           ))}
-        </dl>
-
-        <div className="mt-5 flex gap-3">
-          <Button type="button" variant="outline" size="lg" className="flex-1" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button type="submit" variant="accent" size="lg" className="flex-1" disabled={!valid}>
-            Log it
-          </Button>
-        </div>
-      </form>
-    </dialog>
+      </ul>
+    </div>
   );
 }
 

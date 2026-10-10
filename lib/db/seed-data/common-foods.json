@@ -1,0 +1,7168 @@
+[
+ {
+  "id": "173944-banana",
+  "name": "Banana",
+  "category": "Fruit",
+  "fdcId": 173944,
+  "usdaDescription": "Bananas, raw",
+  "kcal": 89,
+  "proteinG": 1.1,
+  "carbsG": 22.8,
+  "fatG": 0.3,
+  "fiberG": 2.6,
+  "sugarG": 12.23,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 5,
+   "ironMg": 0.26,
+   "magnesiumMg": 27,
+   "potassiumMg": 358,
+   "zincMg": 0.15,
+   "vitaminAUg": 3,
+   "vitaminCMg": 8.7,
+   "saturatedFatG": 0.11
+  },
+  "portions": [
+   {
+    "label": "1 medium (7\" to 7-7/8\" long)",
+    "grams": 118
+   },
+   {
+    "label": "1 cup, mashed",
+    "grams": 225
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 150
+   },
+   {
+    "label": "1 extra small (less than 6\" long)",
+    "grams": 81
+   },
+   {
+    "label": "1 small (6\" to 6-7/8\" long)",
+    "grams": 101
+   },
+   {
+    "label": "1 large (8\" to 8-7/8\" long)",
+    "grams": 136
+   },
+   {
+    "label": "1 extra large (9\" or longer)",
+    "grams": 152
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 126
+   }
+  ]
+ },
+ {
+  "id": "171688-apple",
+  "name": "Apple",
+  "category": "Fruit",
+  "fdcId": 171688,
+  "usdaDescription": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 52,
+  "proteinG": 0.3,
+  "carbsG": 13.8,
+  "fatG": 0.2,
+  "fiberG": 2.4,
+  "sugarG": 10.39,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 6,
+   "ironMg": 0.12,
+   "magnesiumMg": 5,
+   "potassiumMg": 107,
+   "zincMg": 0.04,
+   "vitaminAUg": 3,
+   "vitaminCMg": 4.6,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 medium (3\" dia)",
+    "grams": 182
+   },
+   {
+    "label": "1 cup, quartered or chopped",
+    "grams": 125
+   },
+   {
+    "label": "1 cup slices",
+    "grams": 109
+   },
+   {
+    "label": "1 large (3-1/4\" dia)",
+    "grams": 223
+   },
+   {
+    "label": "1 small (2-3/4\" dia)",
+    "grams": 149
+   },
+   {
+    "label": "1 extra small (2-1/2\" dia)",
+    "grams": 101
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 242
+   }
+  ]
+ },
+ {
+  "id": "169097-orange",
+  "name": "Orange",
+  "category": "Fruit",
+  "fdcId": 169097,
+  "usdaDescription": "Oranges, raw, all commercial varieties",
+  "kcal": 47,
+  "proteinG": 0.9,
+  "carbsG": 11.8,
+  "fatG": 0.1,
+  "fiberG": 2.4,
+  "sugarG": 9.35,
+  "sodiumMg": 0,
+  "micros": {
+   "calciumMg": 40,
+   "ironMg": 0.1,
+   "magnesiumMg": 10,
+   "potassiumMg": 181,
+   "zincMg": 0.07,
+   "vitaminAUg": 11,
+   "vitaminCMg": 53.2,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 fruit (2-5/8\" dia)",
+    "grams": 131
+   },
+   {
+    "label": "1 cup, sections",
+    "grams": 180
+   },
+   {
+    "label": "1 large (3-1/16\" dia)",
+    "grams": 184
+   },
+   {
+    "label": "1 small (2-3/8\" dia)",
+    "grams": 96
+   }
+  ]
+ },
+ {
+  "id": "167762-strawberries",
+  "name": "Strawberries",
+  "category": "Fruit",
+  "fdcId": 167762,
+  "usdaDescription": "Strawberries, raw",
+  "kcal": 32,
+  "proteinG": 0.7,
+  "carbsG": 7.7,
+  "fatG": 0.3,
+  "fiberG": 2,
+  "sugarG": 4.89,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 16,
+   "ironMg": 0.41,
+   "magnesiumMg": 13,
+   "potassiumMg": 153,
+   "zincMg": 0.14,
+   "vitaminAUg": 1,
+   "vitaminCMg": 58.8,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 cup, halves",
+    "grams": 152
+   },
+   {
+    "label": "1 cup, pureed",
+    "grams": 232
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 166
+   },
+   {
+    "label": "1 cup, whole",
+    "grams": 144
+   },
+   {
+    "label": "1 extra large (1-5/8\" dia)",
+    "grams": 27
+   },
+   {
+    "label": "1 large (1-3/8\" dia)",
+    "grams": 18
+   },
+   {
+    "label": "1 medium (1-1/4\" dia)",
+    "grams": 12
+   },
+   {
+    "label": "1 pint as purchased, yields",
+    "grams": 357
+   },
+   {
+    "label": "1 small (1\" dia)",
+    "grams": 7
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 147
+   }
+  ]
+ },
+ {
+  "id": "171711-blueberries",
+  "name": "Blueberries",
+  "category": "Fruit",
+  "fdcId": 171711,
+  "usdaDescription": "Blueberries, raw",
+  "kcal": 57,
+  "proteinG": 0.7,
+  "carbsG": 14.5,
+  "fatG": 0.3,
+  "fiberG": 2.4,
+  "sugarG": 9.96,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 6,
+   "ironMg": 0.28,
+   "magnesiumMg": 6,
+   "potassiumMg": 77,
+   "zincMg": 0.16,
+   "vitaminAUg": 3,
+   "vitaminCMg": 9.7,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 148
+   },
+   {
+    "label": "50 berries",
+    "grams": 68
+   }
+  ]
+ },
+ {
+  "id": "167755-raspberries",
+  "name": "Raspberries",
+  "category": "Fruit",
+  "fdcId": 167755,
+  "usdaDescription": "Raspberries, raw",
+  "kcal": 52,
+  "proteinG": 1.2,
+  "carbsG": 11.9,
+  "fatG": 0.7,
+  "fiberG": 6.5,
+  "sugarG": 4.42,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 25,
+   "ironMg": 0.69,
+   "magnesiumMg": 22,
+   "potassiumMg": 151,
+   "zincMg": 0.42,
+   "vitaminAUg": 2,
+   "vitaminCMg": 26.2,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 123
+   },
+   {
+    "label": "1 pint as purchased, yields",
+    "grams": 312
+   },
+   {
+    "label": "10 raspberries",
+    "grams": 19
+   }
+  ]
+ },
+ {
+  "id": "174683-grapes",
+  "name": "Grapes",
+  "category": "Fruit",
+  "fdcId": 174683,
+  "usdaDescription": "Grapes, red or green (European type, such as Thompson seedless), raw",
+  "kcal": 69,
+  "proteinG": 0.7,
+  "carbsG": 18.1,
+  "fatG": 0.2,
+  "fiberG": 0.9,
+  "sugarG": 15.48,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 10,
+   "ironMg": 0.36,
+   "magnesiumMg": 7,
+   "potassiumMg": 191,
+   "zincMg": 0.07,
+   "vitaminAUg": 3,
+   "vitaminCMg": 3.2,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 151
+   },
+   {
+    "label": "10 grapes",
+    "grams": 49
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 126
+   }
+  ]
+ },
+ {
+  "id": "167765-watermelon",
+  "name": "Watermelon",
+  "category": "Fruit",
+  "fdcId": 167765,
+  "usdaDescription": "Watermelon, raw",
+  "kcal": 30,
+  "proteinG": 0.6,
+  "carbsG": 7.6,
+  "fatG": 0.2,
+  "fiberG": 0.4,
+  "sugarG": 6.2,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 7,
+   "ironMg": 0.24,
+   "magnesiumMg": 10,
+   "potassiumMg": 112,
+   "zincMg": 0.1,
+   "vitaminAUg": 28,
+   "vitaminCMg": 8.1,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 cup, diced",
+    "grams": 152
+   },
+   {
+    "label": "1 cup, balls",
+    "grams": 154
+   },
+   {
+    "label": "1 wedge (approx 1/16 of melon)",
+    "grams": 286
+   },
+   {
+    "label": "10 watermelon balls",
+    "grams": 122
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 280
+   }
+  ]
+ },
+ {
+  "id": "169124-pineapple",
+  "name": "Pineapple",
+  "category": "Fruit",
+  "fdcId": 169124,
+  "usdaDescription": "Pineapple, raw, all varieties",
+  "kcal": 50,
+  "proteinG": 0.5,
+  "carbsG": 13.1,
+  "fatG": 0.1,
+  "fiberG": 1.4,
+  "sugarG": 9.85,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 13,
+   "ironMg": 0.29,
+   "magnesiumMg": 12,
+   "potassiumMg": 109,
+   "zincMg": 0.12,
+   "vitaminAUg": 3,
+   "vitaminCMg": 47.8,
+   "saturatedFatG": 0.01
+  },
+  "portions": [
+   {
+    "label": "1 cup, chunks",
+    "grams": 165
+   },
+   {
+    "label": "1 fruit",
+    "grams": 905
+   },
+   {
+    "label": "1 slice (4-2/3\" dia x 3/4\" thick)",
+    "grams": 166
+   },
+   {
+    "label": "1 slice (3-1/2\" dia x 3/4\" thick)",
+    "grams": 84
+   },
+   {
+    "label": "1 slice, thin (3-1/2\" dia x 1/2\" thick)",
+    "grams": 56
+   }
+  ]
+ },
+ {
+  "id": "169910-mango",
+  "name": "Mango",
+  "category": "Fruit",
+  "fdcId": 169910,
+  "usdaDescription": "Mangos, raw",
+  "kcal": 60,
+  "proteinG": 0.8,
+  "carbsG": 15,
+  "fatG": 0.4,
+  "fiberG": 1.6,
+  "sugarG": 13.66,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 11,
+   "ironMg": 0.16,
+   "magnesiumMg": 10,
+   "potassiumMg": 168,
+   "zincMg": 0.09,
+   "vitaminAUg": 54,
+   "vitaminCMg": 36.4,
+   "saturatedFatG": 0.09
+  },
+  "portions": [
+   {
+    "label": "1 cup pieces",
+    "grams": 165
+   },
+   {
+    "label": "1 fruit without refuse",
+    "grams": 336
+   }
+  ]
+ },
+ {
+  "id": "169928-peach",
+  "name": "Peach",
+  "category": "Fruit",
+  "fdcId": 169928,
+  "usdaDescription": "Peaches, yellow, raw",
+  "kcal": 39,
+  "proteinG": 0.9,
+  "carbsG": 9.5,
+  "fatG": 0.3,
+  "fiberG": 1.5,
+  "sugarG": 8.39,
+  "sodiumMg": 0,
+  "micros": {
+   "calciumMg": 6,
+   "ironMg": 0.25,
+   "magnesiumMg": 9,
+   "potassiumMg": 190,
+   "zincMg": 0.17,
+   "vitaminAUg": 16,
+   "vitaminCMg": 6.6,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 medium (2-2/3\" dia)",
+    "grams": 150
+   },
+   {
+    "label": "1 cup slices",
+    "grams": 154
+   },
+   {
+    "label": "1 small (2-1/2\" dia)",
+    "grams": 130
+   },
+   {
+    "label": "1 large (2-3/4\" dia)",
+    "grams": 175
+   },
+   {
+    "label": "1 extra large (3\" dia)",
+    "grams": 224
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 147
+   }
+  ]
+ },
+ {
+  "id": "169118-pear",
+  "name": "Pear",
+  "category": "Fruit",
+  "fdcId": 169118,
+  "usdaDescription": "Pears, raw",
+  "kcal": 57,
+  "proteinG": 0.4,
+  "carbsG": 15.2,
+  "fatG": 0.1,
+  "fiberG": 3.1,
+  "sugarG": 9.75,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 9,
+   "ironMg": 0.18,
+   "magnesiumMg": 7,
+   "potassiumMg": 116,
+   "zincMg": 0.1,
+   "vitaminAUg": 1,
+   "vitaminCMg": 4.3,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 medium",
+    "grams": 178
+   },
+   {
+    "label": "1 cup, slices",
+    "grams": 140
+   },
+   {
+    "label": "1 cup, cubes",
+    "grams": 161
+   },
+   {
+    "label": "1 small",
+    "grams": 148
+   },
+   {
+    "label": "1 large",
+    "grams": 230
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 166
+   }
+  ]
+ },
+ {
+  "id": "171705-avocado",
+  "name": "Avocado",
+  "category": "Fruit",
+  "fdcId": 171705,
+  "usdaDescription": "Avocados, raw, all commercial varieties",
+  "kcal": 160,
+  "proteinG": 2,
+  "carbsG": 8.5,
+  "fatG": 14.7,
+  "fiberG": 6.7,
+  "sugarG": 0.66,
+  "sodiumMg": 7,
+  "micros": {
+   "calciumMg": 12,
+   "ironMg": 0.55,
+   "magnesiumMg": 29,
+   "potassiumMg": 485,
+   "zincMg": 0.64,
+   "vitaminAUg": 7,
+   "vitaminCMg": 10,
+   "saturatedFatG": 2.13
+  },
+  "portions": [
+   {
+    "label": "1 avocado",
+    "grams": 201
+   },
+   {
+    "label": "1 cup, cubes",
+    "grams": 150
+   },
+   {
+    "label": "1 cup, pureed",
+    "grams": 230
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 146
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 50
+   }
+  ]
+ },
+ {
+  "id": "167746-lemon",
+  "name": "Lemon",
+  "category": "Fruit",
+  "fdcId": 167746,
+  "usdaDescription": "Lemons, raw, without peel",
+  "kcal": 29,
+  "proteinG": 1.1,
+  "carbsG": 9.3,
+  "fatG": 0.3,
+  "fiberG": 2.8,
+  "sugarG": 2.5,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 26,
+   "ironMg": 0.6,
+   "magnesiumMg": 8,
+   "potassiumMg": 138,
+   "zincMg": 0.06,
+   "vitaminAUg": 1,
+   "vitaminCMg": 53,
+   "saturatedFatG": 0.04
+  },
+  "portions": [
+   {
+    "label": "1 fruit (2-1/8\" dia)",
+    "grams": 58
+   },
+   {
+    "label": "1 cup, sections",
+    "grams": 212
+   },
+   {
+    "label": "1 fruit (2-3/8\" dia)",
+    "grams": 84
+   },
+   {
+    "label": "1 wedge or slice (1/8 of one 2-1/8\" dia lemon)",
+    "grams": 7
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 58
+   }
+  ]
+ },
+ {
+  "id": "171719-cherries",
+  "name": "Cherries",
+  "category": "Fruit",
+  "fdcId": 171719,
+  "usdaDescription": "Cherries, sweet, raw",
+  "kcal": 63,
+  "proteinG": 1.1,
+  "carbsG": 16,
+  "fatG": 0.2,
+  "fiberG": 2.1,
+  "sugarG": 12.82,
+  "sodiumMg": 0,
+  "micros": {
+   "calciumMg": 13,
+   "ironMg": 0.36,
+   "magnesiumMg": 11,
+   "potassiumMg": 222,
+   "zincMg": 0.07,
+   "vitaminAUg": 3,
+   "vitaminCMg": 7,
+   "saturatedFatG": 0.04
+  },
+  "portions": [
+   {
+    "label": "1 cup, with pits, yields",
+    "grams": 138
+   },
+   {
+    "label": "1 cup, without pits",
+    "grams": 154
+   },
+   {
+    "label": "1 cherry",
+    "grams": 8.2
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 140
+   }
+  ]
+ },
+ {
+  "id": "168153-kiwi",
+  "name": "Kiwi",
+  "category": "Fruit",
+  "fdcId": 168153,
+  "usdaDescription": "Kiwifruit, green, raw",
+  "kcal": 61,
+  "proteinG": 1.1,
+  "carbsG": 14.7,
+  "fatG": 0.5,
+  "fiberG": 3,
+  "sugarG": 8.99,
+  "sodiumMg": 3,
+  "micros": {
+   "calciumMg": 34,
+   "ironMg": 0.31,
+   "magnesiumMg": 17,
+   "potassiumMg": 312,
+   "zincMg": 0.14,
+   "vitaminAUg": 4,
+   "vitaminCMg": 92.7,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 fruit (2\" dia)",
+    "grams": 69
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 180
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 148
+   }
+  ]
+ },
+ {
+  "id": "169092-cantaloupe",
+  "name": "Cantaloupe",
+  "category": "Fruit",
+  "fdcId": 169092,
+  "usdaDescription": "Melons, cantaloupe, raw",
+  "kcal": 34,
+  "proteinG": 0.8,
+  "carbsG": 8.2,
+  "fatG": 0.2,
+  "fiberG": 0.9,
+  "sugarG": 7.86,
+  "sodiumMg": 16,
+  "micros": {
+   "calciumMg": 9,
+   "ironMg": 0.21,
+   "magnesiumMg": 12,
+   "potassiumMg": 267,
+   "zincMg": 0.18,
+   "vitaminAUg": 169,
+   "vitaminCMg": 36.7,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "1 cup, cubes",
+    "grams": 160
+   },
+   {
+    "label": "1 cup, balls",
+    "grams": 177
+   },
+   {
+    "label": "1 cup, diced",
+    "grams": 156
+   },
+   {
+    "label": "1 melon, large (about 6-1/2\" dia)",
+    "grams": 814
+   },
+   {
+    "label": "1 wedge, large (1/8 of large melon)",
+    "grams": 102
+   },
+   {
+    "label": "1 melon, medium (about 5\" dia)",
+    "grams": 552
+   },
+   {
+    "label": "1 wedge, medium (1/8 of medium melon)",
+    "grams": 69
+   },
+   {
+    "label": "1 melon, small (about 4-1/4\" dia)",
+    "grams": 441
+   },
+   {
+    "label": "1 wedge, small (1/8 of small melon)",
+    "grams": 55
+   },
+   {
+    "label": "10 cantaloupe balls",
+    "grams": 138
+   }
+  ]
+ },
+ {
+  "id": "174673-grapefruit",
+  "name": "Grapefruit",
+  "category": "Fruit",
+  "fdcId": 174673,
+  "usdaDescription": "Grapefruit, raw, pink and red, all areas",
+  "kcal": 42,
+  "proteinG": 0.8,
+  "carbsG": 10.7,
+  "fatG": 0.1,
+  "fiberG": 1.6,
+  "sugarG": 6.89,
+  "sodiumMg": 0,
+  "micros": {
+   "calciumMg": 22,
+   "ironMg": 0.08,
+   "magnesiumMg": 9,
+   "potassiumMg": 135,
+   "zincMg": 0.07,
+   "vitaminAUg": 58,
+   "vitaminCMg": 31.2,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "0.5 fruit (3-3/4\" dia)",
+    "grams": 123
+   },
+   {
+    "label": "1 cup sections, with juice",
+    "grams": 230
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 154
+   }
+  ]
+ },
+ {
+  "id": "168165-raisins",
+  "name": "Raisins",
+  "category": "Fruit",
+  "fdcId": 168165,
+  "usdaDescription": "Raisins, dark, seedless (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 299,
+  "proteinG": 3.3,
+  "carbsG": 79.3,
+  "fatG": 0.3,
+  "fiberG": 4.5,
+  "sugarG": 65.18,
+  "sodiumMg": 26,
+  "micros": {
+   "calciumMg": 62,
+   "ironMg": 1.79,
+   "magnesiumMg": 36,
+   "potassiumMg": 744,
+   "zincMg": 0.36,
+   "vitaminCMg": 2.3,
+   "saturatedFatG": 0.09
+  },
+  "portions": [
+   {
+    "label": "1 small box (1.5 oz)",
+    "grams": 42.5
+   },
+   {
+    "label": "1 cup, packed",
+    "grams": 165
+   },
+   {
+    "label": "1 cup (not packed)",
+    "grams": 145
+   },
+   {
+    "label": "1 miniature box (.5 oz)",
+    "grams": 14
+   },
+   {
+    "label": "50 raisins",
+    "grams": 26
+   },
+   {
+    "label": "1 oz (60 raisins)",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "168191-dates",
+  "name": "Dates",
+  "category": "Fruit",
+  "fdcId": 168191,
+  "usdaDescription": "Dates, medjool",
+  "kcal": 277,
+  "proteinG": 1.8,
+  "carbsG": 75,
+  "fatG": 0.2,
+  "fiberG": 6.7,
+  "sugarG": 66.47,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 64,
+   "ironMg": 0.9,
+   "magnesiumMg": 54,
+   "potassiumMg": 696,
+   "zincMg": 0.44,
+   "vitaminAUg": 7
+  },
+  "portions": [
+   {
+    "label": "1 date, pitted",
+    "grams": 24
+   }
+  ]
+ },
+ {
+  "id": "171695-applesauce-unsweetened",
+  "name": "Applesauce, unsweetened",
+  "category": "Fruit",
+  "fdcId": 171695,
+  "usdaDescription": "Applesauce, canned, unsweetened, without added ascorbic acid (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 42,
+  "proteinG": 0.2,
+  "carbsG": 11.3,
+  "fatG": 0.1,
+  "fiberG": 1.1,
+  "sugarG": 9.39,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 4,
+   "ironMg": 0.23,
+   "magnesiumMg": 3,
+   "potassiumMg": 74,
+   "zincMg": 0.03,
+   "vitaminAUg": 1,
+   "vitaminCMg": 1,
+   "saturatedFatG": 0.01
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 244
+   }
+  ]
+ },
+ {
+  "id": "170379-broccoli",
+  "name": "Broccoli",
+  "category": "Vegetables",
+  "fdcId": 170379,
+  "usdaDescription": "Broccoli, raw",
+  "kcal": 34,
+  "proteinG": 2.8,
+  "carbsG": 6.6,
+  "fatG": 0.4,
+  "fiberG": 2.6,
+  "sugarG": 1.7,
+  "sodiumMg": 33,
+  "micros": {
+   "calciumMg": 47,
+   "ironMg": 0.73,
+   "magnesiumMg": 21,
+   "potassiumMg": 316,
+   "zincMg": 0.41,
+   "vitaminAUg": 31,
+   "vitaminCMg": 89.2,
+   "saturatedFatG": 0.11
+  },
+  "portions": [
+   {
+    "label": "1 cup chopped",
+    "grams": 91
+   },
+   {
+    "label": "1 bunch",
+    "grams": 608
+   },
+   {
+    "label": "1 spear (about 5\" long)",
+    "grams": 31
+   },
+   {
+    "label": "1 stalk",
+    "grams": 151
+   },
+   {
+    "label": "0.5 cup, chopped or diced",
+    "grams": 44
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 148
+   }
+  ]
+ },
+ {
+  "id": "169967-broccoli-cooked",
+  "name": "Broccoli, cooked",
+  "category": "Vegetables",
+  "fdcId": 169967,
+  "usdaDescription": "Broccoli, cooked, boiled, drained, without salt",
+  "kcal": 35,
+  "proteinG": 2.4,
+  "carbsG": 7.2,
+  "fatG": 0.4,
+  "fiberG": 3.3,
+  "sugarG": 1.39,
+  "sodiumMg": 41,
+  "micros": {
+   "calciumMg": 40,
+   "ironMg": 0.67,
+   "magnesiumMg": 21,
+   "potassiumMg": 293,
+   "zincMg": 0.45,
+   "vitaminAUg": 77,
+   "vitaminCMg": 64.9,
+   "saturatedFatG": 0.08
+  },
+  "portions": [
+   {
+    "label": "0.5 cup, chopped",
+    "grams": 78
+   },
+   {
+    "label": "1 stalk, large (11\"-12\" long)",
+    "grams": 280
+   },
+   {
+    "label": "1 stalk, medium (7-1/2\" - 8\" long)",
+    "grams": 180
+   },
+   {
+    "label": "1 stalk, small (5\" long)",
+    "grams": 140
+   },
+   {
+    "label": "1 spear (about 5\" long)",
+    "grams": 37
+   }
+  ]
+ },
+ {
+  "id": "170393-carrot",
+  "name": "Carrot",
+  "category": "Vegetables",
+  "fdcId": 170393,
+  "usdaDescription": "Carrots, raw",
+  "kcal": 41,
+  "proteinG": 0.9,
+  "carbsG": 9.6,
+  "fatG": 0.2,
+  "fiberG": 2.8,
+  "sugarG": 4.74,
+  "sodiumMg": 69,
+  "micros": {
+   "calciumMg": 33,
+   "ironMg": 0.3,
+   "magnesiumMg": 12,
+   "potassiumMg": 320,
+   "zincMg": 0.24,
+   "vitaminAUg": 835,
+   "vitaminCMg": 5.9,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 medium",
+    "grams": 61
+   },
+   {
+    "label": "1 cup chopped",
+    "grams": 128
+   },
+   {
+    "label": "1 cup grated",
+    "grams": 110
+   },
+   {
+    "label": "1 cup strips or slices",
+    "grams": 122
+   },
+   {
+    "label": "1 large (7-1/4\" to 8-/1/2\" long)",
+    "grams": 72
+   },
+   {
+    "label": "1 small (5-1/2\" long)",
+    "grams": 50
+   },
+   {
+    "label": "1 slice",
+    "grams": 3
+   },
+   {
+    "label": "1 strip large (3\" long)",
+    "grams": 7
+   },
+   {
+    "label": "1 strip medium",
+    "grams": 4
+   }
+  ]
+ },
+ {
+  "id": "168568-baby-carrots",
+  "name": "Baby carrots",
+  "category": "Vegetables",
+  "fdcId": 168568,
+  "usdaDescription": "Carrots, baby, raw",
+  "kcal": 35,
+  "proteinG": 0.6,
+  "carbsG": 8.2,
+  "fatG": 0.1,
+  "fiberG": 2.9,
+  "sugarG": 4.76,
+  "sodiumMg": 78,
+  "micros": {
+   "calciumMg": 32,
+   "ironMg": 0.89,
+   "magnesiumMg": 10,
+   "potassiumMg": 237,
+   "zincMg": 0.17,
+   "vitaminAUg": 690,
+   "vitaminCMg": 2.6,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 medium",
+    "grams": 10
+   },
+   {
+    "label": "1 large",
+    "grams": 15
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "168462-spinach",
+  "name": "Spinach",
+  "category": "Vegetables",
+  "fdcId": 168462,
+  "usdaDescription": "Spinach, raw",
+  "kcal": 23,
+  "proteinG": 2.9,
+  "carbsG": 3.6,
+  "fatG": 0.4,
+  "fiberG": 2.2,
+  "sugarG": 0.42,
+  "sodiumMg": 79,
+  "micros": {
+   "calciumMg": 99,
+   "ironMg": 2.71,
+   "magnesiumMg": 79,
+   "potassiumMg": 558,
+   "zincMg": 0.53,
+   "vitaminAUg": 469,
+   "vitaminCMg": 28.1,
+   "saturatedFatG": 0.06
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 30
+   },
+   {
+    "label": "1 bunch",
+    "grams": 340
+   },
+   {
+    "label": "1 leaf",
+    "grams": 10
+   },
+   {
+    "label": "1 package (10 oz)",
+    "grams": 284
+   }
+  ]
+ },
+ {
+  "id": "169247-lettuce-romaine",
+  "name": "Lettuce, romaine",
+  "category": "Vegetables",
+  "fdcId": 169247,
+  "usdaDescription": "Lettuce, cos or romaine, raw",
+  "kcal": 17,
+  "proteinG": 1.2,
+  "carbsG": 3.3,
+  "fatG": 0.3,
+  "fiberG": 2.1,
+  "sugarG": 1.19,
+  "sodiumMg": 8,
+  "micros": {
+   "calciumMg": 33,
+   "ironMg": 0.97,
+   "magnesiumMg": 14,
+   "potassiumMg": 247,
+   "zincMg": 0.23,
+   "vitaminAUg": 436,
+   "vitaminCMg": 4,
+   "saturatedFatG": 0.04
+  },
+  "portions": [
+   {
+    "label": "1 cup shredded",
+    "grams": 47
+   },
+   {
+    "label": "1 leaf inner",
+    "grams": 6
+   },
+   {
+    "label": "1 leaf outer",
+    "grams": 28
+   },
+   {
+    "label": "1 head",
+    "grams": 626
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "169248-lettuce-iceberg",
+  "name": "Lettuce, iceberg",
+  "category": "Vegetables",
+  "fdcId": 169248,
+  "usdaDescription": "Lettuce, iceberg (includes crisphead types), raw",
+  "kcal": 14,
+  "proteinG": 0.9,
+  "carbsG": 3,
+  "fatG": 0.1,
+  "fiberG": 1.2,
+  "sugarG": 1.97,
+  "sodiumMg": 10,
+  "micros": {
+   "calciumMg": 18,
+   "ironMg": 0.41,
+   "magnesiumMg": 7,
+   "potassiumMg": 141,
+   "zincMg": 0.15,
+   "vitaminAUg": 25,
+   "vitaminCMg": 2.8,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 cup shredded",
+    "grams": 72
+   },
+   {
+    "label": "1 cup, chopped (1/2\" pieces, loosely packed)",
+    "grams": 57
+   },
+   {
+    "label": "1 head, large",
+    "grams": 755
+   },
+   {
+    "label": "1 head, medium (6\" dia)",
+    "grams": 539
+   },
+   {
+    "label": "1 head, small",
+    "grams": 324
+   },
+   {
+    "label": "1 leaf, large",
+    "grams": 15
+   },
+   {
+    "label": "1 leaf, medium",
+    "grams": 8
+   },
+   {
+    "label": "1 leaf, small",
+    "grams": 5
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 89
+   }
+  ]
+ },
+ {
+  "id": "168421-kale",
+  "name": "Kale",
+  "category": "Vegetables",
+  "fdcId": 168421,
+  "usdaDescription": "Kale, raw",
+  "kcal": 35,
+  "proteinG": 2.9,
+  "carbsG": 4.4,
+  "fatG": 1.5,
+  "fiberG": 4.1,
+  "sugarG": 0.99,
+  "sodiumMg": 53,
+  "micros": {
+   "calciumMg": 254,
+   "ironMg": 1.6,
+   "magnesiumMg": 33,
+   "potassiumMg": 348,
+   "zincMg": 0.39,
+   "vitaminAUg": 241,
+   "vitaminCMg": 93.4,
+   "saturatedFatG": 0.18
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 21
+   }
+  ]
+ },
+ {
+  "id": "170457-tomato",
+  "name": "Tomato",
+  "category": "Vegetables",
+  "fdcId": 170457,
+  "usdaDescription": "Tomatoes, red, ripe, raw, year round average",
+  "kcal": 18,
+  "proteinG": 0.9,
+  "carbsG": 3.9,
+  "fatG": 0.2,
+  "fiberG": 1.2,
+  "sugarG": 2.63,
+  "sodiumMg": 5,
+  "micros": {
+   "calciumMg": 10,
+   "ironMg": 0.27,
+   "magnesiumMg": 11,
+   "potassiumMg": 237,
+   "zincMg": 0.17,
+   "vitaminAUg": 42,
+   "vitaminCMg": 13.7,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 medium whole (2-3/5\" dia)",
+    "grams": 123
+   },
+   {
+    "label": "1 cup cherry tomatoes",
+    "grams": 149
+   },
+   {
+    "label": "1 cup, chopped or sliced",
+    "grams": 180
+   },
+   {
+    "label": "1 Italian tomato",
+    "grams": 62
+   },
+   {
+    "label": "1 cherry",
+    "grams": 17
+   },
+   {
+    "label": "1 large whole (3\" dia)",
+    "grams": 182
+   },
+   {
+    "label": "1 slice, medium (1/4\" thick)",
+    "grams": 20
+   },
+   {
+    "label": "1 plum tomato",
+    "grams": 62
+   },
+   {
+    "label": "1 small whole (2-2/5\" dia)",
+    "grams": 91
+   },
+   {
+    "label": "1 slice, thick/large (1/2\" thick)",
+    "grams": 27
+   }
+  ]
+ },
+ {
+  "id": "170457-cherry-tomatoes",
+  "name": "Cherry tomatoes",
+  "category": "Vegetables",
+  "fdcId": 170457,
+  "usdaDescription": "Tomatoes, red, ripe, raw, year round average",
+  "kcal": 18,
+  "proteinG": 0.9,
+  "carbsG": 3.9,
+  "fatG": 0.2,
+  "fiberG": 1.2,
+  "sugarG": 2.63,
+  "sodiumMg": 5,
+  "micros": {
+   "calciumMg": 10,
+   "ironMg": 0.27,
+   "magnesiumMg": 11,
+   "potassiumMg": 237,
+   "zincMg": 0.17,
+   "vitaminAUg": 42,
+   "vitaminCMg": 13.7,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 cup cherry tomatoes",
+    "grams": 149
+   },
+   {
+    "label": "1 cup, chopped or sliced",
+    "grams": 180
+   },
+   {
+    "label": "1 Italian tomato",
+    "grams": 62
+   },
+   {
+    "label": "1 cherry",
+    "grams": 17
+   },
+   {
+    "label": "1 large whole (3\" dia)",
+    "grams": 182
+   },
+   {
+    "label": "1 medium whole (2-3/5\" dia)",
+    "grams": 123
+   },
+   {
+    "label": "1 slice, medium (1/4\" thick)",
+    "grams": 20
+   },
+   {
+    "label": "1 plum tomato",
+    "grams": 62
+   },
+   {
+    "label": "1 small whole (2-2/5\" dia)",
+    "grams": 91
+   },
+   {
+    "label": "1 slice, thick/large (1/2\" thick)",
+    "grams": 27
+   }
+  ]
+ },
+ {
+  "id": "168409-cucumber",
+  "name": "Cucumber",
+  "category": "Vegetables",
+  "fdcId": 168409,
+  "usdaDescription": "Cucumber, with peel, raw",
+  "kcal": 15,
+  "proteinG": 0.7,
+  "carbsG": 3.6,
+  "fatG": 0.1,
+  "fiberG": 0.5,
+  "sugarG": 1.67,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 16,
+   "ironMg": 0.28,
+   "magnesiumMg": 13,
+   "potassiumMg": 147,
+   "zincMg": 0.2,
+   "vitaminAUg": 5,
+   "vitaminCMg": 2.8,
+   "saturatedFatG": 0.04
+  },
+  "portions": [
+   {
+    "label": "0.5 cup slices",
+    "grams": 52
+   },
+   {
+    "label": "1 cucumber (8-1/4\")",
+    "grams": 301
+   }
+  ]
+ },
+ {
+  "id": "170108-bell-pepper-red",
+  "name": "Bell pepper, red",
+  "category": "Vegetables",
+  "fdcId": 170108,
+  "usdaDescription": "Peppers, sweet, red, raw",
+  "kcal": 26,
+  "proteinG": 1,
+  "carbsG": 6,
+  "fatG": 0.3,
+  "fiberG": 2.1,
+  "sugarG": 4.2,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 7,
+   "ironMg": 0.43,
+   "magnesiumMg": 12,
+   "potassiumMg": 211,
+   "zincMg": 0.25,
+   "vitaminAUg": 157,
+   "vitaminCMg": 127.7,
+   "saturatedFatG": 0.06
+  },
+  "portions": [
+   {
+    "label": "1 medium (approx 2-3/4\" long, 2-1/2 dia.)",
+    "grams": 119
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 149
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 92
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 9.3
+   },
+   {
+    "label": "1 large (2-1/4 per pound, approx 3-3/4\" long, 3\" dia.)",
+    "grams": 164
+   },
+   {
+    "label": "1 small",
+    "grams": 74
+   },
+   {
+    "label": "1 ring (3\" dia., 1/4\" thick)",
+    "grams": 10
+   }
+  ]
+ },
+ {
+  "id": "170427-bell-pepper-green",
+  "name": "Bell pepper, green",
+  "category": "Vegetables",
+  "fdcId": 170427,
+  "usdaDescription": "Peppers, sweet, green, raw",
+  "kcal": 20,
+  "proteinG": 0.9,
+  "carbsG": 4.6,
+  "fatG": 0.2,
+  "fiberG": 1.7,
+  "sugarG": 2.4,
+  "sodiumMg": 3,
+  "micros": {
+   "calciumMg": 10,
+   "ironMg": 0.34,
+   "magnesiumMg": 10,
+   "potassiumMg": 175,
+   "zincMg": 0.13,
+   "vitaminAUg": 18,
+   "vitaminCMg": 80.4,
+   "saturatedFatG": 0.06
+  },
+  "portions": [
+   {
+    "label": "1 medium (approx 2-3/4\" long, 2-1/2\" dia)",
+    "grams": 119
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 149
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 92
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 9.3
+   },
+   {
+    "label": "1 large (2-1/4 per lb, approx 3-3/4\" long, 3\" dia)",
+    "grams": 164
+   },
+   {
+    "label": "1 ring (3\" dia, 1/4\" thick)",
+    "grams": 10
+   },
+   {
+    "label": "1 small",
+    "grams": 74
+   },
+   {
+    "label": "10 strips",
+    "grams": 27
+   }
+  ]
+ },
+ {
+  "id": "170000-onion",
+  "name": "Onion",
+  "category": "Vegetables",
+  "fdcId": 170000,
+  "usdaDescription": "Onions, raw",
+  "kcal": 40,
+  "proteinG": 1.1,
+  "carbsG": 9.3,
+  "fatG": 0.1,
+  "fiberG": 1.7,
+  "sugarG": 4.24,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 23,
+   "ironMg": 0.21,
+   "magnesiumMg": 10,
+   "potassiumMg": 146,
+   "zincMg": 0.17,
+   "vitaminCMg": 7.4,
+   "saturatedFatG": 0.04
+  },
+  "portions": [
+   {
+    "label": "1 medium (2-1/2\" dia)",
+    "grams": 110
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 160
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 115
+   },
+   {
+    "label": "1 tbsp chopped",
+    "grams": 10
+   },
+   {
+    "label": "1 large",
+    "grams": 150
+   },
+   {
+    "label": "1 slice, large (1/4\" thick)",
+    "grams": 38
+   },
+   {
+    "label": "1 slice, medium (1/8\" thick)",
+    "grams": 14
+   },
+   {
+    "label": "1 small",
+    "grams": 70
+   },
+   {
+    "label": "1 slice, thin",
+    "grams": 9
+   },
+   {
+    "label": "10 rings",
+    "grams": 60
+   }
+  ]
+ },
+ {
+  "id": "169230-garlic",
+  "name": "Garlic",
+  "category": "Vegetables",
+  "fdcId": 169230,
+  "usdaDescription": "Garlic, raw",
+  "kcal": 149,
+  "proteinG": 6.4,
+  "carbsG": 33.1,
+  "fatG": 0.5,
+  "fiberG": 2.1,
+  "sugarG": 1,
+  "sodiumMg": 17,
+  "micros": {
+   "calciumMg": 181,
+   "ironMg": 1.7,
+   "magnesiumMg": 25,
+   "potassiumMg": 401,
+   "zincMg": 1.16,
+   "vitaminCMg": 31.2,
+   "saturatedFatG": 0.09
+  },
+  "portions": [
+   {
+    "label": "1 clove",
+    "grams": 3
+   },
+   {
+    "label": "1 cup",
+    "grams": 136
+   },
+   {
+    "label": "1 tsp",
+    "grams": 2.8
+   },
+   {
+    "label": "3 cloves",
+    "grams": 9
+   }
+  ]
+ },
+ {
+  "id": "169251-mushrooms",
+  "name": "Mushrooms",
+  "category": "Vegetables",
+  "fdcId": 169251,
+  "usdaDescription": "Mushrooms, white, raw",
+  "kcal": 22,
+  "proteinG": 3.1,
+  "carbsG": 3.3,
+  "fatG": 0.3,
+  "fiberG": 1,
+  "sugarG": 1.98,
+  "sodiumMg": 5,
+  "micros": {
+   "calciumMg": 3,
+   "ironMg": 0.5,
+   "magnesiumMg": 9,
+   "potassiumMg": 318,
+   "zincMg": 0.52,
+   "vitaminDUg": 0.2,
+   "vitaminCMg": 2.1,
+   "vitaminB12Ug": 0.04,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "1 cup, pieces or slices",
+    "grams": 70
+   },
+   {
+    "label": "1 cup, whole",
+    "grams": 96
+   },
+   {
+    "label": "1 large",
+    "grams": 23
+   },
+   {
+    "label": "1 medium",
+    "grams": 18
+   },
+   {
+    "label": "1 slice",
+    "grams": 6
+   },
+   {
+    "label": "1 small",
+    "grams": 10
+   },
+   {
+    "label": "0.5 cup pieces",
+    "grams": 35
+   }
+  ]
+ },
+ {
+  "id": "169291-zucchini",
+  "name": "Zucchini",
+  "category": "Vegetables",
+  "fdcId": 169291,
+  "usdaDescription": "Squash, summer, zucchini, includes skin, raw",
+  "kcal": 17,
+  "proteinG": 1.2,
+  "carbsG": 3.1,
+  "fatG": 0.3,
+  "fiberG": 1,
+  "sugarG": 2.5,
+  "sodiumMg": 8,
+  "micros": {
+   "calciumMg": 16,
+   "ironMg": 0.37,
+   "magnesiumMg": 18,
+   "potassiumMg": 261,
+   "zincMg": 0.32,
+   "vitaminAUg": 10,
+   "vitaminCMg": 17.9,
+   "saturatedFatG": 0.08
+  },
+  "portions": [
+   {
+    "label": "1 medium",
+    "grams": 196
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 124
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 113
+   },
+   {
+    "label": "1 large",
+    "grams": 323
+   },
+   {
+    "label": "1 slice",
+    "grams": 9.9
+   },
+   {
+    "label": "1 small",
+    "grams": 118
+   }
+  ]
+ },
+ {
+  "id": "169986-cauliflower",
+  "name": "Cauliflower",
+  "category": "Vegetables",
+  "fdcId": 169986,
+  "usdaDescription": "Cauliflower, raw",
+  "kcal": 25,
+  "proteinG": 1.9,
+  "carbsG": 5,
+  "fatG": 0.3,
+  "fiberG": 2,
+  "sugarG": 1.91,
+  "sodiumMg": 30,
+  "micros": {
+   "calciumMg": 22,
+   "ironMg": 0.42,
+   "magnesiumMg": 15,
+   "potassiumMg": 299,
+   "zincMg": 0.27,
+   "vitaminCMg": 48.2,
+   "saturatedFatG": 0.13
+  },
+  "portions": [
+   {
+    "label": "1 cup chopped (1/2\" pieces)",
+    "grams": 107
+   },
+   {
+    "label": "1 floweret",
+    "grams": 13
+   },
+   {
+    "label": "1 head large (6-7\" dia.)",
+    "grams": 840
+   },
+   {
+    "label": "1 head medium (5-6\" dia.)",
+    "grams": 588
+   },
+   {
+    "label": "1 head small (4\" dia.)",
+    "grams": 265
+   }
+  ]
+ },
+ {
+  "id": "169141-green-beans-cooked",
+  "name": "Green beans, cooked",
+  "category": "Vegetables",
+  "fdcId": 169141,
+  "usdaDescription": "Beans, snap, green, cooked, boiled, drained, without salt",
+  "kcal": 35,
+  "proteinG": 1.9,
+  "carbsG": 7.9,
+  "fatG": 0.3,
+  "fiberG": 3.2,
+  "sugarG": 3.63,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 44,
+   "ironMg": 0.65,
+   "magnesiumMg": 18,
+   "potassiumMg": 146,
+   "zincMg": 0.25,
+   "vitaminAUg": 32,
+   "vitaminCMg": 9.7,
+   "saturatedFatG": 0.06
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 125
+   }
+  ]
+ },
+ {
+  "id": "170017-peas-cooked",
+  "name": "Peas, cooked",
+  "category": "Vegetables",
+  "fdcId": 170017,
+  "usdaDescription": "Peas, green, frozen, cooked, boiled, drained, without salt",
+  "kcal": 78,
+  "proteinG": 5.2,
+  "carbsG": 14.3,
+  "fatG": 0.3,
+  "fiberG": 4.5,
+  "sugarG": 4.4,
+  "sodiumMg": 72,
+  "micros": {
+   "calciumMg": 24,
+   "ironMg": 1.52,
+   "magnesiumMg": 22,
+   "potassiumMg": 110,
+   "zincMg": 0.67,
+   "vitaminAUg": 105,
+   "vitaminCMg": 9.9,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "0.5 cup",
+    "grams": 80
+   },
+   {
+    "label": "1 package (10 oz) yields",
+    "grams": 253
+   }
+  ]
+ },
+ {
+  "id": "169999-corn-cooked",
+  "name": "Corn, cooked",
+  "category": "Vegetables",
+  "fdcId": 169999,
+  "usdaDescription": "Corn, sweet, yellow, cooked, boiled, drained, without salt",
+  "kcal": 96,
+  "proteinG": 3.4,
+  "carbsG": 21,
+  "fatG": 1.5,
+  "fiberG": 2.4,
+  "sugarG": 4.54,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 3,
+   "ironMg": 0.45,
+   "magnesiumMg": 26,
+   "potassiumMg": 218,
+   "zincMg": 0.62,
+   "vitaminAUg": 13,
+   "vitaminCMg": 5.5,
+   "saturatedFatG": 0.2
+  },
+  "portions": [
+   {
+    "label": "1 cup cut",
+    "grams": 149
+   },
+   {
+    "label": "1 ear small (5-1/2\" to 6-1/2\" long)",
+    "grams": 89
+   },
+   {
+    "label": "1 ear medium (6-3/4\" to 7-1/2\" long)",
+    "grams": 103
+   },
+   {
+    "label": "1 ear large (7-3/4\" to 9\" long)",
+    "grams": 118
+   },
+   {
+    "label": "1 baby ear",
+    "grams": 8
+   }
+  ]
+ },
+ {
+  "id": "169988-celery",
+  "name": "Celery",
+  "category": "Vegetables",
+  "fdcId": 169988,
+  "usdaDescription": "Celery, raw",
+  "kcal": 14,
+  "proteinG": 0.7,
+  "carbsG": 3,
+  "fatG": 0.2,
+  "fiberG": 1.6,
+  "sugarG": 1.34,
+  "sodiumMg": 80,
+  "micros": {
+   "calciumMg": 40,
+   "ironMg": 0.2,
+   "magnesiumMg": 11,
+   "potassiumMg": 260,
+   "zincMg": 0.13,
+   "vitaminAUg": 22,
+   "vitaminCMg": 3.1,
+   "saturatedFatG": 0.04
+  },
+  "portions": [
+   {
+    "label": "1 stalk, medium (7-1/2\" - 8\" long)",
+    "grams": 40
+   },
+   {
+    "label": "1 cup chopped",
+    "grams": 101
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 110
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 7.5
+   },
+   {
+    "label": "1 stalk, large (11\"-12\" long)",
+    "grams": 64
+   },
+   {
+    "label": "1 stalk, small (5\" long)",
+    "grams": 17
+   },
+   {
+    "label": "1 strip (4\" long)",
+    "grams": 4
+   }
+  ]
+ },
+ {
+  "id": "168390-asparagus-cooked",
+  "name": "Asparagus, cooked",
+  "category": "Vegetables",
+  "fdcId": 168390,
+  "usdaDescription": "Asparagus, cooked, boiled, drained",
+  "kcal": 22,
+  "proteinG": 2.4,
+  "carbsG": 4.1,
+  "fatG": 0.2,
+  "fiberG": 2,
+  "sugarG": 1.3,
+  "sodiumMg": 14,
+  "micros": {
+   "calciumMg": 23,
+   "ironMg": 0.91,
+   "magnesiumMg": 14,
+   "potassiumMg": 224,
+   "zincMg": 0.6,
+   "vitaminAUg": 50,
+   "vitaminCMg": 7.7,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "4 spears (1/2\" base)",
+    "grams": 60
+   },
+   {
+    "label": "0.5 cup",
+    "grams": 90
+   }
+  ]
+ },
+ {
+  "id": "169975-cabbage",
+  "name": "Cabbage",
+  "category": "Vegetables",
+  "fdcId": 169975,
+  "usdaDescription": "Cabbage, raw",
+  "kcal": 25,
+  "proteinG": 1.3,
+  "carbsG": 5.8,
+  "fatG": 0.1,
+  "fiberG": 2.5,
+  "sugarG": 3.2,
+  "sodiumMg": 18,
+  "micros": {
+   "calciumMg": 40,
+   "ironMg": 0.47,
+   "magnesiumMg": 12,
+   "potassiumMg": 170,
+   "zincMg": 0.18,
+   "vitaminAUg": 5,
+   "vitaminCMg": 36.6,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 cup, shredded",
+    "grams": 70
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 89
+   },
+   {
+    "label": "1 head, large (about 7\" dia)",
+    "grams": 1248
+   },
+   {
+    "label": "1 leaf, large",
+    "grams": 33
+   },
+   {
+    "label": "1 head, medium (about 5-3/4\" dia)",
+    "grams": 908
+   },
+   {
+    "label": "1 leaf, medium",
+    "grams": 23
+   },
+   {
+    "label": "1 head, small (about 4-1/2\" dia)",
+    "grams": 714
+   },
+   {
+    "label": "1 leaf",
+    "grams": 15
+   }
+  ]
+ },
+ {
+  "id": "169971-brussels-sprouts-cooked",
+  "name": "Brussels sprouts, cooked",
+  "category": "Vegetables",
+  "fdcId": 169971,
+  "usdaDescription": "Brussels sprouts, cooked, boiled, drained, without salt",
+  "kcal": 36,
+  "proteinG": 2.6,
+  "carbsG": 7.1,
+  "fatG": 0.5,
+  "fiberG": 2.6,
+  "sugarG": 1.74,
+  "sodiumMg": 21,
+  "micros": {
+   "calciumMg": 36,
+   "ironMg": 1.2,
+   "magnesiumMg": 20,
+   "potassiumMg": 317,
+   "zincMg": 0.33,
+   "vitaminAUg": 39,
+   "vitaminCMg": 62,
+   "saturatedFatG": 0.1
+  },
+  "portions": [
+   {
+    "label": "0.5 cup",
+    "grams": 78
+   },
+   {
+    "label": "1 sprout",
+    "grams": 21
+   }
+  ]
+ },
+ {
+  "id": "170093-potato-baked",
+  "name": "Potato, baked",
+  "category": "Vegetables",
+  "fdcId": 170093,
+  "usdaDescription": "Potatoes, baked, flesh and skin, without salt",
+  "kcal": 93,
+  "proteinG": 2.5,
+  "carbsG": 21.2,
+  "fatG": 0.1,
+  "fiberG": 2.2,
+  "sugarG": 1.18,
+  "sodiumMg": 10,
+  "micros": {
+   "calciumMg": 15,
+   "ironMg": 1.08,
+   "magnesiumMg": 28,
+   "potassiumMg": 535,
+   "zincMg": 0.36,
+   "vitaminAUg": 1,
+   "vitaminCMg": 9.6,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 potato medium",
+    "grams": 173
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 148
+   },
+   {
+    "label": "1 potato large",
+    "grams": 299
+   },
+   {
+    "label": "1 potato small",
+    "grams": 138
+   }
+  ]
+ },
+ {
+  "id": "170037-potatoes-mashed",
+  "name": "Potatoes, mashed",
+  "category": "Vegetables",
+  "fdcId": 170037,
+  "usdaDescription": "Potatoes, mashed, home-prepared, whole milk and margarine added",
+  "kcal": 113,
+  "proteinG": 2,
+  "carbsG": 16.9,
+  "fatG": 4.2,
+  "fiberG": 1.5,
+  "sugarG": 1.41,
+  "sodiumMg": 333,
+  "micros": {
+   "calciumMg": 21,
+   "ironMg": 0.26,
+   "magnesiumMg": 19,
+   "potassiumMg": 326,
+   "zincMg": 0.3,
+   "vitaminAUg": 44,
+   "vitaminDUg": 0.2,
+   "vitaminCMg": 10.5,
+   "vitaminB12Ug": 0.07,
+   "cholesterolMg": 1,
+   "saturatedFatG": 0.75
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 210
+   }
+  ]
+ },
+ {
+  "id": "168483-sweet-potato-baked",
+  "name": "Sweet potato, baked",
+  "category": "Vegetables",
+  "fdcId": 168483,
+  "usdaDescription": "Sweet potato, cooked, baked in skin, flesh, without salt",
+  "kcal": 90,
+  "proteinG": 2,
+  "carbsG": 20.7,
+  "fatG": 0.2,
+  "fiberG": 3.3,
+  "sugarG": 6.48,
+  "sodiumMg": 36,
+  "micros": {
+   "calciumMg": 38,
+   "ironMg": 0.69,
+   "magnesiumMg": 27,
+   "potassiumMg": 475,
+   "zincMg": 0.32,
+   "vitaminAUg": 961,
+   "vitaminCMg": 19.6,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "1 medium (2\" dia, 5\" long, raw)",
+    "grams": 114
+   },
+   {
+    "label": "1 cup",
+    "grams": 200
+   },
+   {
+    "label": "1 large",
+    "grams": 180
+   },
+   {
+    "label": "1 small",
+    "grams": 60
+   }
+  ]
+ },
+ {
+  "id": "169264-french-fries",
+  "name": "French fries",
+  "category": "Vegetables",
+  "fdcId": 169264,
+  "usdaDescription": "Potatoes, french fried, all types, salt added in processing, frozen, home-prepared, oven heated",
+  "kcal": 158,
+  "proteinG": 2.8,
+  "carbsG": 25.6,
+  "fatG": 5.5,
+  "fiberG": 2,
+  "sugarG": 0.37,
+  "sodiumMg": 324,
+  "micros": {
+   "calciumMg": 12,
+   "ironMg": 0.57,
+   "magnesiumMg": 24,
+   "potassiumMg": 478,
+   "zincMg": 0.35,
+   "vitaminCMg": 8.6,
+   "saturatedFatG": 0.85
+  },
+  "portions": [
+   {
+    "label": "10 fries",
+    "grams": 76
+   },
+   {
+    "label": "1 package (9 oz), yields",
+    "grams": 198
+   }
+  ]
+ },
+ {
+  "id": "168878-white-rice-cooked",
+  "name": "White rice, cooked",
+  "category": "Grains",
+  "fdcId": 168878,
+  "usdaDescription": "Rice, white, long-grain, regular, enriched, cooked",
+  "kcal": 130,
+  "proteinG": 2.7,
+  "carbsG": 28.2,
+  "fatG": 0.3,
+  "fiberG": 0.4,
+  "sugarG": 0.05,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 10,
+   "ironMg": 1.2,
+   "magnesiumMg": 12,
+   "potassiumMg": 35,
+   "zincMg": 0.49,
+   "saturatedFatG": 0.08
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 158
+   }
+  ]
+ },
+ {
+  "id": "169704-brown-rice-cooked",
+  "name": "Brown rice, cooked",
+  "category": "Grains",
+  "fdcId": 169704,
+  "usdaDescription": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 123,
+  "proteinG": 2.7,
+  "carbsG": 25.6,
+  "fatG": 1,
+  "fiberG": 1.6,
+  "sugarG": 0.24,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 3,
+   "ironMg": 0.56,
+   "magnesiumMg": 39,
+   "potassiumMg": 86,
+   "zincMg": 0.71,
+   "saturatedFatG": 0.26
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 202
+   }
+  ]
+ },
+ {
+  "id": "169737-pasta-cooked",
+  "name": "Pasta, cooked",
+  "category": "Grains",
+  "fdcId": 169737,
+  "usdaDescription": "Pasta, cooked, enriched, without added salt",
+  "kcal": 158,
+  "proteinG": 5.8,
+  "carbsG": 30.9,
+  "fatG": 0.9,
+  "fiberG": 1.8,
+  "sugarG": 0.56,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 7,
+   "ironMg": 1.28,
+   "magnesiumMg": 18,
+   "potassiumMg": 44,
+   "zincMg": 0.51,
+   "saturatedFatG": 0.18
+  },
+  "portions": [
+   {
+    "label": "1 cup spaghetti not packed",
+    "grams": 124
+   },
+   {
+    "label": "1 cup spaghetti packed",
+    "grams": 151
+   },
+   {
+    "label": "1 cup elbows not packed",
+    "grams": 120
+   },
+   {
+    "label": "1 cup elbows packed",
+    "grams": 132
+   },
+   {
+    "label": "1 cup penne",
+    "grams": 107
+   },
+   {
+    "label": "1 cup farfalle",
+    "grams": 107
+   },
+   {
+    "label": "1 cup rotini",
+    "grams": 107
+   },
+   {
+    "label": "1 cup shells",
+    "grams": 105
+   },
+   {
+    "label": "1 cup lasagne",
+    "grams": 116
+   }
+  ]
+ },
+ {
+  "id": "168910-whole-wheat-pasta-cooked",
+  "name": "Whole wheat pasta, cooked",
+  "category": "Grains",
+  "fdcId": 168910,
+  "usdaDescription": "Pasta, whole-wheat, cooked (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 149,
+  "proteinG": 6,
+  "carbsG": 30.1,
+  "fatG": 1.7,
+  "fiberG": 3.9,
+  "sugarG": 0.75,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 13,
+   "ironMg": 1.72,
+   "magnesiumMg": 54,
+   "potassiumMg": 96,
+   "zincMg": 1.34,
+   "saturatedFatG": 0.24
+  },
+  "portions": [
+   {
+    "label": "1 cup spaghetti not packed",
+    "grams": 117
+   },
+   {
+    "label": "1 cup spaghetti packed",
+    "grams": 151
+   },
+   {
+    "label": "1 cup elbows",
+    "grams": 117
+   },
+   {
+    "label": "1 cup penne",
+    "grams": 97
+   },
+   {
+    "label": "1 cup shells",
+    "grams": 105
+   },
+   {
+    "label": "1 cup lasagne",
+    "grams": 116
+   },
+   {
+    "label": "1 cup rotini",
+    "grams": 107
+   },
+   {
+    "label": "1 cup farfalle",
+    "grams": 107
+   }
+  ]
+ },
+ {
+  "id": "173905-oatmeal-cooked",
+  "name": "Oatmeal, cooked",
+  "category": "Grains",
+  "fdcId": 173905,
+  "usdaDescription": "Cereals, oats, regular and quick, unenriched, cooked with water (includes boiling and microwaving), without salt",
+  "kcal": 71,
+  "proteinG": 2.5,
+  "carbsG": 12,
+  "fatG": 1.5,
+  "fiberG": 1.7,
+  "sugarG": 0.27,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 9,
+   "ironMg": 0.9,
+   "magnesiumMg": 27,
+   "potassiumMg": 70,
+   "zincMg": 1,
+   "saturatedFatG": 0.31
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 234
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 14.6
+   },
+   {
+    "label": "0.75 cup",
+    "grams": 175
+   }
+  ]
+ },
+ {
+  "id": "173904-oats-dry",
+  "name": "Oats, dry",
+  "category": "Grains",
+  "fdcId": 173904,
+  "usdaDescription": "Cereals, oats, regular and quick, not fortified, dry",
+  "kcal": 379,
+  "proteinG": 13.2,
+  "carbsG": 67.7,
+  "fatG": 6.5,
+  "fiberG": 10.1,
+  "sugarG": 0.99,
+  "sodiumMg": 6,
+  "micros": {
+   "calciumMg": 52,
+   "ironMg": 4.25,
+   "magnesiumMg": 138,
+   "potassiumMg": 362,
+   "zincMg": 3.64,
+   "saturatedFatG": 1.11
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 81
+   },
+   {
+    "label": "0.33 cup",
+    "grams": 27
+   }
+  ]
+ },
+ {
+  "id": "168917-quinoa-cooked",
+  "name": "Quinoa, cooked",
+  "category": "Grains",
+  "fdcId": 168917,
+  "usdaDescription": "Quinoa, cooked",
+  "kcal": 120,
+  "proteinG": 4.4,
+  "carbsG": 21.3,
+  "fatG": 1.9,
+  "fiberG": 2.8,
+  "sugarG": 0.87,
+  "sodiumMg": 7,
+  "micros": {
+   "calciumMg": 17,
+   "ironMg": 1.49,
+   "magnesiumMg": 64,
+   "potassiumMg": 172,
+   "zincMg": 1.09,
+   "saturatedFatG": 0.23
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 185
+   }
+  ]
+ },
+ {
+  "id": "174924-bread-white",
+  "name": "Bread, white",
+  "category": "Grains",
+  "fdcId": 174924,
+  "usdaDescription": "Bread, white, commercially prepared (includes soft bread crumbs)",
+  "kcal": 266,
+  "proteinG": 8.9,
+  "carbsG": 49.4,
+  "fatG": 3.3,
+  "fiberG": 2.7,
+  "sugarG": 5.67,
+  "sodiumMg": 490,
+  "micros": {
+   "calciumMg": 144,
+   "ironMg": 3.61,
+   "magnesiumMg": 23,
+   "potassiumMg": 126,
+   "zincMg": 0.74,
+   "saturatedFatG": 0.7
+  },
+  "portions": [
+   {
+    "label": "1 slice",
+    "grams": 29
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup, crumbs",
+    "grams": 45
+   },
+   {
+    "label": "1 cup, cubes",
+    "grams": 35
+   },
+   {
+    "label": "1 slice, large",
+    "grams": 30
+   },
+   {
+    "label": "1 slice crust not eaten",
+    "grams": 12
+   },
+   {
+    "label": "1 slice, thin",
+    "grams": 20
+   },
+   {
+    "label": "1 slice thin, crust not eaten",
+    "grams": 9
+   },
+   {
+    "label": "1 slice, very thin",
+    "grams": 15
+   }
+  ]
+ },
+ {
+  "id": "172688-bread-whole-wheat",
+  "name": "Bread, whole wheat",
+  "category": "Grains",
+  "fdcId": 172688,
+  "usdaDescription": "Bread, whole-wheat, commercially prepared",
+  "kcal": 252,
+  "proteinG": 12.5,
+  "carbsG": 42.7,
+  "fatG": 3.5,
+  "fiberG": 6,
+  "sugarG": 4.34,
+  "sodiumMg": 455,
+  "micros": {
+   "calciumMg": 161,
+   "ironMg": 2.47,
+   "magnesiumMg": 75,
+   "potassiumMg": 254,
+   "zincMg": 1.77,
+   "saturatedFatG": 0.72
+  },
+  "portions": [
+   {
+    "label": "1 slice",
+    "grams": 32
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "174899-bagel",
+  "name": "Bagel",
+  "category": "Grains",
+  "fdcId": 174899,
+  "usdaDescription": "Bagels, plain, enriched, with calcium propionate (includes onion, poppy, sesame)",
+  "kcal": 264,
+  "proteinG": 10.6,
+  "carbsG": 52.4,
+  "fatG": 1.3,
+  "fiberG": 1.6,
+  "sugarG": 8.43,
+  "sodiumMg": 422,
+  "micros": {
+   "calciumMg": 219,
+   "ironMg": 3.57,
+   "magnesiumMg": 29,
+   "potassiumMg": 107,
+   "zincMg": 0.83,
+   "saturatedFatG": 0.36
+  },
+  "portions": [
+   {
+    "label": "1 medium bagel (3-1/2\" to 4\" dia)",
+    "grams": 105
+   },
+   {
+    "label": "1 bagel",
+    "grams": 99
+   },
+   {
+    "label": "1 mini bagel (2-1/2\" dia)",
+    "grams": 26
+   },
+   {
+    "label": "1 small bagel (3\" dia)",
+    "grams": 69
+   },
+   {
+    "label": "1 large bagel (4-1/2\")",
+    "grams": 131
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "174994-english-muffin",
+  "name": "English muffin",
+  "category": "Grains",
+  "fdcId": 174994,
+  "usdaDescription": "Muffins, English, plain, enriched, with ca prop (includes sourdough)",
+  "kcal": 227,
+  "proteinG": 8.9,
+  "carbsG": 44.2,
+  "fatG": 1.7,
+  "fiberG": 3.5,
+  "sugarG": 3.53,
+  "sodiumMg": 425,
+  "micros": {
+   "calciumMg": 163,
+   "ironMg": 4,
+   "magnesiumMg": 24,
+   "potassiumMg": 109,
+   "zincMg": 1.05,
+   "vitaminCMg": 1.8,
+   "vitaminB12Ug": 0.04,
+   "saturatedFatG": 0.73
+  },
+  "portions": [
+   {
+    "label": "1 muffin",
+    "grams": 57
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "167535-tortilla-flour",
+  "name": "Tortilla, flour",
+  "category": "Grains",
+  "fdcId": 167535,
+  "usdaDescription": "Tortillas, ready-to-bake or -fry, flour, shelf stable",
+  "kcal": 297,
+  "proteinG": 8,
+  "carbsG": 49.3,
+  "fatG": 7.6,
+  "fiberG": 2.4,
+  "sugarG": 2.66,
+  "sodiumMg": 742,
+  "micros": {
+   "calciumMg": 163,
+   "ironMg": 3.32,
+   "magnesiumMg": 21,
+   "potassiumMg": 133,
+   "zincMg": 0.57,
+   "saturatedFatG": 1.23
+  },
+  "portions": [
+   {
+    "label": "1 tortilla",
+    "grams": 49
+   },
+   {
+    "label": "1 package",
+    "grams": 484
+   }
+  ]
+ },
+ {
+  "id": "175036-tortilla-corn",
+  "name": "Tortilla, corn",
+  "category": "Grains",
+  "fdcId": 175036,
+  "usdaDescription": "Tortillas, ready-to-bake or -fry, corn",
+  "kcal": 218,
+  "proteinG": 5.7,
+  "carbsG": 44.6,
+  "fatG": 2.9,
+  "fiberG": 6.3,
+  "sugarG": 0.88,
+  "sodiumMg": 45,
+  "micros": {
+   "calciumMg": 81,
+   "ironMg": 1.23,
+   "magnesiumMg": 72,
+   "potassiumMg": 186,
+   "zincMg": 1.31,
+   "saturatedFatG": 0.45
+  },
+  "portions": [
+   {
+    "label": "1 tortilla",
+    "grams": 24
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 enchilada",
+    "grams": 19
+   }
+  ]
+ },
+ {
+  "id": "172796-hamburger-bun",
+  "name": "Hamburger bun",
+  "category": "Grains",
+  "fdcId": 172796,
+  "usdaDescription": "Rolls, hamburger or hotdog, plain",
+  "kcal": 279,
+  "proteinG": 9.8,
+  "carbsG": 50.1,
+  "fatG": 3.9,
+  "fiberG": 1.8,
+  "sugarG": 7.28,
+  "sodiumMg": 494,
+  "micros": {
+   "calciumMg": 144,
+   "ironMg": 3.43,
+   "magnesiumMg": 23,
+   "potassiumMg": 122,
+   "zincMg": 0.73,
+   "vitaminAUg": 29,
+   "vitaminCMg": 1.3,
+   "vitaminB12Ug": 0.2,
+   "saturatedFatG": 0.84
+  },
+  "portions": [
+   {
+    "label": "1 roll",
+    "grams": 44
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "175009-pancake",
+  "name": "Pancake",
+  "category": "Grains",
+  "fdcId": 175009,
+  "usdaDescription": "Pancakes, plain, prepared from recipe",
+  "kcal": 227,
+  "proteinG": 6.4,
+  "carbsG": 28.3,
+  "fatG": 9.7,
+  "fiberG": null,
+  "sugarG": null,
+  "sodiumMg": 439,
+  "micros": {
+   "calciumMg": 219,
+   "ironMg": 1.8,
+   "magnesiumMg": 16,
+   "potassiumMg": 132,
+   "zincMg": 0.56,
+   "vitaminAUg": 54,
+   "vitaminCMg": 0.3,
+   "vitaminB12Ug": 0.22,
+   "cholesterolMg": 59,
+   "saturatedFatG": 2.12
+  },
+  "portions": [
+   {
+    "label": "1 pancake (4\" dia)",
+    "grams": 38
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 pancake (6\" dia)",
+    "grams": 77
+   }
+  ]
+ },
+ {
+  "id": "175048-waffle-frozen",
+  "name": "Waffle, frozen",
+  "category": "Grains",
+  "fdcId": 175048,
+  "usdaDescription": "Waffles, plain, frozen, ready -to-heat, toasted",
+  "kcal": 312,
+  "proteinG": 7.2,
+  "carbsG": 49.3,
+  "fatG": 9.6,
+  "fiberG": 2.4,
+  "sugarG": 5.02,
+  "sodiumMg": 467,
+  "micros": {
+   "calciumMg": 307,
+   "ironMg": 6.91,
+   "magnesiumMg": 24,
+   "potassiumMg": 144,
+   "zincMg": 0.53,
+   "vitaminAUg": 398,
+   "vitaminB12Ug": 2.9,
+   "cholesterolMg": 15,
+   "saturatedFatG": 1.64
+  },
+  "portions": [
+   {
+    "label": "1 waffle, round (4\" dia)",
+    "grams": 33
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 waffle, square (4\" square)",
+    "grams": 33
+   }
+  ]
+ },
+ {
+  "id": "171646-granola",
+  "name": "Granola",
+  "category": "Grains",
+  "fdcId": 171646,
+  "usdaDescription": "Cereals ready-to-eat, granola, homemade",
+  "kcal": 489,
+  "proteinG": 13.7,
+  "carbsG": 53.9,
+  "fatG": 24.3,
+  "fiberG": 8.9,
+  "sugarG": 19.8,
+  "sodiumMg": 26,
+  "micros": {
+   "calciumMg": 76,
+   "ironMg": 3.95,
+   "magnesiumMg": 168,
+   "potassiumMg": 539,
+   "zincMg": 4.17,
+   "vitaminAUg": 1,
+   "vitaminCMg": 1.2,
+   "saturatedFatG": 3.96
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 122
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "172746-crackers-saltine",
+  "name": "Crackers, saltine",
+  "category": "Grains",
+  "fdcId": 172746,
+  "usdaDescription": "Crackers, saltines (includes oyster, soda, soup)",
+  "kcal": 418,
+  "proteinG": 9.5,
+  "carbsG": 74.1,
+  "fatG": 8.6,
+  "fiberG": 2.8,
+  "sugarG": 1.29,
+  "sodiumMg": 941,
+  "micros": {
+   "calciumMg": 19,
+   "ironMg": 5.57,
+   "magnesiumMg": 23,
+   "potassiumMg": 152,
+   "zincMg": 0.69,
+   "vitaminAUg": 1,
+   "vitaminB12Ug": 0.09,
+   "saturatedFatG": 1.65
+  },
+  "portions": [
+   {
+    "label": "5 crackers",
+    "grams": 14.9
+   },
+   {
+    "label": "0.5 oz",
+    "grams": 14.2
+   },
+   {
+    "label": "1 cup, crushed",
+    "grams": 70
+   },
+   {
+    "label": "5 crackers square (1 serving)",
+    "grams": 15
+   },
+   {
+    "label": "1 cracker square",
+    "grams": 3
+   },
+   {
+    "label": "1 cracker, round large",
+    "grams": 10
+   },
+   {
+    "label": "1 cracker, oyster",
+    "grams": 1
+   },
+   {
+    "label": "1 cracker, rectangle",
+    "grams": 6
+   },
+   {
+    "label": "1 cup oyster crackers",
+    "grams": 45
+   }
+  ]
+ },
+ {
+  "id": "167959-popcorn-air-popped",
+  "name": "Popcorn, air-popped",
+  "category": "Grains",
+  "fdcId": 167959,
+  "usdaDescription": "Snacks, popcorn, air-popped",
+  "kcal": 387,
+  "proteinG": 12.9,
+  "carbsG": 77.8,
+  "fatG": 4.5,
+  "fiberG": 14.5,
+  "sugarG": 0.87,
+  "sodiumMg": 8,
+  "micros": {
+   "calciumMg": 7,
+   "ironMg": 3.19,
+   "magnesiumMg": 144,
+   "potassiumMg": 329,
+   "zincMg": 3.08,
+   "vitaminAUg": 10,
+   "saturatedFatG": 0.64
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 8
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "169700-couscous-cooked",
+  "name": "Couscous, cooked",
+  "category": "Grains",
+  "fdcId": 169700,
+  "usdaDescription": "Couscous, cooked",
+  "kcal": 112,
+  "proteinG": 3.8,
+  "carbsG": 23.2,
+  "fatG": 0.2,
+  "fiberG": 1.4,
+  "sugarG": 0.1,
+  "sodiumMg": 5,
+  "micros": {
+   "calciumMg": 8,
+   "ironMg": 0.38,
+   "magnesiumMg": 8,
+   "potassiumMg": 58,
+   "zincMg": 0.26,
+   "saturatedFatG": 0.03
+  },
+  "portions": [
+   {
+    "label": "1 cup, cooked",
+    "grams": 157
+   },
+   {
+    "label": "1 cup, dry, yields",
+    "grams": 528
+   },
+   {
+    "label": "1 oz, dry, yields",
+    "grams": 86
+   }
+  ]
+ },
+ {
+  "id": "171477-chicken-breast-cooked",
+  "name": "Chicken breast, cooked",
+  "category": "Protein",
+  "fdcId": 171477,
+  "usdaDescription": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+  "kcal": 165,
+  "proteinG": 31,
+  "carbsG": 0,
+  "fatG": 3.6,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 74,
+  "micros": {
+   "calciumMg": 15,
+   "ironMg": 1.04,
+   "magnesiumMg": 29,
+   "potassiumMg": 256,
+   "zincMg": 1,
+   "vitaminAUg": 6,
+   "vitaminDUg": 0.1,
+   "vitaminB12Ug": 0.34,
+   "cholesterolMg": 85,
+   "saturatedFatG": 1.01
+  },
+  "portions": [
+   {
+    "label": "0.5 breast, bone and skin removed",
+    "grams": 86
+   },
+   {
+    "label": "1 cup, chopped or diced",
+    "grams": 140
+   },
+   {
+    "label": "1 unit (yield from 1 lb ready-to-cook chicken)",
+    "grams": 52
+   }
+  ]
+ },
+ {
+  "id": "172388-chicken-thigh-cooked",
+  "name": "Chicken thigh, cooked",
+  "category": "Protein",
+  "fdcId": 172388,
+  "usdaDescription": "Chicken, broilers or fryers, thigh, meat only, cooked, roasted",
+  "kcal": 179,
+  "proteinG": 24.8,
+  "carbsG": 0,
+  "fatG": 8.2,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 106,
+  "micros": {
+   "calciumMg": 9,
+   "ironMg": 1.13,
+   "magnesiumMg": 24,
+   "potassiumMg": 269,
+   "zincMg": 1.92,
+   "vitaminAUg": 8,
+   "vitaminDUg": 0.2,
+   "vitaminB12Ug": 0.42,
+   "cholesterolMg": 133,
+   "saturatedFatG": 2.31
+  },
+  "portions": [
+   {
+    "label": "1 thigh without skin",
+    "grams": 116
+   },
+   {
+    "label": "3 oz",
+    "grams": 85
+   },
+   {
+    "label": "1 thigh with skin",
+    "grams": 137
+   }
+  ]
+ },
+ {
+  "id": "173630-chicken-wing-cooked",
+  "name": "Chicken wing, cooked",
+  "category": "Protein",
+  "fdcId": 173630,
+  "usdaDescription": "Chicken, broilers or fryers, wing, meat and skin, cooked, roasted",
+  "kcal": 254,
+  "proteinG": 23.8,
+  "carbsG": 0,
+  "fatG": 16.9,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 98,
+  "micros": {
+   "calciumMg": 18,
+   "ironMg": 0.84,
+   "magnesiumMg": 19,
+   "potassiumMg": 212,
+   "zincMg": 1.64,
+   "vitaminAUg": 12,
+   "vitaminDUg": 0.2,
+   "vitaminB12Ug": 0.35,
+   "cholesterolMg": 141,
+   "saturatedFatG": 4.98
+  },
+  "portions": [
+   {
+    "label": "1 piece",
+    "grams": 85
+   },
+   {
+    "label": "3 oz",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "174032-ground-beef-85-lean-cooked",
+  "name": "Ground beef, 85% lean, cooked",
+  "category": "Protein",
+  "fdcId": 174032,
+  "usdaDescription": "Beef, ground, 85% lean meat / 15% fat, patty, cooked, broiled",
+  "kcal": 250,
+  "proteinG": 25.9,
+  "carbsG": 0,
+  "fatG": 15.4,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 72,
+  "micros": {
+   "calciumMg": 18,
+   "ironMg": 2.6,
+   "magnesiumMg": 21,
+   "potassiumMg": 318,
+   "zincMg": 6.31,
+   "vitaminAUg": 3,
+   "vitaminB12Ug": 2.64,
+   "cholesterolMg": 88,
+   "saturatedFatG": 5.9
+  },
+  "portions": [
+   {
+    "label": "1 patty (yield from 1/4 lb raw meat)",
+    "grams": 77
+   },
+   {
+    "label": "3 oz",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "174752-ground-beef-93-lean-cooked",
+  "name": "Ground beef, 93% lean, cooked",
+  "category": "Protein",
+  "fdcId": 174752,
+  "usdaDescription": "Beef, ground, 93% lean meat / 7% fat, patty, cooked, broiled",
+  "kcal": 193,
+  "proteinG": 26.2,
+  "carbsG": 0,
+  "fatG": 8.9,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 66,
+  "micros": {
+   "calciumMg": 9,
+   "ironMg": 2.78,
+   "magnesiumMg": 22,
+   "potassiumMg": 342,
+   "zincMg": 6.41,
+   "vitaminAUg": 3,
+   "vitaminB12Ug": 2.51,
+   "cholesterolMg": 88,
+   "saturatedFatG": 3.68
+  },
+  "portions": [
+   {
+    "label": "3 oz",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "168727-steak-sirloin-cooked",
+  "name": "Steak, sirloin, cooked",
+  "category": "Protein",
+  "fdcId": 168727,
+  "usdaDescription": "Beef, top sirloin, steak, separable lean and fat, trimmed to 1/8\" fat, all grades, cooked, broiled",
+  "kcal": 243,
+  "proteinG": 27,
+  "carbsG": 0,
+  "fatG": 14.2,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 56,
+  "micros": {
+   "calciumMg": 20,
+   "ironMg": 1.73,
+   "magnesiumMg": 22,
+   "potassiumMg": 336,
+   "zincMg": 4.87,
+   "vitaminDUg": 0.2,
+   "vitaminB12Ug": 1.59,
+   "cholesterolMg": 92,
+   "saturatedFatG": 5.6
+  },
+  "portions": [
+   {
+    "label": "3 oz",
+    "grams": 85
+   },
+   {
+    "label": "1 piece, cooked, excluding refuse (yield from 1 lb raw meat ",
+    "grams": 306
+   }
+  ]
+ },
+ {
+  "id": "171506-ground-turkey-cooked",
+  "name": "Ground turkey, cooked",
+  "category": "Protein",
+  "fdcId": 171506,
+  "usdaDescription": "Turkey, Ground, cooked",
+  "kcal": 203,
+  "proteinG": 27.4,
+  "carbsG": 0,
+  "fatG": 10.4,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 78,
+  "micros": {
+   "calciumMg": 28,
+   "ironMg": 1.52,
+   "magnesiumMg": 30,
+   "potassiumMg": 294,
+   "zincMg": 3.11,
+   "vitaminAUg": 24,
+   "vitaminDUg": 0.2,
+   "vitaminB12Ug": 1.34,
+   "cholesterolMg": 93,
+   "saturatedFatG": 2.67
+  },
+  "portions": [
+   {
+    "label": "1 patty (4 oz, raw) (yield after cooking)",
+    "grams": 82
+   },
+   {
+    "label": "3 oz",
+    "grams": 85
+   },
+   {
+    "label": "1 unit, yield from 1 lb raw",
+    "grams": 330
+   }
+  ]
+ },
+ {
+  "id": "172941-turkey-breast-deli",
+  "name": "Turkey breast, deli",
+  "category": "Protein",
+  "fdcId": 172941,
+  "usdaDescription": "Turkey breast, sliced, prepackaged",
+  "kcal": 106,
+  "proteinG": 14.8,
+  "carbsG": 2.2,
+  "fatG": 3.8,
+  "fiberG": 0,
+  "sugarG": 0.91,
+  "sodiumMg": 898,
+  "micros": {
+   "calciumMg": 14,
+   "ironMg": 0.42,
+   "magnesiumMg": 19,
+   "potassiumMg": 371,
+   "zincMg": 0.94,
+   "vitaminDUg": 0.2,
+   "vitaminB12Ug": 0.37,
+   "cholesterolMg": 49,
+   "saturatedFatG": 0.91
+  },
+  "portions": [
+   {
+    "label": "1 slice",
+    "grams": 16
+   }
+  ]
+ },
+ {
+  "id": "173864-ham-sliced",
+  "name": "Ham, sliced",
+  "category": "Protein",
+  "fdcId": 173864,
+  "usdaDescription": "Ham, sliced, regular (approximately 11% fat)",
+  "kcal": 164,
+  "proteinG": 16.6,
+  "carbsG": 3.6,
+  "fatG": 8.8,
+  "fiberG": 1.3,
+  "sugarG": 1,
+  "sodiumMg": 814,
+  "micros": {
+   "calciumMg": 24,
+   "ironMg": 1.02,
+   "magnesiumMg": 22,
+   "potassiumMg": 287,
+   "zincMg": 1.35,
+   "vitaminDUg": 0.7,
+   "vitaminCMg": 4,
+   "vitaminB12Ug": 0.42,
+   "cholesterolMg": 57,
+   "saturatedFatG": 0.5
+  },
+  "portions": [
+   {
+    "label": "1 slice",
+    "grams": 28
+   },
+   {
+    "label": "56 grams",
+    "grams": 56
+   }
+  ]
+ },
+ {
+  "id": "167827-pork-chop-cooked",
+  "name": "Pork chop, cooked",
+  "category": "Protein",
+  "fdcId": 167827,
+  "usdaDescription": "Pork, fresh, loin, center loin (chops), bone-in, separable lean and fat, cooked, broiled",
+  "kcal": 209,
+  "proteinG": 25.6,
+  "carbsG": 0,
+  "fatG": 11.1,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 55,
+  "micros": {
+   "calciumMg": 24,
+   "ironMg": 0.79,
+   "magnesiumMg": 25,
+   "potassiumMg": 344,
+   "zincMg": 2.14,
+   "vitaminAUg": 2,
+   "vitaminDUg": 0.8,
+   "vitaminB12Ug": 0.59,
+   "cholesterolMg": 84,
+   "saturatedFatG": 3.52
+  },
+  "portions": [
+   {
+    "label": "1 chop without refuse (Yield from 1 cooked chop, with refuse",
+    "grams": 157
+   },
+   {
+    "label": "3 oz",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "168322-bacon-cooked",
+  "name": "Bacon, cooked",
+  "category": "Protein",
+  "fdcId": 168322,
+  "usdaDescription": "Pork, cured, bacon, pre-sliced, cooked, pan-fried",
+  "kcal": 468,
+  "proteinG": 33.9,
+  "carbsG": 1.7,
+  "fatG": 35.1,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 1684,
+  "micros": {
+   "calciumMg": 11,
+   "ironMg": 0.95,
+   "magnesiumMg": 31,
+   "potassiumMg": 499,
+   "zincMg": 3.06,
+   "vitaminAUg": 11,
+   "vitaminDUg": 0.4,
+   "vitaminB12Ug": 1.09,
+   "cholesterolMg": 99,
+   "saturatedFatG": 11.96
+  },
+  "portions": [
+   {
+    "label": "1 slice",
+    "grams": 11.5
+   },
+   {
+    "label": "3 oz",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "174578-sausage-pork-cooked",
+  "name": "Sausage, pork, cooked",
+  "category": "Protein",
+  "fdcId": 174578,
+  "usdaDescription": "Pork sausage, link/patty, cooked, pan-fried",
+  "kcal": 325,
+  "proteinG": 18.5,
+  "carbsG": 1.4,
+  "fatG": 27.3,
+  "fiberG": 0,
+  "sugarG": 1.09,
+  "sodiumMg": 814,
+  "micros": {
+   "calciumMg": 9,
+   "ironMg": 1.2,
+   "magnesiumMg": 16,
+   "potassiumMg": 342,
+   "zincMg": 2.45,
+   "vitaminAUg": 28,
+   "vitaminDUg": 1.4,
+   "vitaminB12Ug": 0.98,
+   "cholesterolMg": 86,
+   "saturatedFatG": 8.83
+  },
+  "portions": [
+   {
+    "label": "1 link",
+    "grams": 23
+   },
+   {
+    "label": "1 patty",
+    "grams": 27
+   },
+   {
+    "label": "1 serving",
+    "grams": 48
+   }
+  ]
+ },
+ {
+  "id": "173862-hot-dog",
+  "name": "Hot dog",
+  "category": "Protein",
+  "fdcId": 173862,
+  "usdaDescription": "Frankfurter, beef, unheated",
+  "kcal": 315,
+  "proteinG": 11.7,
+  "carbsG": 3,
+  "fatG": 28.1,
+  "fiberG": 0,
+  "sugarG": 1.17,
+  "sodiumMg": 865,
+  "micros": {
+   "calciumMg": 14,
+   "ironMg": 1.12,
+   "magnesiumMg": 11,
+   "potassiumMg": 364,
+   "zincMg": 2.01,
+   "vitaminAUg": 3,
+   "vitaminDUg": 0.9,
+   "vitaminB12Ug": 0.96,
+   "cholesterolMg": 58,
+   "saturatedFatG": 11.46
+  },
+  "portions": [
+   {
+    "label": "1 hot dog",
+    "grams": 49
+   },
+   {
+    "label": "1 package",
+    "grams": 446
+   }
+  ]
+ },
+ {
+  "id": "175168-salmon-cooked",
+  "name": "Salmon, cooked",
+  "category": "Protein",
+  "fdcId": 175168,
+  "usdaDescription": "Fish, salmon, Atlantic, farmed, cooked, dry heat",
+  "kcal": 206,
+  "proteinG": 22.1,
+  "carbsG": 0,
+  "fatG": 12.4,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 61,
+  "micros": {
+   "calciumMg": 15,
+   "ironMg": 0.34,
+   "magnesiumMg": 30,
+   "potassiumMg": 384,
+   "zincMg": 0.43,
+   "vitaminAUg": 69,
+   "vitaminDUg": 13.1,
+   "vitaminCMg": 3.7,
+   "vitaminB12Ug": 2.8,
+   "cholesterolMg": 63,
+   "saturatedFatG": 2.4
+  },
+  "portions": [
+   {
+    "label": "3 oz",
+    "grams": 85
+   },
+   {
+    "label": "0.5 fillet",
+    "grams": 178
+   }
+  ]
+ },
+ {
+  "id": "173709-tuna-canned-in-water",
+  "name": "Tuna, canned in water",
+  "category": "Protein",
+  "fdcId": 173709,
+  "usdaDescription": "Fish, tuna, light, canned in water, drained solids (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 86,
+  "proteinG": 19.4,
+  "carbsG": 0,
+  "fatG": 1,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 247,
+  "micros": {
+   "calciumMg": 17,
+   "ironMg": 1.63,
+   "magnesiumMg": 23,
+   "potassiumMg": 179,
+   "zincMg": 0.69,
+   "vitaminAUg": 17,
+   "vitaminDUg": 1.2,
+   "vitaminB12Ug": 2.55,
+   "cholesterolMg": 36,
+   "saturatedFatG": 0.21
+  },
+  "portions": [
+   {
+    "label": "1 can",
+    "grams": 165
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "3 oz",
+    "grams": 85
+   },
+   {
+    "label": "1 cup, solid or chunks",
+    "grams": 154
+   },
+   {
+    "label": "1 can (12.5 oz), drained",
+    "grams": 315
+   }
+  ]
+ },
+ {
+  "id": "171956-cod-cooked",
+  "name": "Cod, cooked",
+  "category": "Protein",
+  "fdcId": 171956,
+  "usdaDescription": "Fish, cod, Atlantic, cooked, dry heat",
+  "kcal": 105,
+  "proteinG": 22.8,
+  "carbsG": 0,
+  "fatG": 0.9,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 78,
+  "micros": {
+   "calciumMg": 14,
+   "ironMg": 0.49,
+   "magnesiumMg": 42,
+   "potassiumMg": 244,
+   "zincMg": 0.58,
+   "vitaminAUg": 14,
+   "vitaminDUg": 1.2,
+   "vitaminCMg": 1,
+   "vitaminB12Ug": 1.05,
+   "cholesterolMg": 55,
+   "saturatedFatG": 0.17
+  },
+  "portions": [
+   {
+    "label": "3 oz",
+    "grams": 85
+   },
+   {
+    "label": "1 fillet",
+    "grams": 180
+   }
+  ]
+ },
+ {
+  "id": "175177-tilapia-cooked",
+  "name": "Tilapia, cooked",
+  "category": "Protein",
+  "fdcId": 175177,
+  "usdaDescription": "Fish, tilapia, cooked, dry heat",
+  "kcal": 128,
+  "proteinG": 26.2,
+  "carbsG": 0,
+  "fatG": 2.7,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 56,
+  "micros": {
+   "calciumMg": 14,
+   "ironMg": 0.69,
+   "magnesiumMg": 34,
+   "potassiumMg": 380,
+   "zincMg": 0.41,
+   "vitaminDUg": 3.7,
+   "vitaminB12Ug": 1.86,
+   "cholesterolMg": 57,
+   "saturatedFatG": 0.94
+  },
+  "portions": [
+   {
+    "label": "1 fillet",
+    "grams": 87
+   }
+  ]
+ },
+ {
+  "id": "175180-shrimp-cooked",
+  "name": "Shrimp, cooked",
+  "category": "Protein",
+  "fdcId": 175180,
+  "usdaDescription": "Crustaceans, shrimp, cooked",
+  "kcal": 99,
+  "proteinG": 24,
+  "carbsG": 0.2,
+  "fatG": 0.3,
+  "fiberG": null,
+  "sugarG": null,
+  "sodiumMg": 111,
+  "micros": {
+   "calciumMg": 70,
+   "ironMg": 0.51,
+   "magnesiumMg": 39,
+   "potassiumMg": 259,
+   "zincMg": 1.64,
+   "cholesterolMg": 189,
+   "saturatedFatG": 0.06
+  },
+  "portions": [
+   {
+    "label": "3 oz",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "171287-egg",
+  "name": "Egg",
+  "category": "Protein",
+  "fdcId": 171287,
+  "usdaDescription": "Egg, whole, raw, fresh",
+  "kcal": 143,
+  "proteinG": 12.6,
+  "carbsG": 0.7,
+  "fatG": 9.5,
+  "fiberG": 0,
+  "sugarG": 0.37,
+  "sodiumMg": 142,
+  "micros": {
+   "calciumMg": 56,
+   "ironMg": 1.75,
+   "magnesiumMg": 12,
+   "potassiumMg": 138,
+   "zincMg": 1.29,
+   "vitaminAUg": 160,
+   "vitaminDUg": 2,
+   "vitaminB12Ug": 0.89,
+   "cholesterolMg": 372,
+   "saturatedFatG": 3.13
+  },
+  "portions": [
+   {
+    "label": "1 large",
+    "grams": 50
+   },
+   {
+    "label": "1 extra large",
+    "grams": 56
+   },
+   {
+    "label": "1 jumbo",
+    "grams": 63
+   },
+   {
+    "label": "1 cup (4.86 large eggs)",
+    "grams": 243
+   },
+   {
+    "label": "1 medium",
+    "grams": 44
+   },
+   {
+    "label": "1 small",
+    "grams": 38
+   }
+  ]
+ },
+ {
+  "id": "173424-egg-hard-boiled",
+  "name": "Egg, hard-boiled",
+  "category": "Protein",
+  "fdcId": 173424,
+  "usdaDescription": "Egg, whole, cooked, hard-boiled",
+  "kcal": 155,
+  "proteinG": 12.6,
+  "carbsG": 1.1,
+  "fatG": 10.6,
+  "fiberG": 0,
+  "sugarG": 1.12,
+  "sodiumMg": 124,
+  "micros": {
+   "calciumMg": 50,
+   "ironMg": 1.19,
+   "magnesiumMg": 10,
+   "potassiumMg": 126,
+   "zincMg": 1.05,
+   "vitaminAUg": 149,
+   "vitaminDUg": 2.2,
+   "vitaminB12Ug": 1.11,
+   "cholesterolMg": 373,
+   "saturatedFatG": 3.27
+  },
+  "portions": [
+   {
+    "label": "1 large",
+    "grams": 50
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 136
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 8.5
+   }
+  ]
+ },
+ {
+  "id": "172187-egg-scrambled",
+  "name": "Egg, scrambled",
+  "category": "Protein",
+  "fdcId": 172187,
+  "usdaDescription": "Egg, whole, cooked, scrambled",
+  "kcal": 149,
+  "proteinG": 10,
+  "carbsG": 1.6,
+  "fatG": 11,
+  "fiberG": 0,
+  "sugarG": 1.39,
+  "sodiumMg": 145,
+  "micros": {
+   "calciumMg": 66,
+   "ironMg": 1.31,
+   "magnesiumMg": 11,
+   "potassiumMg": 132,
+   "zincMg": 1.04,
+   "vitaminAUg": 161,
+   "vitaminDUg": 1.8,
+   "vitaminB12Ug": 0.76,
+   "cholesterolMg": 277,
+   "saturatedFatG": 3.33
+  },
+  "portions": [
+   {
+    "label": "1 large",
+    "grams": 61
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 13.7
+   },
+   {
+    "label": "1 cup",
+    "grams": 220
+   }
+  ]
+ },
+ {
+  "id": "172183-egg-white",
+  "name": "Egg white",
+  "category": "Protein",
+  "fdcId": 172183,
+  "usdaDescription": "Egg, white, raw, fresh",
+  "kcal": 52,
+  "proteinG": 10.9,
+  "carbsG": 0.7,
+  "fatG": 0.2,
+  "fiberG": 0,
+  "sugarG": 0.71,
+  "sodiumMg": 166,
+  "micros": {
+   "calciumMg": 7,
+   "ironMg": 0.08,
+   "magnesiumMg": 11,
+   "potassiumMg": 163,
+   "zincMg": 0.03,
+   "vitaminB12Ug": 0.09
+  },
+  "portions": [
+   {
+    "label": "1 large",
+    "grams": 33
+   },
+   {
+    "label": "1 cup",
+    "grams": 243
+   }
+  ]
+ },
+ {
+  "id": "172475-tofu-firm",
+  "name": "Tofu, firm",
+  "category": "Protein",
+  "fdcId": 172475,
+  "usdaDescription": "Tofu, raw, firm, prepared with calcium sulfate",
+  "kcal": 144,
+  "proteinG": 17.3,
+  "carbsG": 2.8,
+  "fatG": 8.7,
+  "fiberG": 2.3,
+  "sugarG": null,
+  "sodiumMg": 14,
+  "micros": {
+   "calciumMg": 683,
+   "ironMg": 2.66,
+   "magnesiumMg": 58,
+   "potassiumMg": 237,
+   "zincMg": 1.57,
+   "vitaminCMg": 0.2,
+   "saturatedFatG": 1.26
+  },
+  "portions": [
+   {
+    "label": "0.5 cup",
+    "grams": 126
+   },
+   {
+    "label": "0.25 block",
+    "grams": 81
+   }
+  ]
+ },
+ {
+  "id": "173735-black-beans-cooked",
+  "name": "Black beans, cooked",
+  "category": "Beans and nuts",
+  "fdcId": 173735,
+  "usdaDescription": "Beans, black, mature seeds, cooked, boiled, without salt",
+  "kcal": 132,
+  "proteinG": 8.9,
+  "carbsG": 23.7,
+  "fatG": 0.5,
+  "fiberG": 8.7,
+  "sugarG": 0.32,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 27,
+   "ironMg": 2.1,
+   "magnesiumMg": 70,
+   "potassiumMg": 355,
+   "zincMg": 1.12,
+   "saturatedFatG": 0.14
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 172
+   }
+  ]
+ },
+ {
+  "id": "175194-kidney-beans-cooked",
+  "name": "Kidney beans, cooked",
+  "category": "Beans and nuts",
+  "fdcId": 175194,
+  "usdaDescription": "Beans, kidney, red, mature seeds, cooked, boiled, without salt",
+  "kcal": 127,
+  "proteinG": 8.7,
+  "carbsG": 22.8,
+  "fatG": 0.5,
+  "fiberG": 7.4,
+  "sugarG": 0.32,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 28,
+   "ironMg": 2.94,
+   "magnesiumMg": 45,
+   "potassiumMg": 403,
+   "zincMg": 1.07,
+   "vitaminCMg": 1.2,
+   "saturatedFatG": 0.07
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 177
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 11
+   }
+  ]
+ },
+ {
+  "id": "175200-pinto-beans-cooked",
+  "name": "Pinto beans, cooked",
+  "category": "Beans and nuts",
+  "fdcId": 175200,
+  "usdaDescription": "Beans, pinto, mature seeds, cooked, boiled, without salt",
+  "kcal": 143,
+  "proteinG": 9,
+  "carbsG": 26.2,
+  "fatG": 0.7,
+  "fiberG": 9,
+  "sugarG": 0.34,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 46,
+   "ironMg": 2.09,
+   "magnesiumMg": 50,
+   "potassiumMg": 436,
+   "zincMg": 0.98,
+   "vitaminCMg": 0.8,
+   "saturatedFatG": 0.14
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 171
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 10.6
+   }
+  ]
+ },
+ {
+  "id": "173757-chickpeas-cooked",
+  "name": "Chickpeas, cooked",
+  "category": "Beans and nuts",
+  "fdcId": 173757,
+  "usdaDescription": "Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",
+  "kcal": 164,
+  "proteinG": 8.9,
+  "carbsG": 27.4,
+  "fatG": 2.6,
+  "fiberG": 7.6,
+  "sugarG": 4.8,
+  "sodiumMg": 7,
+  "micros": {
+   "calciumMg": 49,
+   "ironMg": 2.89,
+   "magnesiumMg": 48,
+   "potassiumMg": 291,
+   "zincMg": 1.53,
+   "vitaminAUg": 1,
+   "vitaminCMg": 1.3,
+   "saturatedFatG": 0.27
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 164
+   }
+  ]
+ },
+ {
+  "id": "172421-lentils-cooked",
+  "name": "Lentils, cooked",
+  "category": "Beans and nuts",
+  "fdcId": 172421,
+  "usdaDescription": "Lentils, mature seeds, cooked, boiled, without salt",
+  "kcal": 116,
+  "proteinG": 9,
+  "carbsG": 20.1,
+  "fatG": 0.4,
+  "fiberG": 7.9,
+  "sugarG": 1.8,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 19,
+   "ironMg": 3.33,
+   "magnesiumMg": 36,
+   "potassiumMg": 369,
+   "zincMg": 1.27,
+   "vitaminCMg": 1.5,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 198
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 12.3
+   }
+  ]
+ },
+ {
+  "id": "172438-refried-beans",
+  "name": "Refried beans",
+  "category": "Beans and nuts",
+  "fdcId": 172438,
+  "usdaDescription": "Refried beans, canned, traditional style",
+  "kcal": 90,
+  "proteinG": 5,
+  "carbsG": 13.6,
+  "fatG": 2,
+  "fiberG": 3.7,
+  "sugarG": 0.54,
+  "sodiumMg": 370,
+  "micros": {
+   "calciumMg": 29,
+   "ironMg": 1.44,
+   "magnesiumMg": 35,
+   "potassiumMg": 319,
+   "zincMg": 0.58,
+   "vitaminCMg": 6,
+   "saturatedFatG": 0.63
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 238
+   },
+   {
+    "label": "1 can",
+    "grams": 442
+   }
+  ]
+ },
+ {
+  "id": "174289-hummus",
+  "name": "Hummus",
+  "category": "Beans and nuts",
+  "fdcId": 174289,
+  "usdaDescription": "Hummus, commercial",
+  "kcal": 237,
+  "proteinG": 7.8,
+  "carbsG": 15,
+  "fatG": 17.8,
+  "fiberG": 5.5,
+  "sugarG": 0.62,
+  "sodiumMg": 426,
+  "micros": {
+   "calciumMg": 47,
+   "ironMg": 2.54,
+   "magnesiumMg": 75,
+   "potassiumMg": 312,
+   "zincMg": 1.44,
+   "vitaminAUg": 1,
+   "saturatedFatG": 2.56
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 15
+   },
+   {
+    "label": "1 cup",
+    "grams": 246
+   }
+  ]
+ },
+ {
+  "id": "174266-peanut-butter",
+  "name": "Peanut butter",
+  "category": "Beans and nuts",
+  "fdcId": 174266,
+  "usdaDescription": "Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 598,
+  "proteinG": 22.2,
+  "carbsG": 22.3,
+  "fatG": 51.4,
+  "fiberG": 5,
+  "sugarG": 10.49,
+  "sodiumMg": 426,
+  "micros": {
+   "calciumMg": 49,
+   "ironMg": 1.74,
+   "magnesiumMg": 168,
+   "potassiumMg": 558,
+   "zincMg": 2.51,
+   "saturatedFatG": 10.33
+  },
+  "portions": [
+   {
+    "label": "2 tbsp",
+    "grams": 32
+   },
+   {
+    "label": "1 cup",
+    "grams": 258
+   }
+  ]
+ },
+ {
+  "id": "168588-almond-butter",
+  "name": "Almond butter",
+  "category": "Beans and nuts",
+  "fdcId": 168588,
+  "usdaDescription": "Nuts, almond butter, plain, without salt added",
+  "kcal": 614,
+  "proteinG": 21,
+  "carbsG": 18.8,
+  "fatG": 55.5,
+  "fiberG": 10.3,
+  "sugarG": 4.43,
+  "sodiumMg": 7,
+  "micros": {
+   "calciumMg": 347,
+   "ironMg": 3.49,
+   "magnesiumMg": 279,
+   "potassiumMg": 748,
+   "zincMg": 3.29,
+   "saturatedFatG": 4.15
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 16
+   },
+   {
+    "label": "1 cup",
+    "grams": 250
+   }
+  ]
+ },
+ {
+  "id": "170567-almonds",
+  "name": "Almonds",
+  "category": "Beans and nuts",
+  "fdcId": 170567,
+  "usdaDescription": "Nuts, almonds",
+  "kcal": 579,
+  "proteinG": 21.2,
+  "carbsG": 21.6,
+  "fatG": 49.9,
+  "fiberG": 12.5,
+  "sugarG": 4.35,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 269,
+   "ironMg": 3.71,
+   "magnesiumMg": 270,
+   "potassiumMg": 733,
+   "zincMg": 3.12,
+   "saturatedFatG": 3.8
+  },
+  "portions": [
+   {
+    "label": "1 oz (23 whole kernels)",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup, whole",
+    "grams": 143
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 92
+   },
+   {
+    "label": "1 cup, slivered",
+    "grams": 108
+   },
+   {
+    "label": "1 cup, ground",
+    "grams": 95
+   },
+   {
+    "label": "1 almond",
+    "grams": 1.2
+   }
+  ]
+ },
+ {
+  "id": "174262-peanuts",
+  "name": "Peanuts",
+  "category": "Beans and nuts",
+  "fdcId": 174262,
+  "usdaDescription": "Peanuts, all types, dry-roasted, with salt",
+  "kcal": 587,
+  "proteinG": 24.4,
+  "carbsG": 21.3,
+  "fatG": 49.7,
+  "fiberG": 8.4,
+  "sugarG": 4.9,
+  "sodiumMg": 410,
+  "micros": {
+   "calciumMg": 58,
+   "ironMg": 1.58,
+   "magnesiumMg": 178,
+   "potassiumMg": 634,
+   "zincMg": 2.77,
+   "saturatedFatG": 7.72
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 peanut",
+    "grams": 1
+   }
+  ]
+ },
+ {
+  "id": "170187-walnuts",
+  "name": "Walnuts",
+  "category": "Beans and nuts",
+  "fdcId": 170187,
+  "usdaDescription": "Nuts, walnuts, english",
+  "kcal": 654,
+  "proteinG": 15.2,
+  "carbsG": 13.7,
+  "fatG": 65.2,
+  "fiberG": 6.7,
+  "sugarG": 2.61,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 98,
+   "ironMg": 2.91,
+   "magnesiumMg": 158,
+   "potassiumMg": 441,
+   "zincMg": 3.09,
+   "vitaminAUg": 1,
+   "vitaminCMg": 1.3,
+   "saturatedFatG": 6.13
+  },
+  "portions": [
+   {
+    "label": "1 oz (14 halves)",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 117
+   },
+   {
+    "label": "1 cup, ground",
+    "grams": 80
+   },
+   {
+    "label": "1 cup, in shell, edible yield (7 nuts)",
+    "grams": 28
+   },
+   {
+    "label": "1 cup shelled (50 halves)",
+    "grams": 100
+   },
+   {
+    "label": "1 cup pieces or chips",
+    "grams": 120
+   }
+  ]
+ },
+ {
+  "id": "169421-cashews",
+  "name": "Cashews",
+  "category": "Beans and nuts",
+  "fdcId": 169421,
+  "usdaDescription": "Nuts, cashew nuts, dry roasted, with salt added",
+  "kcal": 574,
+  "proteinG": 15.3,
+  "carbsG": 32.7,
+  "fatG": 46.4,
+  "fiberG": 3,
+  "sugarG": 5.01,
+  "sodiumMg": 640,
+  "micros": {
+   "calciumMg": 45,
+   "ironMg": 6,
+   "magnesiumMg": 260,
+   "potassiumMg": 565,
+   "zincMg": 5.6,
+   "saturatedFatG": 9.16
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup, halves and whole",
+    "grams": 137
+   }
+  ]
+ },
+ {
+  "id": "170182-pecans",
+  "name": "Pecans",
+  "category": "Beans and nuts",
+  "fdcId": 170182,
+  "usdaDescription": "Nuts, pecans",
+  "kcal": 691,
+  "proteinG": 9.2,
+  "carbsG": 13.9,
+  "fatG": 72,
+  "fiberG": 9.6,
+  "sugarG": 3.97,
+  "sodiumMg": 0,
+  "micros": {
+   "calciumMg": 70,
+   "ironMg": 2.53,
+   "magnesiumMg": 121,
+   "potassiumMg": 410,
+   "zincMg": 4.53,
+   "vitaminAUg": 3,
+   "vitaminCMg": 1.1,
+   "saturatedFatG": 6.18
+  },
+  "portions": [
+   {
+    "label": "1 oz (19 halves)",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup, chopped",
+    "grams": 109
+   },
+   {
+    "label": "1 cup, halves",
+    "grams": 99
+   }
+  ]
+ },
+ {
+  "id": "169426-pistachios",
+  "name": "Pistachios",
+  "category": "Beans and nuts",
+  "fdcId": 169426,
+  "usdaDescription": "Nuts, pistachio nuts, dry roasted, with salt added",
+  "kcal": 569,
+  "proteinG": 21.1,
+  "carbsG": 27.6,
+  "fatG": 45.8,
+  "fiberG": 10.3,
+  "sugarG": 7.74,
+  "sodiumMg": 428,
+  "micros": {
+   "calciumMg": 107,
+   "ironMg": 4.03,
+   "magnesiumMg": 109,
+   "potassiumMg": 1007,
+   "zincMg": 2.34,
+   "vitaminAUg": 13,
+   "vitaminCMg": 3,
+   "saturatedFatG": 5.65
+  },
+  "portions": [
+   {
+    "label": "1 oz (49 kernels)",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup",
+    "grams": 123
+   },
+   {
+    "label": "1 kernel",
+    "grams": 0.7
+   }
+  ]
+ },
+ {
+  "id": "169418-sunflower-seeds",
+  "name": "Sunflower seeds",
+  "category": "Beans and nuts",
+  "fdcId": 169418,
+  "usdaDescription": "Seeds, sunflower seed kernels, dry roasted, with salt added",
+  "kcal": 582,
+  "proteinG": 19.3,
+  "carbsG": 24.1,
+  "fatG": 49.8,
+  "fiberG": 9,
+  "sugarG": 2.73,
+  "sodiumMg": 655,
+  "micros": {
+   "calciumMg": 70,
+   "ironMg": 3.8,
+   "magnesiumMg": 129,
+   "potassiumMg": 850,
+   "zincMg": 5.29,
+   "vitaminCMg": 1.4,
+   "saturatedFatG": 5.22
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup",
+    "grams": 128
+   }
+  ]
+ },
+ {
+  "id": "170554-chia-seeds",
+  "name": "Chia seeds",
+  "category": "Beans and nuts",
+  "fdcId": 170554,
+  "usdaDescription": "Seeds, chia seeds, dried",
+  "kcal": 486,
+  "proteinG": 16.5,
+  "carbsG": 42.1,
+  "fatG": 30.7,
+  "fiberG": 34.4,
+  "sugarG": null,
+  "sodiumMg": 16,
+  "micros": {
+   "calciumMg": 631,
+   "ironMg": 7.72,
+   "magnesiumMg": 335,
+   "potassiumMg": 407,
+   "zincMg": 4.58,
+   "vitaminCMg": 1.6,
+   "saturatedFatG": 3.33
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "171265-milk-whole",
+  "name": "Milk, whole",
+  "category": "Dairy",
+  "fdcId": 171265,
+  "usdaDescription": "Milk, whole, 3.25% milkfat, with added vitamin D",
+  "kcal": 61,
+  "proteinG": 3.2,
+  "carbsG": 4.8,
+  "fatG": 3.3,
+  "fiberG": 0,
+  "sugarG": 5.05,
+  "sodiumMg": 43,
+  "micros": {
+   "calciumMg": 113,
+   "ironMg": 0.03,
+   "magnesiumMg": 10,
+   "potassiumMg": 132,
+   "zincMg": 0.37,
+   "vitaminAUg": 46,
+   "vitaminDUg": 1.3,
+   "vitaminB12Ug": 0.45,
+   "cholesterolMg": 10,
+   "saturatedFatG": 1.87
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 244
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 30.5
+   },
+   {
+    "label": "1 tbsp",
+    "grams": 15
+   },
+   {
+    "label": "1 quart",
+    "grams": 976
+   }
+  ]
+ },
+ {
+  "id": "171267-milk-2",
+  "name": "Milk, 2%",
+  "category": "Dairy",
+  "fdcId": 171267,
+  "usdaDescription": "Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D",
+  "kcal": 50,
+  "proteinG": 3.3,
+  "carbsG": 4.8,
+  "fatG": 2,
+  "fiberG": 0,
+  "sugarG": 5.06,
+  "sodiumMg": 47,
+  "micros": {
+   "calciumMg": 120,
+   "ironMg": 0.02,
+   "magnesiumMg": 11,
+   "potassiumMg": 140,
+   "zincMg": 0.48,
+   "vitaminAUg": 55,
+   "vitaminDUg": 1.2,
+   "vitaminCMg": 0.2,
+   "vitaminB12Ug": 0.53,
+   "cholesterolMg": 8,
+   "saturatedFatG": 1.26
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 244
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 30.5
+   },
+   {
+    "label": "1 quart",
+    "grams": 976
+   }
+  ]
+ },
+ {
+  "id": "171269-milk-skim",
+  "name": "Milk, skim",
+  "category": "Dairy",
+  "fdcId": 171269,
+  "usdaDescription": "Milk, nonfat, fluid, with added vitamin A and vitamin D (fat free or skim)",
+  "kcal": 34,
+  "proteinG": 3.4,
+  "carbsG": 5,
+  "fatG": 0.1,
+  "fiberG": 0,
+  "sugarG": 5.09,
+  "sodiumMg": 42,
+  "micros": {
+   "calciumMg": 122,
+   "ironMg": 0.03,
+   "magnesiumMg": 11,
+   "potassiumMg": 156,
+   "zincMg": 0.42,
+   "vitaminAUg": 61,
+   "vitaminDUg": 1.2,
+   "vitaminB12Ug": 0.5,
+   "cholesterolMg": 2,
+   "saturatedFatG": 0.06
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 245
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 30.6
+   },
+   {
+    "label": "1 quart",
+    "grams": 980
+   }
+  ]
+ },
+ {
+  "id": "170894-greek-yogurt-plain-nonfat",
+  "name": "Greek yogurt, plain, nonfat",
+  "category": "Dairy",
+  "fdcId": 170894,
+  "usdaDescription": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 59,
+  "proteinG": 10.2,
+  "carbsG": 3.6,
+  "fatG": 0.4,
+  "fiberG": 0,
+  "sugarG": 3.24,
+  "sodiumMg": 36,
+  "micros": {
+   "calciumMg": 110,
+   "ironMg": 0.07,
+   "magnesiumMg": 11,
+   "potassiumMg": 141,
+   "zincMg": 0.52,
+   "vitaminAUg": 1,
+   "vitaminB12Ug": 0.75,
+   "cholesterolMg": 5,
+   "saturatedFatG": 0.12
+  },
+  "portions": [
+   {
+    "label": "1 container (5.3 oz)",
+    "grams": 150
+   },
+   {
+    "label": "1 container (6 oz)",
+    "grams": 170
+   },
+   {
+    "label": "1 container",
+    "grams": 170
+   }
+  ]
+ },
+ {
+  "id": "171284-yogurt-plain-whole-milk",
+  "name": "Yogurt, plain, whole milk",
+  "category": "Dairy",
+  "fdcId": 171284,
+  "usdaDescription": "Yogurt, plain, whole milk",
+  "kcal": 61,
+  "proteinG": 3.5,
+  "carbsG": 4.7,
+  "fatG": 3.3,
+  "fiberG": 0,
+  "sugarG": 4.66,
+  "sodiumMg": 46,
+  "micros": {
+   "calciumMg": 121,
+   "ironMg": 0.05,
+   "magnesiumMg": 12,
+   "potassiumMg": 155,
+   "zincMg": 0.59,
+   "vitaminAUg": 27,
+   "vitaminDUg": 0.1,
+   "vitaminCMg": 0.5,
+   "vitaminB12Ug": 0.37,
+   "cholesterolMg": 13,
+   "saturatedFatG": 2.1
+  },
+  "portions": [
+   {
+    "label": "1 cup (8 fl oz)",
+    "grams": 245
+   },
+   {
+    "label": "1 container (6 oz)",
+    "grams": 170
+   },
+   {
+    "label": "1 container (8 oz)",
+    "grams": 227
+   },
+   {
+    "label": "0.5 container (4 oz)",
+    "grams": 113
+   }
+  ]
+ },
+ {
+  "id": "173414-cheddar-cheese",
+  "name": "Cheddar cheese",
+  "category": "Dairy",
+  "fdcId": 173414,
+  "usdaDescription": "Cheese, cheddar (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 403,
+  "proteinG": 22.9,
+  "carbsG": 3.4,
+  "fatG": 33.3,
+  "fiberG": 0,
+  "sugarG": 0.48,
+  "sodiumMg": 653,
+  "micros": {
+   "calciumMg": 710,
+   "ironMg": 0.14,
+   "magnesiumMg": 27,
+   "potassiumMg": 76,
+   "zincMg": 3.64,
+   "vitaminAUg": 337,
+   "vitaminDUg": 0.6,
+   "vitaminB12Ug": 1.1,
+   "cholesterolMg": 99,
+   "saturatedFatG": 18.87
+  },
+  "portions": [
+   {
+    "label": "1 slice (1 oz)",
+    "grams": 28
+   },
+   {
+    "label": "1 cup, diced",
+    "grams": 132
+   },
+   {
+    "label": "1 cup, melted",
+    "grams": 244
+   },
+   {
+    "label": "1 cup, shredded",
+    "grams": 113
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cubic inch",
+    "grams": 17
+   }
+  ]
+ },
+ {
+  "id": "171244-mozzarella-cheese",
+  "name": "Mozzarella cheese",
+  "category": "Dairy",
+  "fdcId": 171244,
+  "usdaDescription": "Cheese, mozzarella, low moisture, part-skim",
+  "kcal": 295,
+  "proteinG": 23.8,
+  "carbsG": 5.6,
+  "fatG": 19.8,
+  "fiberG": 0,
+  "sugarG": 1.9,
+  "sodiumMg": 666,
+  "micros": {
+   "calciumMg": 697,
+   "ironMg": 0.22,
+   "magnesiumMg": 27,
+   "potassiumMg": 188,
+   "zincMg": 3.62,
+   "vitaminAUg": 227,
+   "vitaminDUg": 0.4,
+   "vitaminB12Ug": 1.68,
+   "cholesterolMg": 64,
+   "saturatedFatG": 11.3
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup, diced",
+    "grams": 132
+   },
+   {
+    "label": "1 cup, shredded",
+    "grams": 113
+   },
+   {
+    "label": "1 cubic inch",
+    "grams": 18
+   },
+   {
+    "label": "1 slice (1 oz)",
+    "grams": 28
+   }
+  ]
+ },
+ {
+  "id": "170853-american-cheese",
+  "name": "American cheese",
+  "category": "Dairy",
+  "fdcId": 170853,
+  "usdaDescription": "Cheese, pasteurized process, American, fortified with vitamin D",
+  "kcal": 366,
+  "proteinG": 18.1,
+  "carbsG": 4.8,
+  "fatG": 30.7,
+  "fiberG": 0,
+  "sugarG": 2.26,
+  "sodiumMg": 1671,
+  "micros": {
+   "calciumMg": 1045,
+   "ironMg": 0.63,
+   "magnesiumMg": 26,
+   "potassiumMg": 132,
+   "zincMg": 2.49,
+   "vitaminAUg": 317,
+   "vitaminDUg": 7.5,
+   "vitaminB12Ug": 1.5,
+   "cholesterolMg": 100,
+   "saturatedFatG": 18.06
+  },
+  "portions": [
+   {
+    "label": "1 slice (1 oz)",
+    "grams": 28
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 slice (3/4 oz)",
+    "grams": 21
+   },
+   {
+    "label": "1 cubic inch",
+    "grams": 18
+   },
+   {
+    "label": "1 cup, shredded",
+    "grams": 113
+   },
+   {
+    "label": "1 cup, diced",
+    "grams": 140
+   },
+   {
+    "label": "1 cup, melted",
+    "grams": 244
+   }
+  ]
+ },
+ {
+  "id": "171251-swiss-cheese",
+  "name": "Swiss cheese",
+  "category": "Dairy",
+  "fdcId": 171251,
+  "usdaDescription": "Cheese, swiss",
+  "kcal": 393,
+  "proteinG": 27,
+  "carbsG": 1.4,
+  "fatG": 31,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 187,
+  "micros": {
+   "calciumMg": 890,
+   "ironMg": 0.13,
+   "magnesiumMg": 33,
+   "potassiumMg": 72,
+   "zincMg": 4.37,
+   "vitaminAUg": 288,
+   "vitaminB12Ug": 3.06,
+   "cholesterolMg": 93,
+   "saturatedFatG": 18.23
+  },
+  "portions": [
+   {
+    "label": "1 slice (1 oz)",
+    "grams": 28
+   },
+   {
+    "label": "1 cup, diced",
+    "grams": 132
+   },
+   {
+    "label": "1 cup, melted",
+    "grams": 244
+   },
+   {
+    "label": "1 cup, shredded",
+    "grams": 108
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cubic inch",
+    "grams": 15
+   }
+  ]
+ },
+ {
+  "id": "171247-parmesan-cheese-grated",
+  "name": "Parmesan cheese, grated",
+  "category": "Dairy",
+  "fdcId": 171247,
+  "usdaDescription": "Cheese, parmesan, grated",
+  "kcal": 420,
+  "proteinG": 28.4,
+  "carbsG": 13.9,
+  "fatG": 27.8,
+  "fiberG": 0,
+  "sugarG": 0.07,
+  "sodiumMg": 1804,
+  "micros": {
+   "calciumMg": 853,
+   "ironMg": 0.49,
+   "magnesiumMg": 34,
+   "potassiumMg": 180,
+   "zincMg": 4.2,
+   "vitaminAUg": 262,
+   "vitaminDUg": 0.5,
+   "vitaminB12Ug": 1.4,
+   "cholesterolMg": 86,
+   "saturatedFatG": 15.37
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 5
+   },
+   {
+    "label": "1 cup",
+    "grams": 100
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   }
+  ]
+ },
+ {
+  "id": "173420-feta-cheese",
+  "name": "Feta cheese",
+  "category": "Dairy",
+  "fdcId": 173420,
+  "usdaDescription": "Cheese, feta",
+  "kcal": 265,
+  "proteinG": 14.2,
+  "carbsG": 3.9,
+  "fatG": 21.5,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 1139,
+  "micros": {
+   "calciumMg": 493,
+   "ironMg": 0.65,
+   "magnesiumMg": 19,
+   "potassiumMg": 62,
+   "zincMg": 2.88,
+   "vitaminAUg": 125,
+   "vitaminDUg": 0.4,
+   "vitaminB12Ug": 1.69,
+   "cholesterolMg": 89,
+   "saturatedFatG": 13.3
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup, crumbled",
+    "grams": 150
+   },
+   {
+    "label": "1 cubic inch",
+    "grams": 17
+   },
+   {
+    "label": "1 wedge (1.33 oz)",
+    "grams": 38
+   }
+  ]
+ },
+ {
+  "id": "171244-string-cheese",
+  "name": "String cheese",
+  "category": "Dairy",
+  "fdcId": 171244,
+  "usdaDescription": "Cheese, mozzarella, low moisture, part-skim",
+  "kcal": 295,
+  "proteinG": 23.8,
+  "carbsG": 5.6,
+  "fatG": 19.8,
+  "fiberG": 0,
+  "sugarG": 1.9,
+  "sodiumMg": 666,
+  "micros": {
+   "calciumMg": 697,
+   "ironMg": 0.22,
+   "magnesiumMg": 27,
+   "potassiumMg": 188,
+   "zincMg": 3.62,
+   "vitaminAUg": 227,
+   "vitaminDUg": 0.4,
+   "vitaminB12Ug": 1.68,
+   "cholesterolMg": 64,
+   "saturatedFatG": 11.3
+  },
+  "portions": [
+   {
+    "label": "1 stick (1 oz)",
+    "grams": 28
+   },
+   {
+    "label": "1 cup, diced",
+    "grams": 132
+   },
+   {
+    "label": "1 cup, shredded",
+    "grams": 113
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cubic inch",
+    "grams": 18
+   },
+   {
+    "label": "1 slice (1 oz)",
+    "grams": 28
+   }
+  ]
+ },
+ {
+  "id": "172182-cottage-cheese-2",
+  "name": "Cottage cheese, 2%",
+  "category": "Dairy",
+  "fdcId": 172182,
+  "usdaDescription": "Cheese, cottage, lowfat, 2% milkfat",
+  "kcal": 81,
+  "proteinG": 10.5,
+  "carbsG": 4.8,
+  "fatG": 2.3,
+  "fiberG": 0,
+  "sugarG": 4,
+  "sodiumMg": 308,
+  "micros": {
+   "calciumMg": 111,
+   "ironMg": 0.13,
+   "magnesiumMg": 9,
+   "potassiumMg": 125,
+   "zincMg": 0.51,
+   "vitaminAUg": 68,
+   "vitaminB12Ug": 0.47,
+   "cholesterolMg": 12,
+   "saturatedFatG": 1.24
+  },
+  "portions": [
+   {
+    "label": "1 cup (not packed)",
+    "grams": 226
+   },
+   {
+    "label": "4 oz",
+    "grams": 113
+   }
+  ]
+ },
+ {
+  "id": "173418-cream-cheese",
+  "name": "Cream cheese",
+  "category": "Dairy",
+  "fdcId": 173418,
+  "usdaDescription": "Cheese, cream",
+  "kcal": 350,
+  "proteinG": 6.2,
+  "carbsG": 5.5,
+  "fatG": 34.4,
+  "fiberG": 0,
+  "sugarG": 3.76,
+  "sodiumMg": 314,
+  "micros": {
+   "calciumMg": 97,
+   "ironMg": 0.11,
+   "magnesiumMg": 9,
+   "potassiumMg": 132,
+   "zincMg": 0.5,
+   "vitaminAUg": 308,
+   "vitaminB12Ug": 0.22,
+   "cholesterolMg": 101,
+   "saturatedFatG": 20.21
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 14.5
+   },
+   {
+    "label": "1 cup",
+    "grams": 232
+   },
+   {
+    "label": "1 tbsp, whipped",
+    "grams": 10
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cubic inch",
+    "grams": 16
+   },
+   {
+    "label": "1 package, small (3 oz)",
+    "grams": 85
+   }
+  ]
+ },
+ {
+  "id": "173410-butter",
+  "name": "Butter",
+  "category": "Dairy",
+  "fdcId": 173410,
+  "usdaDescription": "Butter, salted",
+  "kcal": 717,
+  "proteinG": 0.9,
+  "carbsG": 0.1,
+  "fatG": 81.1,
+  "fiberG": 0,
+  "sugarG": 0.06,
+  "sodiumMg": 643,
+  "micros": {
+   "calciumMg": 24,
+   "ironMg": 0.02,
+   "magnesiumMg": 2,
+   "potassiumMg": 24,
+   "zincMg": 0.09,
+   "vitaminAUg": 684,
+   "vitaminB12Ug": 0.17,
+   "cholesterolMg": 215,
+   "saturatedFatG": 51.37
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 14.2
+   },
+   {
+    "label": "1 pat (1\" sq, 1/3\" high)",
+    "grams": 5
+   },
+   {
+    "label": "1 cup",
+    "grams": 227
+   },
+   {
+    "label": "1 stick",
+    "grams": 113
+   }
+  ]
+ },
+ {
+  "id": "171257-sour-cream",
+  "name": "Sour cream",
+  "category": "Dairy",
+  "fdcId": 171257,
+  "usdaDescription": "Cream, sour, cultured",
+  "kcal": 198,
+  "proteinG": 2.4,
+  "carbsG": 4.6,
+  "fatG": 19.4,
+  "fiberG": 0,
+  "sugarG": 3.41,
+  "sodiumMg": 31,
+  "micros": {
+   "calciumMg": 101,
+   "ironMg": 0.07,
+   "magnesiumMg": 10,
+   "potassiumMg": 125,
+   "zincMg": 0.33,
+   "vitaminAUg": 124,
+   "vitaminCMg": 0.9,
+   "vitaminB12Ug": 0.21,
+   "cholesterolMg": 59,
+   "saturatedFatG": 10.14
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 12
+   },
+   {
+    "label": "1 cup",
+    "grams": 230
+   }
+  ]
+ },
+ {
+  "id": "170859-heavy-cream",
+  "name": "Heavy cream",
+  "category": "Dairy",
+  "fdcId": 170859,
+  "usdaDescription": "Cream, fluid, heavy whipping",
+  "kcal": 340,
+  "proteinG": 2.8,
+  "carbsG": 2.8,
+  "fatG": 36.1,
+  "fiberG": 0,
+  "sugarG": 2.92,
+  "sodiumMg": 27,
+  "micros": {
+   "calciumMg": 66,
+   "ironMg": 0.1,
+   "magnesiumMg": 7,
+   "potassiumMg": 95,
+   "zincMg": 0.24,
+   "vitaminAUg": 411,
+   "vitaminDUg": 1.6,
+   "vitaminCMg": 0.6,
+   "vitaminB12Ug": 0.16,
+   "cholesterolMg": 113,
+   "saturatedFatG": 23.03
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 15
+   },
+   {
+    "label": "1 cup, whipped",
+    "grams": 120
+   },
+   {
+    "label": "1 cup, fluid (yields 2 cups whipped)",
+    "grams": 238
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 29.8
+   }
+  ]
+ },
+ {
+  "id": "171255-half-and-half",
+  "name": "Half and half",
+  "category": "Dairy",
+  "fdcId": 171255,
+  "usdaDescription": "Cream, fluid, half and half",
+  "kcal": 131,
+  "proteinG": 3.1,
+  "carbsG": 4.3,
+  "fatG": 11.5,
+  "fiberG": 0,
+  "sugarG": 4.13,
+  "sodiumMg": 61,
+  "micros": {
+   "calciumMg": 107,
+   "ironMg": 0.05,
+   "magnesiumMg": 10,
+   "potassiumMg": 132,
+   "zincMg": 0.39,
+   "vitaminAUg": 97,
+   "vitaminCMg": 0.9,
+   "vitaminB12Ug": 0.19,
+   "cholesterolMg": 35,
+   "saturatedFatG": 7.03
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 15
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 30.2
+   },
+   {
+    "label": "1 cup",
+    "grams": 242
+   },
+   {
+    "label": "1 container, individual (.5 fl oz)",
+    "grams": 15
+   }
+  ]
+ },
+ {
+  "id": "167575-ice-cream-vanilla",
+  "name": "Ice cream, vanilla",
+  "category": "Dairy",
+  "fdcId": 167575,
+  "usdaDescription": "Ice creams, vanilla",
+  "kcal": 207,
+  "proteinG": 3.5,
+  "carbsG": 23.6,
+  "fatG": 11,
+  "fiberG": 0.7,
+  "sugarG": 21.22,
+  "sodiumMg": 80,
+  "micros": {
+   "calciumMg": 128,
+   "ironMg": 0.09,
+   "magnesiumMg": 14,
+   "potassiumMg": 199,
+   "zincMg": 0.69,
+   "vitaminAUg": 118,
+   "vitaminDUg": 0.2,
+   "vitaminCMg": 0.6,
+   "vitaminB12Ug": 0.39,
+   "cholesterolMg": 44,
+   "saturatedFatG": 6.79
+  },
+  "portions": [
+   {
+    "label": "1 serving 1/2 cup",
+    "grams": 66
+   }
+  ]
+ },
+ {
+  "id": "174832-almond-milk-unsweetened",
+  "name": "Almond milk, unsweetened",
+  "category": "Dairy",
+  "fdcId": 174832,
+  "usdaDescription": "Beverages, almond milk, unsweetened, shelf stable",
+  "kcal": 15,
+  "proteinG": 0.4,
+  "carbsG": 1.3,
+  "fatG": 1,
+  "fiberG": 0.2,
+  "sugarG": 0.81,
+  "sodiumMg": 72,
+  "micros": {
+   "calciumMg": 184,
+   "ironMg": 0.28,
+   "magnesiumMg": 6,
+   "potassiumMg": 67,
+   "zincMg": 0.06,
+   "vitaminDUg": 1,
+   "saturatedFatG": 0.08
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 262
+   }
+  ]
+ },
+ {
+  "id": "172446-soy-milk",
+  "name": "Soy milk",
+  "category": "Dairy",
+  "fdcId": 172446,
+  "usdaDescription": "Soymilk, original and vanilla, unfortified",
+  "kcal": 54,
+  "proteinG": 3.3,
+  "carbsG": 6.3,
+  "fatG": 1.8,
+  "fiberG": 0.6,
+  "sugarG": 3.99,
+  "sodiumMg": 51,
+  "micros": {
+   "calciumMg": 25,
+   "ironMg": 0.64,
+   "magnesiumMg": 25,
+   "potassiumMg": 118,
+   "zincMg": 0.12,
+   "saturatedFatG": 0.21
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 243
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 30.6
+   }
+  ]
+ },
+ {
+  "id": "171413-olive-oil",
+  "name": "Olive oil",
+  "category": "Oils and condiments",
+  "fdcId": 171413,
+  "usdaDescription": "Oil, olive, salad or cooking",
+  "kcal": 884,
+  "proteinG": 0,
+  "carbsG": 0,
+  "fatG": 100,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 1,
+   "ironMg": 0.56,
+   "potassiumMg": 1,
+   "saturatedFatG": 13.81
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 13.5
+   },
+   {
+    "label": "1 cup",
+    "grams": 216
+   },
+   {
+    "label": "1 tsp",
+    "grams": 4.5
+   }
+  ]
+ },
+ {
+  "id": "172336-vegetable-oil",
+  "name": "Vegetable oil",
+  "category": "Oils and condiments",
+  "fdcId": 172336,
+  "usdaDescription": "Oil, canola",
+  "kcal": 884,
+  "proteinG": 0,
+  "carbsG": 0,
+  "fatG": 100,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 0,
+  "micros": {
+   "saturatedFatG": 7.37
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 14
+   },
+   {
+    "label": "1 cup",
+    "grams": 218
+   },
+   {
+    "label": "1 tsp",
+    "grams": 4.5
+   }
+  ]
+ },
+ {
+  "id": "171412-coconut-oil",
+  "name": "Coconut oil",
+  "category": "Oils and condiments",
+  "fdcId": 171412,
+  "usdaDescription": "Oil, coconut",
+  "kcal": 892,
+  "proteinG": 0,
+  "carbsG": 0,
+  "fatG": 99.1,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 0,
+  "micros": {
+   "calciumMg": 1,
+   "ironMg": 0.05,
+   "zincMg": 0.02,
+   "saturatedFatG": 82.48
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 13.6
+   },
+   {
+    "label": "1 cup",
+    "grams": 218
+   },
+   {
+    "label": "1 tsp",
+    "grams": 4.5
+   }
+  ]
+ },
+ {
+  "id": "171009-mayonnaise",
+  "name": "Mayonnaise",
+  "category": "Oils and condiments",
+  "fdcId": 171009,
+  "usdaDescription": "Salad dressing, mayonnaise, regular",
+  "kcal": 680,
+  "proteinG": 1,
+  "carbsG": 0.6,
+  "fatG": 74.9,
+  "fiberG": 0,
+  "sugarG": 0.57,
+  "sodiumMg": 635,
+  "micros": {
+   "calciumMg": 8,
+   "ironMg": 0.21,
+   "magnesiumMg": 1,
+   "potassiumMg": 20,
+   "zincMg": 0.15,
+   "vitaminAUg": 16,
+   "vitaminDUg": 0.2,
+   "vitaminB12Ug": 0.12,
+   "cholesterolMg": 42,
+   "saturatedFatG": 11.7
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 13.8
+   },
+   {
+    "label": "1 cup",
+    "grams": 220
+   },
+   {
+    "label": "1 packet",
+    "grams": 10
+   }
+  ]
+ },
+ {
+  "id": "173592-ranch-dressing",
+  "name": "Ranch dressing",
+  "category": "Oils and condiments",
+  "fdcId": 173592,
+  "usdaDescription": "Salad dressing, ranch dressing, regular",
+  "kcal": 430,
+  "proteinG": 1.3,
+  "carbsG": 5.9,
+  "fatG": 44.5,
+  "fiberG": 0,
+  "sugarG": 4.69,
+  "sodiumMg": 901,
+  "micros": {
+   "calciumMg": 28,
+   "ironMg": 0.3,
+   "magnesiumMg": 5,
+   "potassiumMg": 64,
+   "zincMg": 0.17,
+   "vitaminAUg": 15,
+   "vitaminDUg": 0.1,
+   "vitaminB12Ug": 0.17,
+   "cholesterolMg": 26,
+   "saturatedFatG": 6.96
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 15
+   },
+   {
+    "label": "1 serving",
+    "grams": 30
+   }
+  ]
+ },
+ {
+  "id": "171019-italian-dressing",
+  "name": "Italian dressing",
+  "category": "Oils and condiments",
+  "fdcId": 171019,
+  "usdaDescription": "Salad dressing, italian dressing, commercial, regular",
+  "kcal": 240,
+  "proteinG": 0.4,
+  "carbsG": 12.1,
+  "fatG": 21.1,
+  "fiberG": 0,
+  "sugarG": 10.77,
+  "sodiumMg": 993,
+  "micros": {
+   "calciumMg": 13,
+   "ironMg": 0.26,
+   "magnesiumMg": 5,
+   "potassiumMg": 84,
+   "zincMg": 0.07,
+   "vitaminAUg": 2,
+   "vitaminCMg": 0.4,
+   "saturatedFatG": 2.95
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 14.7
+   },
+   {
+    "label": "1 cup",
+    "grams": 235
+   }
+  ]
+ },
+ {
+  "id": "168556-ketchup",
+  "name": "Ketchup",
+  "category": "Oils and condiments",
+  "fdcId": 168556,
+  "usdaDescription": "Catsup",
+  "kcal": 101,
+  "proteinG": 1,
+  "carbsG": 27.4,
+  "fatG": 0.1,
+  "fiberG": 0.3,
+  "sugarG": 21.27,
+  "sodiumMg": 907,
+  "micros": {
+   "calciumMg": 15,
+   "ironMg": 0.35,
+   "magnesiumMg": 13,
+   "potassiumMg": 281,
+   "zincMg": 0.17,
+   "vitaminAUg": 26,
+   "vitaminCMg": 4.1,
+   "saturatedFatG": 0.01
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 17
+   },
+   {
+    "label": "1 packet",
+    "grams": 9
+   },
+   {
+    "label": "1 cup",
+    "grams": 240
+   }
+  ]
+ },
+ {
+  "id": "172234-mustard",
+  "name": "Mustard",
+  "category": "Oils and condiments",
+  "fdcId": 172234,
+  "usdaDescription": "Mustard, prepared, yellow",
+  "kcal": 60,
+  "proteinG": 3.7,
+  "carbsG": 5.8,
+  "fatG": 3.3,
+  "fiberG": 4,
+  "sugarG": 0.92,
+  "sodiumMg": 1104,
+  "micros": {
+   "calciumMg": 63,
+   "ironMg": 1.61,
+   "magnesiumMg": 48,
+   "potassiumMg": 152,
+   "zincMg": 0.64,
+   "vitaminAUg": 5,
+   "vitaminCMg": 0.3,
+   "saturatedFatG": 0.21
+  },
+  "portions": [
+   {
+    "label": "1 tsp or 1 packet",
+    "grams": 5
+   },
+   {
+    "label": "1 cup",
+    "grams": 249
+   }
+  ]
+ },
+ {
+  "id": "174523-barbecue-sauce",
+  "name": "Barbecue sauce",
+  "category": "Oils and condiments",
+  "fdcId": 174523,
+  "usdaDescription": "Sauce, barbecue",
+  "kcal": 172,
+  "proteinG": 0.8,
+  "carbsG": 40.8,
+  "fatG": 0.6,
+  "fiberG": 0.9,
+  "sugarG": 33.24,
+  "sodiumMg": 1027,
+  "micros": {
+   "calciumMg": 33,
+   "ironMg": 0.64,
+   "magnesiumMg": 13,
+   "potassiumMg": 232,
+   "zincMg": 0.17,
+   "vitaminAUg": 11,
+   "vitaminCMg": 0.6,
+   "saturatedFatG": 0.05
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 17
+   },
+   {
+    "label": "0.5 cup",
+    "grams": 143
+   },
+   {
+    "label": "1 cup",
+    "grams": 279
+   }
+  ]
+ },
+ {
+  "id": "174277-soy-sauce",
+  "name": "Soy sauce",
+  "category": "Oils and condiments",
+  "fdcId": 174277,
+  "usdaDescription": "Soy sauce made from soy and wheat (shoyu)",
+  "kcal": 53,
+  "proteinG": 8.1,
+  "carbsG": 4.9,
+  "fatG": 0.6,
+  "fiberG": 0.8,
+  "sugarG": 0.4,
+  "sodiumMg": 5493,
+  "micros": {
+   "calciumMg": 33,
+   "ironMg": 1.45,
+   "magnesiumMg": 74,
+   "potassiumMg": 435,
+   "zincMg": 0.87,
+   "saturatedFatG": 0.07
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 16
+   },
+   {
+    "label": "1 tsp",
+    "grams": 5.3
+   },
+   {
+    "label": "1 cup",
+    "grams": 255
+   },
+   {
+    "label": "1 individual packet",
+    "grams": 8.9
+   }
+  ]
+ },
+ {
+  "id": "174524-salsa",
+  "name": "Salsa",
+  "category": "Oils and condiments",
+  "fdcId": 174524,
+  "usdaDescription": "Sauce, salsa, ready-to-serve",
+  "kcal": 29,
+  "proteinG": 1.5,
+  "carbsG": 6.6,
+  "fatG": 0.2,
+  "fiberG": 1.9,
+  "sugarG": 4.01,
+  "sodiumMg": 711,
+  "micros": {
+   "calciumMg": 30,
+   "ironMg": 0.42,
+   "magnesiumMg": 15,
+   "potassiumMg": 275,
+   "zincMg": 0.18,
+   "vitaminAUg": 23,
+   "vitaminCMg": 1.9,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "2 tbsp",
+    "grams": 36
+   },
+   {
+    "label": "0.5 cup",
+    "grams": 130
+   },
+   {
+    "label": "1 cup",
+    "grams": 259
+   }
+  ]
+ },
+ {
+  "id": "171192-tomato-sauce-marinara",
+  "name": "Tomato sauce, marinara",
+  "category": "Oils and condiments",
+  "fdcId": 171192,
+  "usdaDescription": "Sauce, pasta, spaghetti/marinara, ready-to-serve",
+  "kcal": 50,
+  "proteinG": 1.4,
+  "carbsG": 7.4,
+  "fatG": 1.6,
+  "fiberG": 1.8,
+  "sugarG": 4.91,
+  "sodiumMg": 437,
+  "micros": {
+   "calciumMg": 26,
+   "ironMg": 0.73,
+   "magnesiumMg": 18,
+   "potassiumMg": 320,
+   "zincMg": 0.2,
+   "vitaminAUg": 31,
+   "vitaminCMg": 2,
+   "cholesterolMg": 2,
+   "saturatedFatG": 0.22
+  },
+  "portions": [
+   {
+    "label": "1 serving 1/2 cup",
+    "grams": 132
+   }
+  ]
+ },
+ {
+  "id": "171705-guacamole",
+  "name": "Guacamole",
+  "category": "Oils and condiments",
+  "fdcId": 171705,
+  "usdaDescription": "Avocados, raw, all commercial varieties",
+  "kcal": 160,
+  "proteinG": 2,
+  "carbsG": 8.5,
+  "fatG": 14.7,
+  "fiberG": 6.7,
+  "sugarG": 0.66,
+  "sodiumMg": 7,
+  "micros": {
+   "calciumMg": 12,
+   "ironMg": 0.55,
+   "magnesiumMg": 29,
+   "potassiumMg": 485,
+   "zincMg": 0.64,
+   "vitaminAUg": 7,
+   "vitaminCMg": 10,
+   "saturatedFatG": 2.13
+  },
+  "portions": [
+   {
+    "label": "2 tbsp",
+    "grams": 28.8
+   },
+   {
+    "label": "1 cup, cubes",
+    "grams": 150
+   },
+   {
+    "label": "1 cup, pureed",
+    "grams": 230
+   },
+   {
+    "label": "1 cup, sliced",
+    "grams": 146
+   },
+   {
+    "label": "1 avocado",
+    "grams": 201
+   },
+   {
+    "label": "1 standard serving",
+    "grams": 50
+   }
+  ]
+ },
+ {
+  "id": "169640-honey",
+  "name": "Honey",
+  "category": "Oils and condiments",
+  "fdcId": 169640,
+  "usdaDescription": "Honey",
+  "kcal": 304,
+  "proteinG": 0.3,
+  "carbsG": 82.4,
+  "fatG": 0,
+  "fiberG": 0.2,
+  "sugarG": 82.12,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 6,
+   "ironMg": 0.42,
+   "magnesiumMg": 2,
+   "potassiumMg": 52,
+   "zincMg": 0.22,
+   "vitaminCMg": 0.5
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 21
+   },
+   {
+    "label": "1 cup",
+    "grams": 339
+   },
+   {
+    "label": "1 packet (0.5 oz)",
+    "grams": 14
+   }
+  ]
+ },
+ {
+  "id": "169655-sugar",
+  "name": "Sugar",
+  "category": "Oils and condiments",
+  "fdcId": 169655,
+  "usdaDescription": "Sugars, granulated",
+  "kcal": 387,
+  "proteinG": 0,
+  "carbsG": 100,
+  "fatG": 0,
+  "fiberG": 0,
+  "sugarG": 99.8,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 1,
+   "ironMg": 0.05,
+   "potassiumMg": 2,
+   "zincMg": 0.01
+  },
+  "portions": [
+   {
+    "label": "1 tsp",
+    "grams": 4.2
+   },
+   {
+    "label": "1 serving packet",
+    "grams": 2.8
+   },
+   {
+    "label": "1 cup",
+    "grams": 200
+   },
+   {
+    "label": "1 serving 1 cube",
+    "grams": 2.3
+   }
+  ]
+ },
+ {
+  "id": "169661-maple-syrup",
+  "name": "Maple syrup",
+  "category": "Oils and condiments",
+  "fdcId": 169661,
+  "usdaDescription": "Syrups, maple",
+  "kcal": 260,
+  "proteinG": 0,
+  "carbsG": 67,
+  "fatG": 0.1,
+  "fiberG": 0,
+  "sugarG": 60.46,
+  "sodiumMg": 12,
+  "micros": {
+   "calciumMg": 102,
+   "ironMg": 0.11,
+   "magnesiumMg": 21,
+   "potassiumMg": 212,
+   "zincMg": 1.47,
+   "saturatedFatG": 0.01
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 20
+   },
+   {
+    "label": "1 serving 1/4 cup",
+    "grams": 83
+   },
+   {
+    "label": "1 cup",
+    "grams": 315
+   }
+  ]
+ },
+ {
+  "id": "169641-jam",
+  "name": "Jam",
+  "category": "Oils and condiments",
+  "fdcId": 169641,
+  "usdaDescription": "Jams and preserves",
+  "kcal": 278,
+  "proteinG": 0.4,
+  "carbsG": 68.9,
+  "fatG": 0.1,
+  "fiberG": 1.1,
+  "sugarG": 48.5,
+  "sodiumMg": 32,
+  "micros": {
+   "calciumMg": 20,
+   "ironMg": 0.49,
+   "magnesiumMg": 4,
+   "potassiumMg": 77,
+   "zincMg": 0.06,
+   "vitaminCMg": 8.8,
+   "saturatedFatG": 0.01
+  },
+  "portions": [
+   {
+    "label": "1 tbsp",
+    "grams": 20
+   },
+   {
+    "label": "1 packet (0.5 oz)",
+    "grams": 14
+   }
+  ]
+ },
+ {
+  "id": "169677-potato-chips",
+  "name": "Potato chips",
+  "category": "Snacks and sweets",
+  "fdcId": 169677,
+  "usdaDescription": "Snacks, potato chips, plain, salted",
+  "kcal": 532,
+  "proteinG": 6.4,
+  "carbsG": 53.8,
+  "fatG": 34,
+  "fiberG": 3.1,
+  "sugarG": 0.33,
+  "sodiumMg": 527,
+  "micros": {
+   "calciumMg": 21,
+   "ironMg": 1.28,
+   "magnesiumMg": 63,
+   "potassiumMg": 1196,
+   "zincMg": 1.09,
+   "vitaminCMg": 21.6,
+   "saturatedFatG": 3.4
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "22 chips",
+    "grams": 28
+   },
+   {
+    "label": "1 bag (8 oz)",
+    "grams": 227
+   }
+  ]
+ },
+ {
+  "id": "167558-tortilla-chips",
+  "name": "Tortilla chips",
+  "category": "Snacks and sweets",
+  "fdcId": 167558,
+  "usdaDescription": "Snacks, tortilla chips, plain, white corn, salted",
+  "kcal": 472,
+  "proteinG": 7.1,
+  "carbsG": 67.8,
+  "fatG": 20.7,
+  "fiberG": 5.4,
+  "sugarG": 0.78,
+  "sodiumMg": 328,
+  "micros": {
+   "calciumMg": 106,
+   "ironMg": 1.52,
+   "magnesiumMg": 84,
+   "potassiumMg": 182,
+   "zincMg": 1.38,
+   "vitaminB12Ug": 0.36,
+   "saturatedFatG": 2.81
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 bag",
+    "grams": 213
+   }
+  ]
+ },
+ {
+  "id": "167555-pretzels",
+  "name": "Pretzels",
+  "category": "Snacks and sweets",
+  "fdcId": 167555,
+  "usdaDescription": "Snacks, pretzels, hard, plain, salted",
+  "kcal": 384,
+  "proteinG": 10,
+  "carbsG": 80.4,
+  "fatG": 2.9,
+  "fiberG": 3.4,
+  "sugarG": 2.21,
+  "sodiumMg": 1240,
+  "micros": {
+   "calciumMg": 27,
+   "ironMg": 4.58,
+   "magnesiumMg": 29,
+   "potassiumMg": 223,
+   "zincMg": 1.04,
+   "vitaminCMg": 2.1,
+   "saturatedFatG": 0.39
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "10 twists",
+    "grams": 60
+   }
+  ]
+ },
+ {
+  "id": "170273-dark-chocolate",
+  "name": "Dark chocolate",
+  "category": "Snacks and sweets",
+  "fdcId": 170273,
+  "usdaDescription": "Chocolate, dark, 70-85% cacao solids",
+  "kcal": 598,
+  "proteinG": 7.8,
+  "carbsG": 45.9,
+  "fatG": 42.6,
+  "fiberG": 10.9,
+  "sugarG": 23.99,
+  "sodiumMg": 20,
+  "micros": {
+   "calciumMg": 73,
+   "ironMg": 11.9,
+   "magnesiumMg": 228,
+   "potassiumMg": 715,
+   "zincMg": 3.31,
+   "vitaminAUg": 2,
+   "vitaminB12Ug": 0.28,
+   "cholesterolMg": 3,
+   "saturatedFatG": 24.49
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 bar",
+    "grams": 101
+   }
+  ]
+ },
+ {
+  "id": "167587-milk-chocolate",
+  "name": "Milk chocolate",
+  "category": "Snacks and sweets",
+  "fdcId": 167587,
+  "usdaDescription": "Candies, milk chocolate",
+  "kcal": 535,
+  "proteinG": 7.7,
+  "carbsG": 59.4,
+  "fatG": 29.7,
+  "fiberG": 3.4,
+  "sugarG": 51.5,
+  "sodiumMg": 79,
+  "micros": {
+   "calciumMg": 189,
+   "ironMg": 2.35,
+   "magnesiumMg": 63,
+   "potassiumMg": 372,
+   "zincMg": 2.3,
+   "vitaminAUg": 59,
+   "vitaminB12Ug": 0.75,
+   "cholesterolMg": 23,
+   "saturatedFatG": 18.51
+  },
+  "portions": [
+   {
+    "label": "1 bar (1.55 oz)",
+    "grams": 44
+   },
+   {
+    "label": "1 bar, miniature",
+    "grams": 7
+   },
+   {
+    "label": "1 cup chips",
+    "grams": 168
+   }
+  ]
+ },
+ {
+  "id": "172716-chocolate-chip-cookie",
+  "name": "Chocolate chip cookie",
+  "category": "Snacks and sweets",
+  "fdcId": 172716,
+  "usdaDescription": "Cookies, chocolate chip, commercially prepared, regular, higher fat, enriched",
+  "kcal": 492,
+  "proteinG": 5.1,
+  "carbsG": 65.4,
+  "fatG": 24.7,
+  "fiberG": 2,
+  "sugarG": 32.9,
+  "sodiumMg": 311,
+  "micros": {
+   "calciumMg": 21,
+   "ironMg": 5.58,
+   "magnesiumMg": 41,
+   "potassiumMg": 171,
+   "zincMg": 0.72,
+   "vitaminB12Ug": 0.03,
+   "saturatedFatG": 8.09
+  },
+  "portions": [
+   {
+    "label": "1 cookie",
+    "grams": 12.9
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cookie (average weight of 1 cookie, variety of brands)",
+    "grams": 12.2
+   },
+   {
+    "label": "1 cookie Pepperidge Farm Chocolate Chunk Pecan",
+    "grams": 12
+   },
+   {
+    "label": "1 cookie, big (3-1/2\" - 4\" dia) (include Grandma brand)",
+    "grams": 40
+   },
+   {
+    "label": "1 cookie, medium (2-1/4\" dia)",
+    "grams": 10
+   },
+   {
+    "label": "1 cookie, large (include Keebler Rich 'n Chips, Pecan Chips ",
+    "grams": 14
+   },
+   {
+    "label": "1 cookie, bite size (include Mini Chips Ahoy!)",
+    "grams": 2.2
+   }
+  ]
+ },
+ {
+  "id": "172713-brownie",
+  "name": "Brownie",
+  "category": "Snacks and sweets",
+  "fdcId": 172713,
+  "usdaDescription": "Cookies, brownies, commercially prepared",
+  "kcal": 405,
+  "proteinG": 4.8,
+  "carbsG": 63.9,
+  "fatG": 16.3,
+  "fiberG": 2.1,
+  "sugarG": 36.61,
+  "sodiumMg": 286,
+  "micros": {
+   "calciumMg": 29,
+   "ironMg": 2.25,
+   "magnesiumMg": 31,
+   "potassiumMg": 149,
+   "zincMg": 0.72,
+   "vitaminAUg": 20,
+   "vitaminB12Ug": 0.07,
+   "cholesterolMg": 17,
+   "saturatedFatG": 4.24
+  },
+  "portions": [
+   {
+    "label": "1 square, large (2-3/4\" sq x 7/8\")",
+    "grams": 56
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 package, Little Debbie (twin wrapped)",
+    "grams": 61
+   }
+  ]
+ },
+ {
+  "id": "172758-doughnut-glazed",
+  "name": "Doughnut, glazed",
+  "category": "Snacks and sweets",
+  "fdcId": 172758,
+  "usdaDescription": "Doughnuts, yeast-leavened, glazed, enriched (includes honey buns)",
+  "kcal": 421,
+  "proteinG": 6.1,
+  "carbsG": 47.9,
+  "fatG": 22.7,
+  "fiberG": 2.1,
+  "sugarG": 22.75,
+  "sodiumMg": 316,
+  "micros": {
+   "calciumMg": 101,
+   "ironMg": 2.38,
+   "magnesiumMg": 17,
+   "potassiumMg": 102,
+   "zincMg": 0.61,
+   "vitaminAUg": 5,
+   "vitaminDUg": 0.1,
+   "vitaminCMg": 1.2,
+   "vitaminB12Ug": 0.11,
+   "cholesterolMg": 30,
+   "saturatedFatG": 9.45
+  },
+  "portions": [
+   {
+    "label": "1 doughnut medium (approx 3-3/4\" dia)",
+    "grams": 64
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 doughnut hole",
+    "grams": 13
+   },
+   {
+    "label": "1 doughnut stick",
+    "grams": 56
+   },
+   {
+    "label": "1 extra large (approx 5\" dia)",
+    "grams": 122
+   },
+   {
+    "label": "1 jumbo (approx 6\" dia)",
+    "grams": 157
+   },
+   {
+    "label": "1 doughnut, large (approx 4-1/4\" dia)",
+    "grams": 75
+   },
+   {
+    "label": "1 doughnut, long type (twist) approx 5-1/4\" x 2-1/2\" x 1-1/2",
+    "grams": 90
+   },
+   {
+    "label": "1 doughnut, small (approx 3\" dia)",
+    "grams": 31
+   },
+   {
+    "label": "1 doughnut (approx 1-1/2 oz)",
+    "grams": 42
+   }
+  ]
+ },
+ {
+  "id": "172765-muffin-blueberry",
+  "name": "Muffin, blueberry",
+  "category": "Snacks and sweets",
+  "fdcId": 172765,
+  "usdaDescription": "Muffins, blueberry, commercially prepared (Includes mini-muffins)",
+  "kcal": 375,
+  "proteinG": 4.5,
+  "carbsG": 53,
+  "fatG": 16.1,
+  "fiberG": 1.1,
+  "sugarG": 31.47,
+  "sodiumMg": 336,
+  "micros": {
+   "calciumMg": 44,
+   "ironMg": 1.3,
+   "magnesiumMg": 10,
+   "potassiumMg": 121,
+   "zincMg": 0.37,
+   "vitaminAUg": 21,
+   "vitaminDUg": 0.1,
+   "vitaminCMg": 0.9,
+   "vitaminB12Ug": 0.16,
+   "cholesterolMg": 30,
+   "saturatedFatG": 2.84
+  },
+  "portions": [
+   {
+    "label": "1 muffin",
+    "grams": 31
+   },
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 mini (1-1/4\" dia)",
+    "grams": 17
+   },
+   {
+    "label": "1 small (2-3/4\" dia x 2\")",
+    "grams": 66
+   },
+   {
+    "label": "1 medium",
+    "grams": 113
+   },
+   {
+    "label": "1 large (3-1/4\" dia x 2-3/4\")",
+    "grams": 139
+   },
+   {
+    "label": "1 extra large",
+    "grams": 168
+   }
+  ]
+ },
+ {
+  "id": "167542-granola-bar",
+  "name": "Granola bar",
+  "category": "Snacks and sweets",
+  "fdcId": 167542,
+  "usdaDescription": "Snacks, granola bars, hard, plain",
+  "kcal": 471,
+  "proteinG": 10.1,
+  "carbsG": 64.4,
+  "fatG": 19.8,
+  "fiberG": 5.3,
+  "sugarG": 28.57,
+  "sodiumMg": 294,
+  "micros": {
+   "calciumMg": 61,
+   "ironMg": 2.95,
+   "magnesiumMg": 97,
+   "potassiumMg": 336,
+   "zincMg": 2.03,
+   "vitaminAUg": 2,
+   "vitaminCMg": 0.9,
+   "saturatedFatG": 2.37
+  },
+  "portions": [
+   {
+    "label": "1 bar",
+    "grams": 21
+   },
+   {
+    "label": "1 bar (1 oz)",
+    "grams": 28
+   }
+  ]
+ },
+ {
+  "id": "167561-trail-mix",
+  "name": "Trail mix",
+  "category": "Snacks and sweets",
+  "fdcId": 167561,
+  "usdaDescription": "Snacks, trail mix, regular",
+  "kcal": 462,
+  "proteinG": 13.8,
+  "carbsG": 44.9,
+  "fatG": 29.4,
+  "fiberG": null,
+  "sugarG": null,
+  "sodiumMg": 229,
+  "micros": {
+   "calciumMg": 78,
+   "ironMg": 3.05,
+   "magnesiumMg": 158,
+   "potassiumMg": 685,
+   "zincMg": 3.22,
+   "vitaminAUg": 1,
+   "vitaminCMg": 1.4,
+   "saturatedFatG": 5.55
+  },
+  "portions": [
+   {
+    "label": "1 oz",
+    "grams": 28.4
+   },
+   {
+    "label": "1 cup",
+    "grams": 150
+   },
+   {
+    "label": "1.5 oz",
+    "grams": 42
+   }
+  ]
+ },
+ {
+  "id": "173292-pizza-cheese",
+  "name": "Pizza, cheese",
+  "category": "Meals",
+  "fdcId": 173292,
+  "usdaDescription": "Fast Food, Pizza Chain, 14\" pizza, cheese topping, regular crust",
+  "kcal": 266,
+  "proteinG": 11.4,
+  "carbsG": 33.3,
+  "fatG": 9.7,
+  "fiberG": 2.3,
+  "sugarG": 3.58,
+  "sodiumMg": 598,
+  "micros": {
+   "calciumMg": 188,
+   "ironMg": 2.48,
+   "magnesiumMg": 24,
+   "potassiumMg": 172,
+   "zincMg": 1.34,
+   "vitaminAUg": 69,
+   "vitaminCMg": 1.4,
+   "vitaminB12Ug": 0.42,
+   "cholesterolMg": 17,
+   "saturatedFatG": 4.47
+  },
+  "portions": [
+   {
+    "label": "1 slice",
+    "grams": 107
+   },
+   {
+    "label": "1 pizza",
+    "grams": 853
+   }
+  ]
+ },
+ {
+  "id": "173295-pizza-pepperoni",
+  "name": "Pizza, pepperoni",
+  "category": "Meals",
+  "fdcId": 173295,
+  "usdaDescription": "Fast Food, Pizza Chain, 14\" pizza, pepperoni topping, regular crust",
+  "kcal": 282,
+  "proteinG": 11.7,
+  "carbsG": 32,
+  "fatG": 11.9,
+  "fiberG": 2.3,
+  "sugarG": 3.26,
+  "sodiumMg": 685,
+  "micros": {
+   "calciumMg": 153,
+   "ironMg": 2.52,
+   "magnesiumMg": 24,
+   "potassiumMg": 195,
+   "zincMg": 1.4,
+   "vitaminAUg": 70,
+   "vitaminCMg": 0.9,
+   "vitaminB12Ug": 0.5,
+   "cholesterolMg": 25,
+   "saturatedFatG": 5.09
+  },
+  "portions": [
+   {
+    "label": "1 slice",
+    "grams": 111
+   },
+   {
+    "label": "1 pizza",
+    "grams": 895
+   }
+  ]
+ },
+ {
+  "id": "170693-hamburger",
+  "name": "Hamburger",
+  "category": "Meals",
+  "fdcId": 170693,
+  "usdaDescription": "Fast foods, hamburger; single, regular patty; plain",
+  "kcal": 297,
+  "proteinG": 16.5,
+  "carbsG": 31.5,
+  "fatG": 12,
+  "fiberG": 1.7,
+  "sugarG": 4.88,
+  "sodiumMg": 331,
+  "micros": {
+   "calciumMg": 62,
+   "ironMg": 3.06,
+   "magnesiumMg": 27,
+   "potassiumMg": 197,
+   "zincMg": 2.52,
+   "vitaminAUg": 9,
+   "vitaminDUg": 0.1,
+   "vitaminB12Ug": 0.89,
+   "cholesterolMg": 33,
+   "saturatedFatG": 4.49
+  },
+  "portions": [
+   {
+    "label": "1 sandwich",
+    "grams": 78
+   }
+  ]
+ },
+ {
+  "id": "170690-cheeseburger",
+  "name": "Cheeseburger",
+  "category": "Meals",
+  "fdcId": 170690,
+  "usdaDescription": "Fast foods, cheeseburger; single, regular patty; plain",
+  "kcal": 308,
+  "proteinG": 16.5,
+  "carbsG": 28,
+  "fatG": 14.7,
+  "fiberG": 2,
+  "sugarG": 4.88,
+  "sodiumMg": 515,
+  "micros": {
+   "calciumMg": 119,
+   "ironMg": 2.71,
+   "magnesiumMg": 26,
+   "potassiumMg": 196,
+   "zincMg": 2.49,
+   "vitaminAUg": 50,
+   "vitaminDUg": 0.1,
+   "vitaminB12Ug": 0.76,
+   "cholesterolMg": 43,
+   "saturatedFatG": 6.47
+  },
+  "portions": [
+   {
+    "label": "1 sandwich",
+    "grams": 91
+   }
+  ]
+ },
+ {
+  "id": "173321-chicken-nuggets",
+  "name": "Chicken nuggets",
+  "category": "Meals",
+  "fdcId": 173321,
+  "usdaDescription": "Fast foods, chicken tenders",
+  "kcal": 271,
+  "proteinG": 19.2,
+  "carbsG": 17.3,
+  "fatG": 14,
+  "fiberG": 1.2,
+  "sugarG": 0.4,
+  "sodiumMg": 769,
+  "micros": {
+   "calciumMg": 17,
+   "ironMg": 0.73,
+   "magnesiumMg": 28,
+   "potassiumMg": 373,
+   "zincMg": 0.71,
+   "vitaminAUg": 3,
+   "vitaminDUg": 0.2,
+   "vitaminCMg": 1.1,
+   "vitaminB12Ug": 0.16,
+   "cholesterolMg": 48,
+   "saturatedFatG": 2.49
+  },
+  "portions": [
+   {
+    "label": "1 strip",
+    "grams": 30
+   },
+   {
+    "label": "1 serving",
+    "grams": 184
+   }
+  ]
+ },
+ {
+  "id": "172039-burrito-bean-and-cheese",
+  "name": "Burrito, bean and cheese",
+  "category": "Meals",
+  "fdcId": 172039,
+  "usdaDescription": "Fast foods, burrito, with beans and cheese",
+  "kcal": 205,
+  "proteinG": 7.4,
+  "carbsG": 31.2,
+  "fatG": 6.1,
+  "fiberG": 4.2,
+  "sugarG": 1.73,
+  "sodiumMg": 563,
+  "micros": {
+   "calciumMg": 124,
+   "ironMg": 2.37,
+   "magnesiumMg": 34,
+   "potassiumMg": 261,
+   "zincMg": 0.86,
+   "vitaminAUg": 25,
+   "vitaminDUg": 0.1,
+   "vitaminCMg": 0.4,
+   "vitaminB12Ug": 0.16,
+   "cholesterolMg": 5,
+   "saturatedFatG": 2.31
+  },
+  "portions": [
+   {
+    "label": "1 burrito",
+    "grams": 185
+   }
+  ]
+ },
+ {
+  "id": "170689-taco-beef",
+  "name": "Taco, beef",
+  "category": "Meals",
+  "fdcId": 170689,
+  "usdaDescription": "Fast foods, taco with beef, cheese and lettuce, hard shell",
+  "kcal": 226,
+  "proteinG": 8.9,
+  "carbsG": 19.9,
+  "fatG": 12.7,
+  "fiberG": 3.9,
+  "sugarG": 0.9,
+  "sodiumMg": 397,
+  "micros": {
+   "calciumMg": 89,
+   "ironMg": 1.19,
+   "magnesiumMg": 32,
+   "potassiumMg": 209,
+   "zincMg": 1.75,
+   "vitaminAUg": 20,
+   "vitaminDUg": 0.1,
+   "vitaminCMg": 0.4,
+   "vitaminB12Ug": 0.93,
+   "cholesterolMg": 28,
+   "saturatedFatG": 4.38
+  },
+  "portions": [
+   {
+    "label": "1 taco",
+    "grams": 69
+   }
+  ]
+ },
+ {
+  "id": "173337-macaroni-and-cheese",
+  "name": "Macaroni and cheese",
+  "category": "Meals",
+  "fdcId": 173337,
+  "usdaDescription": "Macaroni and Cheese, canned, microwavable",
+  "kcal": 134,
+  "proteinG": 6,
+  "carbsG": 14,
+  "fatG": 6,
+  "fiberG": 0.4,
+  "sugarG": 1.41,
+  "sodiumMg": 335,
+  "micros": {
+   "calciumMg": 57,
+   "ironMg": 0.91,
+   "magnesiumMg": 13,
+   "potassiumMg": 72,
+   "zincMg": 0.55,
+   "vitaminB12Ug": 0.09,
+   "cholesterolMg": 20,
+   "saturatedFatG": 3.67
+  },
+  "portions": [
+   {
+    "label": "7.5 oz",
+    "grams": 213
+   }
+  ]
+ },
+ {
+  "id": "171543-chicken-noodle-soup",
+  "name": "Chicken noodle soup",
+  "category": "Meals",
+  "fdcId": 171543,
+  "usdaDescription": "Soup, chicken noodle, canned, condensed",
+  "kcal": 48,
+  "proteinG": 2.4,
+  "carbsG": 6.1,
+  "fatG": 1.6,
+  "fiberG": 0.9,
+  "sugarG": 0,
+  "sodiumMg": 681,
+  "micros": {
+   "calciumMg": 6,
+   "ironMg": 0.67,
+   "magnesiumMg": 8,
+   "potassiumMg": 48,
+   "zincMg": 0.28,
+   "vitaminAUg": 22,
+   "vitaminB12Ug": 0.12,
+   "cholesterolMg": 8,
+   "saturatedFatG": 0.39
+  },
+  "portions": [
+   {
+    "label": "0.5 cup",
+    "grams": 124
+   }
+  ]
+ },
+ {
+  "id": "171176-tomato-soup",
+  "name": "Tomato soup",
+  "category": "Meals",
+  "fdcId": 171176,
+  "usdaDescription": "Soup, tomato, canned, prepared with equal volume water, commercial",
+  "kcal": 32,
+  "proteinG": 0.7,
+  "carbsG": 7.5,
+  "fatG": 0.2,
+  "fiberG": 0.5,
+  "sugarG": 4.03,
+  "sodiumMg": 186,
+  "micros": {
+   "calciumMg": 8,
+   "ironMg": 0.29,
+   "magnesiumMg": 7,
+   "potassiumMg": 275,
+   "zincMg": 0.09,
+   "vitaminAUg": 10,
+   "vitaminCMg": 6.3,
+   "saturatedFatG": 0.06
+  },
+  "portions": [
+   {
+    "label": "1 serving 1 cup",
+    "grams": 248
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 31
+   }
+  ]
+ },
+ {
+  "id": "169098-orange-juice",
+  "name": "Orange juice",
+  "category": "Drinks",
+  "fdcId": 169098,
+  "usdaDescription": "Orange juice, raw (Includes foods for USDA's Food Distribution Program)",
+  "kcal": 45,
+  "proteinG": 0.7,
+  "carbsG": 10.4,
+  "fatG": 0.2,
+  "fiberG": 0.2,
+  "sugarG": 8.4,
+  "sodiumMg": 1,
+  "micros": {
+   "calciumMg": 11,
+   "ironMg": 0.2,
+   "magnesiumMg": 11,
+   "potassiumMg": 200,
+   "zincMg": 0.05,
+   "vitaminAUg": 10,
+   "vitaminCMg": 50,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 248
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 31
+   },
+   {
+    "label": "1 fruit yields",
+    "grams": 86
+   }
+  ]
+ },
+ {
+  "id": "173933-apple-juice",
+  "name": "Apple juice",
+  "category": "Drinks",
+  "fdcId": 173933,
+  "usdaDescription": "Apple juice, canned or bottled, unsweetened, without added ascorbic acid",
+  "kcal": 46,
+  "proteinG": 0.1,
+  "carbsG": 11.3,
+  "fatG": 0.1,
+  "fiberG": 0.2,
+  "sugarG": 9.62,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 8,
+   "ironMg": 0.12,
+   "magnesiumMg": 5,
+   "potassiumMg": 101,
+   "zincMg": 0.02,
+   "vitaminCMg": 0.9,
+   "saturatedFatG": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 cup",
+    "grams": 248
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 31
+   },
+   {
+    "label": "1 drink box (8.45 fl oz)",
+    "grams": 262
+   }
+  ]
+ },
+ {
+  "id": "171890-coffee-black",
+  "name": "Coffee, black",
+  "category": "Drinks",
+  "fdcId": 171890,
+  "usdaDescription": "Beverages, coffee, brewed, prepared with tap water",
+  "kcal": 1,
+  "proteinG": 0.1,
+  "carbsG": 0,
+  "fatG": 0,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 2,
+  "micros": {
+   "calciumMg": 2,
+   "ironMg": 0.01,
+   "magnesiumMg": 3,
+   "potassiumMg": 49,
+   "zincMg": 0.02,
+   "saturatedFatG": 0
+  },
+  "portions": [
+   {
+    "label": "1 cup (8 fl oz)",
+    "grams": 237
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 29.6
+   },
+   {
+    "label": "6 fl oz",
+    "grams": 178
+   }
+  ]
+ },
+ {
+  "id": "173227-tea-unsweetened",
+  "name": "Tea, unsweetened",
+  "category": "Drinks",
+  "fdcId": 173227,
+  "usdaDescription": "Beverages, tea, black, brewed, prepared with tap water",
+  "kcal": 1,
+  "proteinG": 0,
+  "carbsG": 0.3,
+  "fatG": 0,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 3,
+  "micros": {
+   "ironMg": 0.02,
+   "magnesiumMg": 3,
+   "potassiumMg": 37,
+   "zincMg": 0.02,
+   "saturatedFatG": 0
+  },
+  "portions": [
+   {
+    "label": "1 cup (8 fl oz)",
+    "grams": 237
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 29.6
+   },
+   {
+    "label": "6 fl oz",
+    "grams": 178
+   }
+  ]
+ },
+ {
+  "id": "174852-cola",
+  "name": "Cola",
+  "category": "Drinks",
+  "fdcId": 174852,
+  "usdaDescription": "Beverages, carbonated, cola, regular",
+  "kcal": 42,
+  "proteinG": 0,
+  "carbsG": 10.4,
+  "fatG": 0.3,
+  "fiberG": 0,
+  "sugarG": 9.94,
+  "sodiumMg": 3,
+  "micros": {
+   "calciumMg": 1,
+   "ironMg": 0.02,
+   "potassiumMg": 5,
+   "zincMg": 0.09
+  },
+  "portions": [
+   {
+    "label": "1 can or bottle (12 fl oz)",
+    "grams": 370
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 30.7
+   },
+   {
+    "label": "1 can or bottle (16 fl oz)",
+    "grams": 492
+   },
+   {
+    "label": "1 drink, small (16 fl oz)",
+    "grams": 492
+   },
+   {
+    "label": "1 drink, medium (22 fl oz)",
+    "grams": 676
+   },
+   {
+    "label": "1 drink, large (32 fl oz)",
+    "grams": 984
+   },
+   {
+    "label": "1 drink, extra large (44 fl oz)",
+    "grams": 1353
+   }
+  ]
+ },
+ {
+  "id": "173660-sports-drink",
+  "name": "Sports drink",
+  "category": "Drinks",
+  "fdcId": 173660,
+  "usdaDescription": "Beverages, PEPSICO QUAKER, Gatorade, G performance O 2, ready-to-drink.",
+  "kcal": 26,
+  "proteinG": 0,
+  "carbsG": 6.4,
+  "fatG": 0,
+  "fiberG": 0,
+  "sugarG": 5.24,
+  "sodiumMg": 39,
+  "micros": {
+   "calciumMg": 1,
+   "ironMg": 0.05,
+   "potassiumMg": 15,
+   "zincMg": 0.01,
+   "vitaminCMg": 0.4
+  },
+  "portions": [
+   {
+    "label": "8 fl oz",
+    "grams": 244
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 30.5
+   },
+   {
+    "label": "1 bottle",
+    "grams": 609
+   }
+  ]
+ },
+ {
+  "id": "168746-beer",
+  "name": "Beer",
+  "category": "Drinks",
+  "fdcId": 168746,
+  "usdaDescription": "Alcoholic beverage, beer, regular, all",
+  "kcal": 43,
+  "proteinG": 0.5,
+  "carbsG": 3.6,
+  "fatG": 0,
+  "fiberG": 0,
+  "sugarG": 0,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 4,
+   "ironMg": 0.02,
+   "magnesiumMg": 6,
+   "potassiumMg": 27,
+   "zincMg": 0.01,
+   "vitaminB12Ug": 0.02
+  },
+  "portions": [
+   {
+    "label": "1 can",
+    "grams": 356
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 29.7
+   }
+  ]
+ },
+ {
+  "id": "173190-wine-red",
+  "name": "Wine, red",
+  "category": "Drinks",
+  "fdcId": 173190,
+  "usdaDescription": "Alcoholic beverage, wine, table, red",
+  "kcal": 85,
+  "proteinG": 0.1,
+  "carbsG": 2.6,
+  "fatG": 0,
+  "fiberG": 0,
+  "sugarG": 0.62,
+  "sodiumMg": 4,
+  "micros": {
+   "calciumMg": 8,
+   "ironMg": 0.46,
+   "magnesiumMg": 12,
+   "potassiumMg": 127,
+   "zincMg": 0.14
+  },
+  "portions": [
+   {
+    "label": "1 serving (5 fl oz)",
+    "grams": 147
+   },
+   {
+    "label": "1 fl oz",
+    "grams": 29.4
+   }
+  ]
+ },
+ {
+  "id": "173180-protein-powder-whey",
+  "name": "Protein powder, whey",
+  "category": "Drinks",
+  "fdcId": 173180,
+  "usdaDescription": "Beverages, Protein powder whey based",
+  "kcal": 352,
+  "proteinG": 78.1,
+  "carbsG": 6.3,
+  "fatG": 1.6,
+  "fiberG": 3.1,
+  "sugarG": 0,
+  "sodiumMg": 156,
+  "micros": {
+   "calciumMg": 469,
+   "ironMg": 1.13,
+   "magnesiumMg": 195,
+   "potassiumMg": 500,
+   "zincMg": 6.18,
+   "vitaminB12Ug": 2.45,
+   "cholesterolMg": 16,
+   "saturatedFatG": 0.78
+  },
+  "portions": [
+   {
+    "label": "0.33 cup",
+    "grams": 32
+   }
+  ]
+ }
+]

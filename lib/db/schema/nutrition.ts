@@ -16,7 +16,11 @@ import {
 } from "drizzle-orm/pg-core";
 import { user } from "./auth";
 
-export const foodSourceEnum = pgEnum("food_source", ["usda", "off", "custom"]);
+// "common" is the built-in list of everyday foods (lib/db/seed-data/common-foods.json).
+export const foodSourceEnum = pgEnum("food_source", ["usda", "off", "custom", "common"]);
+
+/** A household measure for a food, e.g. { label: "1 medium", grams: 118 }. */
+export type FoodPortion = { label: string; grams: number };
 export const mealEnum = pgEnum("meal", ["breakfast", "lunch", "dinner", "snack"]);
 
 const n = (name: string) => numeric(name, { precision: 9, scale: 2, mode: "number" });
@@ -39,6 +43,10 @@ export const foods = pgTable(
     brand: text("brand"),
     servingG: n("serving_g"),
     servingLabel: text("serving_label"),
+    // Household measures, the typical one first. Null means "not looked up yet"
+    // for a USDA food; an empty list means the source has none.
+    portions: jsonb("portions").$type<FoodPortion[]>(),
+    category: text("category"),
     kcal: n("kcal").notNull(),
     proteinG: n("protein_g").notNull().default(0),
     carbsG: n("carbs_g").notNull().default(0),

@@ -132,3 +132,55 @@ export async function findUsdaByBarcode(barcode: string): Promise<FoodInput | nu
   const digits = barcode.replace(/^0+/, "");
   return results.find((f) => f.barcode && f.barcode.replace(/^0+/, "") === digits) ?? null;
 }
+
+const portionSchema = z.object({
+  foodPortions: z
+    .array(
+      z.object({
+        amount: z.number().optional(),
+        modifier: z.string().optional(),
+        portionDescription: z.string().optional(),
+        measureUnit: z.object({ name: z.string().optional() }).optional(),
+        gramWeight: z.number().optional(),
+        sequenceNumber: z.number().optional(),
+      }),
+    )
+    .default([]),
+});
+
+/**
+ * Household measures for one USDA food ("1 cup, sliced" = 150 g). Search
+ * results do not carry these, so they are fetched once when a food is first
+ * opened and then kept. Branded products have none; their label serving is
+ * already on the food.
+ */
+export async function fetchUsdaPortions(fdcId: string): Promise<{ label: string; grams: number }[]> {
+  const url = new URL(`${BASE}/food/${encodeURIComponent(fdcId)}`);
+  url.searchParams.set("api_key", env.USDA_API_KEY);
+  const res = await fetch(url, { signal: AbortSignal.timeout(6000), cache: "no-store" });
+  if (!res.ok) throw new Error(`USDA food lookup failed: ${res.status}`);
+  const parsed = portionSchema.safeParse(await res.json());
+  if (!parsed.success) return [];
+
+  const seen = new Set<string>();
+  return parsed.data.foodPortions
+    .slice()
+    .sort((a, b) => (a.sequenceNumber ?? 99) - (b.sequenceNumber ?? 99))
+    .flatMap((p) => {
+      const unitName = p.measureUnit?.name && p.measureUnit.name !== "undetermined" ? p.measureUnit.name : "";
+      let text = tidyName(p.modifier || p.portionDescription || unitName || "", 60);
+      const grams = p.gramWeight ?? 0;
+      if (!text || !(grams > 0) || grams > 2000) return [];
+      text = text
+        .replace(/^each /i, "")
+        .replace(/, NS as to .*$/i, "")
+        .replace(/NLEA serving/i, "standard serving")
+        .replace(/\btablespoons?\b/gi, "tbsp")
+        .replace(/\bteaspoons?\b/gi, "tsp");
+      const label = /^\d/.test(text) ? text : `${p.amount && p.amount !== 1 ? p.amount : 1} ${text}`;
+      if (seen.has(label)) return [];
+      seen.add(label);
+      return [{ label, grams: Math.round(grams * 10) / 10 }];
+    })
+    .slice(0, 10);
+}

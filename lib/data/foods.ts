@@ -1,7 +1,7 @@
 import "server-only";
 import { and, desc, eq, ilike, inArray, isNull, ne, or, sql } from "drizzle-orm";
 import { db } from "@/lib/db/client";
-import { foodLogs, foods } from "@/lib/db/schema";
+import { foodLogs, foods, type FoodPortion } from "@/lib/db/schema";
 import type { FoodInput } from "@/lib/food/types";
 
 export type Food = typeof foods.$inferSelect;
@@ -9,16 +9,19 @@ export type Food = typeof foods.$inferSelect;
 /** What the client needs to show and log a food. */
 export type FoodSummary = Pick<
   Food,
-  "id" | "source" | "name" | "brand" | "servingG" | "servingLabel" | "kcal" | "proteinG" | "carbsG" | "fatG"
+  "id" | "source" | "sourceId" | "name" | "brand" | "servingG" | "servingLabel" | "portions" | "category" | "kcal" | "proteinG" | "carbsG" | "fatG"
 >;
 
 const summaryColumns = {
   id: foods.id,
   source: foods.source,
+  sourceId: foods.sourceId,
   name: foods.name,
   brand: foods.brand,
   servingG: foods.servingG,
   servingLabel: foods.servingLabel,
+  portions: foods.portions,
+  category: foods.category,
   kcal: foods.kcal,
   proteinG: foods.proteinG,
   carbsG: foods.carbsG,
@@ -84,9 +87,19 @@ export async function searchCachedFoods(userId: string, query: string, limit = 2
     .select(summaryColumns)
     .from(foods)
     .where(and(visibleTo(userId), or(ilike(foods.name, pattern), ilike(foods.brand, pattern))))
-    // The user's own foods first, then shorter (more generic) names.
-    .orderBy(sql`(${foods.ownerId} is null)`, sql`length(${foods.name})`)
+    // The user's own foods first, then the built-in everyday foods, then shorter (more generic) names.
+    .orderBy(sql`(${foods.ownerId} is null)`, sql`(${foods.source} <> 'common')`, sql`length(${foods.name})`)
     .limit(limit);
+}
+
+/** The built-in list of everyday foods, for browsing before anything is typed. */
+export async function listCommonFoods(): Promise<FoodSummary[]> {
+  return db.select(summaryColumns).from(foods).where(eq(foods.source, "common")).orderBy(foods.category, foods.name);
+}
+
+/** Records the household measures looked up for a shared catalogue food. */
+export async function savePortions(foodId: string, portions: FoodPortion[]): Promise<void> {
+  await db.update(foods).set({ portions }).where(and(eq(foods.id, foodId), isNull(foods.ownerId)));
 }
 
 export async function findCachedByBarcode(barcode: string): Promise<FoodSummary | null> {
